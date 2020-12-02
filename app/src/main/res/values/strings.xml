@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">MusicZone</string>
     <string name="action_settings">Settings</string>
-    <string name="wyd">What are you doing?</string>>
+    <string name="wyd">What are you doing?</string>
+    <string name="million">Millions of people are using MusicZone\nto enjoy music!</string>
+    <string name="signup">SIGN UP</string>
+    <string name="already">ALREADY HAVE AN ACCOUNT?</string>
+    <string name="login">LOGIN</string>
 </resources>
