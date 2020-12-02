@@ -11,9 +11,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What are you doing?"
+        android:text="@string/wyd"
         android:textColor="@color/Black"
-        android:textSize="27dp"
+        android:textSize="27sp"
         app:fontFamily="@font/montserratextrabold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,34 +26,29 @@
         android:id="@+id/millionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha=".58"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="Millions of people are using MusicZone\nto enjoy music!"
+        android:text="@string/million"
         android:textColor="@color/Grey"
-        android:textSize="16dp"
+        android:textSize="16sp"
+        android:alpha=".58"
         app:fontFamily="@font/roboto_bold"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.696" />
 
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="311dp"
-        android:layout_height="64dp"
-        android:background="@drawable/rounded_corners"
-        android:elevation="3dp"
-        android:text="Sign Up"
-        android:textColor="@color/White"
-        android:textSize="16dp"
+        style="@style/blue_button"
+        android:text="@string/signup"
         app:fontFamily="@font/montserratextrabold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.826" />
 
     <TextView
         android:id="@+id/alreadyTextView"
@@ -61,9 +56,9 @@
         android:layout_height="19dp"
         android:alpha=".58"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="ALREADY HAVE AN ACCOUNT?"
+        android:text="@string/already"
         android:textColor="#A1A4B2"
-        android:textSize="14dp"
+        android:textSize="14sp"
         app:fontFamily="@font/roboto_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,9 +72,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:textColor="@color/Blue"
-        android:textSize="14dp"
+        android:textSize="14sp"
         app:fontFamily="@font/roboto_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,3 +86,11 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay" />
+
+    <include layout="@layout/content_main" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

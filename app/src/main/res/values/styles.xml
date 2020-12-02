@@ -17,4 +17,13 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="blue_button" >
+        <item name="android:layout_width">311dp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:background">@drawable/rounded_corners</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:onClick">onButtonClicked</item>
+    </style>
+
 </resources>
