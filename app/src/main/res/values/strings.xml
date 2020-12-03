@@ -2,8 +2,12 @@
     <string name="app_name">MusicZone</string>
     <string name="action_settings">Settings</string>
     <string name="wyd">What are you doing?</string>
-    <string name="million">Millions of people are using MusicZone\nto enjoy music!</string>
+    <string name="million">Millions of people are using MusicZone to enjoy music!</string>
     <string name="signup">SIGN UP</string>
     <string name="already">ALREADY HAVE AN ACCOUNT?</string>
     <string name="login">LOGIN</string>
+    <string name="slide1text">Feel the ease of searching music  concert  based on spotify playlist, genre, and many more!</string>
+    <string name="slide2text"> We help people with the same taste of music to meet up</string>
+    <string name="slide3text">Let’s get started then!</string>
+
 </resources>

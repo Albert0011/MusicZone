@@ -22,23 +22,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.634" />
 
+
     <TextView
         android:id="@+id/millionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:alpha=".58"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="@string/million"
         android:textColor="@color/Grey"
         android:textSize="16sp"
-        android:alpha=".58"
         app:fontFamily="@font/roboto_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696" />
-
+        app:layout_constraintVertical_bias="0.708" />
 
     <Button
         style="@style/blue_button"
