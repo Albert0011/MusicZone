@@ -1,5 +1,6 @@
 package com.glitchstacks.musiczone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,7 +16,7 @@ import com.airbnb.lottie.LottieAnimationView;
 
 public class IntroductoryActivity extends AppCompatActivity {
 
-    ImageView logo;
+    ImageView logo, background;
     LottieAnimationView lottieAnimationView;
 
     private static final int NUM_PAGES = 3;
@@ -28,20 +29,22 @@ public class IntroductoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_introductory);
 
         logo = findViewById(R.id.logo);
+        background = findViewById(R.id.background);
         lottieAnimationView = findViewById(R.id.lottie);
 
         viewPager = findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
-        logo.animate().translationY(-2000).setDuration(1000).setStartDelay(3000);
+        background.animate().translationY(-4000).setDuration(1000).setStartDelay(3000);
+        logo.animate().translationY(2000).setDuration(1000).setStartDelay(3000);
         lottieAnimationView.animate().translationY(2000).setDuration(1000).setStartDelay(3000);
 
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+        public ScreenSlidePagerAdapter(@NonNull FragmentManager fm) {
             super(fm);
         }
 
