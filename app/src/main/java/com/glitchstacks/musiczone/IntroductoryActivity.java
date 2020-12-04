@@ -7,7 +7,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -23,6 +29,11 @@ public class IntroductoryActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private ScreenSlidePagerAdapter pagerAdapter;
 
+    Animation anim;
+
+    private static int SPLASH_TIME_OUT = 3000;
+    SharedPreferences mSharedPref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,9 +47,32 @@ public class IntroductoryActivity extends AppCompatActivity {
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
+        anim = AnimationUtils.loadAnimation(this, R.anim.o_b_anim);
+        viewPager.startAnimation(anim);
+
         background.animate().translationY(-4000).setDuration(1000).setStartDelay(3000);
-        logo.animate().translationY(2000).setDuration(1000).setStartDelay(3000);
-        lottieAnimationView.animate().translationY(2000).setDuration(1000).setStartDelay(3000);
+        logo.animate().translationY(-2000).setDuration(1000).setStartDelay(3000);
+        lottieAnimationView.animate().translationY(-2000).setDuration(1000).setStartDelay(3000);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mSharedPref = getSharedPreferences("SharedPref", MODE_PRIVATE);
+                boolean isFirstTime = mSharedPref.getBoolean("firstTime", true);
+
+                if(isFirstTime){
+                    SharedPreferences.Editor editor = mSharedPref.edit();
+                    editor.putBoolean("firstTime",false);
+                    editor.commit();
+                }
+                else{
+                    Intent intent = new Intent(IntroductoryActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        },SPLASH_TIME_OUT);
+
 
     }
 

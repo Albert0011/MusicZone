@@ -35,4 +35,12 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="white_button">
+        <item name="android:layout_width">374dp</item>
+        <item name="android:layout_height">63dp</item>
+        <item name="android:textColor">@color/White</item>
+        <item name="android:background">@drawable/rounded_corners_white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

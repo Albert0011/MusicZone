@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBlue">
+    android:background="@color/lightBlue">
 
 
     <ImageView
@@ -15,38 +14,39 @@
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.268"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213"
-        app:srcCompat="@drawable/music_zone_logo"
-        tools:layout_editor_absoluteX="72dp" />
+        app:layout_constraintVertical_bias="0.204"
+        app:srcCompat="@drawable/music_zone_logo" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="291dp"
-        android:layout_height="37dp"
-        android:gravity="center|center_horizontal|center_vertical"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:gravity="left|center_horizontal|center_vertical"
         android:text="@string/slide2text"
-        android:textColor="@color/Grey"
+        android:textColor="@color/AshGray"
         android:textSize="14sp"
         app:fontFamily="@font/roboto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.222"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34" />
+        app:layout_constraintVertical_bias="0.365" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="307dp"
-        android:layout_height="378dp"
+        android:id="@+id/imageView2"
+        android:layout_width="260dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743"
+        app:layout_constraintVertical_bias="0.565"
         app:srcCompat="@drawable/slide2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
