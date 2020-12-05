@@ -33,5 +33,10 @@
     <string name="active_show">Active Show</string>
     <string name="show_history">Show History</string>
     <string name="hello_blank_fragment">Hello Blank F</string>
+    <string name="otp_code_text">CO\nDE</string>
+    <string name="otp_verification_text">Verification</string>
+    <string name="verif_code">Verify Code</string>
+    <string name="otp_description_text">Enter one time password sent on +6287880801287</string>
+
 
 </resources>
