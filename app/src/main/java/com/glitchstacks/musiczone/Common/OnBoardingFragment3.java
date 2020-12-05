@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.Common;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.glitchstacks.musiczone.MainActivity;
+import com.glitchstacks.musiczone.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.ls.LSOutput;

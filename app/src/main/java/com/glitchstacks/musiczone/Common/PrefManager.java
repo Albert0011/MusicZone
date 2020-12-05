@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.Common;
 
 import android.content.Context;
 import android.content.SharedPreferences;

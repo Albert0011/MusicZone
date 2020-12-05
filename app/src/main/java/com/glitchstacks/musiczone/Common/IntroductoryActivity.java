@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.Common;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +13,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
-
+import com.glitchstacks.musiczone.MainActivity;
+import com.glitchstacks.musiczone.R;
 
 
 public class IntroductoryActivity extends AppCompatActivity {

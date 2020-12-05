@@ -1,8 +1,10 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.Common;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.glitchstacks.musiczone.R;
 
 public class Login extends AppCompatActivity {
 
