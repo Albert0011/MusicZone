@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "447462919368",
+    "project_id": "musiczone-90ae7",
+    "storage_bucket": "musiczone-90ae7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447462919368:android:76220b85c9c6c5c28be9fd",
+        "android_client_info": {
+          "package_name": "com.glitchstacks.musiczone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447462919368-qjijd7rvvbrat6nd4f0p817l4o2q0vko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbpCspvmOiuV6AAqgIql3nbK36AIrhJlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447462919368-qjijd7rvvbrat6nd4f0p817l4o2q0vko.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

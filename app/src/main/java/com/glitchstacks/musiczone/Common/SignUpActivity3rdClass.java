@@ -36,6 +36,8 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
         }
     }
 
+    public void
+
     public void callLoginScreen(View view){
 
         Intent intent = new Intent(getApplicationContext(), Login.class);
