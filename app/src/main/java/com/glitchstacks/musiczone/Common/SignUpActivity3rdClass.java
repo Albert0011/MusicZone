@@ -11,24 +11,24 @@ import android.view.View;
 
 import com.glitchstacks.musiczone.R;
 
-public class Login extends AppCompatActivity {
+public class SignUpActivity3rdClass extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retailer_login);
+        setContentView(R.layout.activity_sign_up_activity3rd_class);
     }
 
-    public void callSignUpScreen(View view){
+    public void backToBefore(View view){
 
-        Intent intent = new Intent(getApplicationContext(), SignUp.class);
+        Intent intent = new Intent(getApplicationContext(), SignUp2ndClass.class);
 
         Pair[] pairs = new Pair[1];
 
-        pairs[0] = new Pair<View, String>(findViewById(R.id.btn_sign_up),"transition_signup_btn");
+        pairs[0] = new Pair<View, String>(findViewById(R.id.signup_back_btn),"transition_back_btn");
 
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Login.this, pairs);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUpActivity3rdClass.this, pairs);
             startActivity(intent,options.toBundle());
         }
         else{
@@ -36,9 +36,9 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    public void backToBefore(View view){
+    public void callLoginScreen(View view){
 
-        Intent intent = new Intent(getApplicationContext(), MusicZoneStartUpScreen.class);
+        Intent intent = new Intent(getApplicationContext(), Login.class);
         startActivity(intent);
 
     }

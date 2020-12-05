@@ -4,6 +4,7 @@
     <string name="wyd">What are you doing?</string>
     <string name="million">Millions of people are using MusicZone\nto enjoy music!</string>
     <string name="signup">Sign Up</string>
+    <string name="SignIn">Sign In</string>
     <string name="already">ALREADY HAVE AN ACCOUNT?</string>
     <string name="login">LOGIN</string>
     <string name="spotify">Continue With Spotify</string>
@@ -12,4 +13,23 @@
     <string name="slide1text">Feel the ease of searching music  concert  based on spotify playlist, genre, and many more!</string>
     <string name="slide2text"> We help people with the same taste of music to meet up</string>
     <string name="slide3text">Let’s get started then!</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_passw">Enter Password</string>
+    <string name="remember">Remember Me</string>
+    <string name="forget_passw">Forget Password</string>
+    <string name="create_acc">Create Account</string>
+    <string name="fullname">Full Name</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="passw">Password</string>
+    <string name="next">Next</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="finish">Finish</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="choose_gender">Choose Gender</string>
+    <string name="select_age">Select Your Age</string>
+
+
 </resources>

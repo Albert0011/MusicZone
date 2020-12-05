@@ -10,4 +10,7 @@
     <color name="AshGray">#FAF8F5</color>
     <color name="darkBlue">#2A2C6F</color>
     <color name="lightBlue">#DADADA</color>
+    <color name="lightGrey">#C7C8CF</color>
+    <color name="lightPurple">#8E97FD</color>
+
 </resources>

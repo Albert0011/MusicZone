@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/background"
-        android:elevation="2dp"
         android:layout_width="410dp"
         android:layout_height="850dp"
+        android:elevation="2dp"
         android:src="@drawable/rounded_corners_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,9 +20,9 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:elevation="2dp"
         android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
         android:src="@drawable/music_zone_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,23 +32,24 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:elevation="2dp"
-        app:lottie_autoPlay="true"
-        android:layout_width="wrap_content"
-        android:layout_height="202dp"
         android:src="@raw/music"
-        app:lottie_rawRes="@raw/music"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.2"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/music" />
 
     <com.cuberto.liquid_swipe.LiquidPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

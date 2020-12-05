@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Common.Login"></activity>
+        <activity android:name=".Common.SignUpActivity3rdClass"></activity>
+        <activity android:name=".Common.SignUp2ndClass" />
+        <activity android:name=".Common.SignUp" />
+        <activity android:name=".Common.Login" />
+        <activity android:name=".Common.MusicZoneStartUpScreen" />
+        <activity android:name=".Common.LoginActivity" />
         <activity android:name=".Common.IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +25,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

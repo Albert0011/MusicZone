@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Common.MusicZoneStartUpScreen"
+    android:background="@color/White"
+    android:padding="0dp"
+    android:transitionName="transition_back_btn">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:layout_marginTop="97dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/music_zone_logo"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_marginTop="54dp"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:src="@drawable/chill"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/wyd"
+            android:textSize="27sp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:textColor="@color/Black"/>
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/million"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/lightGrey"
+            />
+
+        <Button
+            android:id="@+id/btn_sign_up"
+            style="@style/purple_button"
+            android:layout_gravity="center"
+            android:layout_width="317dp"
+            android:layout_height="66dp"
+            android:layout_marginTop="21dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="@string/signup"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:transitionName="transition_signup_btn"
+            android:onClick="callSignUpScreen"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="@string/already"
+                android:textSize="12sp"/>
+
+
+            <Button
+
+                android:id="@+id/btn_sign_in"
+                android:background="#00000000"
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="2"
+                android:layout_height="66dp"
+                android:gravity="left|center_vertical"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/signin"
+                android:textColor="@color/Black"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:onClick="callLoginScreen"
+                android:transitionName="transition_signin_btn"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

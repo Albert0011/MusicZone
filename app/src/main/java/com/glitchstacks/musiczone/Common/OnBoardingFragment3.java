@@ -30,7 +30,7 @@ public class OnBoardingFragment3 extends Fragment{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), MusicZoneStartUpScreen.class);
                 startActivity(intent);
             }
         });
