@@ -78,7 +78,7 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), VerifyOTP.class);
 
         //Pass all fields to the next activity
-        intent.putExtra("fullName", _fullname);
+        intent.putExtra("fullname", _fullname);
         intent.putExtra("email", _email);
         intent.putExtra("username", _username);
         intent.putExtra("password", _password);

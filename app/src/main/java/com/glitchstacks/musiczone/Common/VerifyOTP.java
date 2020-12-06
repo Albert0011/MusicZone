@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.arch.core.executor.TaskExecutor;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.chaos.view.PinView;
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.TicketDashboard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -24,13 +26,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.Clock;
 import java.util.concurrent.TimeUnit;
 
 public class VerifyOTP extends AppCompatActivity {
 
     String codeBySystem;
     PinView pinFromUser;
+
+    String fullname, email, phoneNo, username, password, date, gender;
+
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
             new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
@@ -71,7 +79,9 @@ public class VerifyOTP extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Toast.makeText(VerifyOTP.this, "Verification Completed!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VerifyOTP.this, "Verification is Completed!", Toast.LENGTH_SHORT).show();
+                            storeNewUsersData();
+
 
                         } else {
 
@@ -80,7 +90,26 @@ public class VerifyOTP extends AppCompatActivity {
                             }
                         }
                     }
+
+
                 });
+    }
+
+    private void storeNewUsersData() {
+
+        FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
+        DatabaseReference reference = rootNode.getReference("Users");
+
+        reference.setValue("FirstRecord!");
+
+        //UserHelperClass addNewUser = new UserHelperClass(fullname, username, email, phoneNo, password, date, gender);
+
+        //reference.child(phoneNo).setValue(addNewUser);
+
+        //startActivity(new Intent(getApplicationContext(), TicketDashboard.class));
+        //finish();
+
+
     }
 
 
@@ -92,8 +121,16 @@ public class VerifyOTP extends AppCompatActivity {
 
         //hooks
         pinFromUser = findViewById(R.id.pin_view);
-        String _phoneNo = getIntent().getStringExtra("phoneNo");
-        sendVerificationCodeToUser(_phoneNo);
+
+        fullname = getIntent().getStringExtra("fullname");
+        email = getIntent().getStringExtra("email");
+        username = getIntent().getStringExtra("username");
+        password = getIntent().getStringExtra("password");
+        date = getIntent().getStringExtra("date");
+        gender = getIntent().getStringExtra("gender");
+        phoneNo = getIntent().getStringExtra("phoneNo");
+
+        sendVerificationCodeToUser(phoneNo);
 
         }
 
