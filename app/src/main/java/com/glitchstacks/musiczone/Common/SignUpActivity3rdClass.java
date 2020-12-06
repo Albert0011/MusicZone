@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.ScrollView;
 
 import com.glitchstacks.musiczone.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
 
@@ -20,12 +21,12 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
 
     //Variables
     ScrollView scrollView;
-    TextInputLayout phoneNumber;
+    TextInputEditText phoneNumber;
     CountryCodePicker countryCodePicker;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up_activity3rd_class);
@@ -64,15 +65,15 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
 
         //Get values from previous screen
 
-        String _fullname = getIntent().getStringExtra("fullname");
+        String _fullname = getIntent().getStringExtra("fullName");
         String _email = getIntent().getStringExtra("email");
         String _username = getIntent().getStringExtra("username");
         String _password = getIntent().getStringExtra("password");
         String _date = getIntent().getStringExtra("date");
         String _gender = getIntent().getStringExtra("gender");
 
-        String _getUserEnteredPhoneNumber = phoneNumber.getEditText().getText().toString().trim();
-        String _phoneNo = "+"+countryCodePicker.getFullNumber()+_getUserEnteredPhoneNumber;
+        String _getUserEnteredPhoneNumber = phoneNumber.getText().toString().trim();
+        String _phoneNo = "+"+countryCodePicker.getSelectedCountryCode()+_getUserEnteredPhoneNumber;
 
         Intent intent = new Intent(getApplicationContext(), VerifyOTP.class);
 
@@ -102,7 +103,7 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
     //ini gua buat sendiri di tutor g ada
     private boolean validatePhoneNumber(){
 
-        String val = phoneNumber.getEditText().getText().toString().trim();
+        String val = phoneNumber.getText().toString().trim();
 
         if (val.isEmpty()) {
             phoneNumber.setError("Field cannot be empty");

@@ -49,18 +49,18 @@ public class SignUp2ndClass extends AppCompatActivity {
 
     public void callNextSignUpScreen(View view) {
 
-//        if(!validateGender() | !validateAge()){
-//            return;
-//        }
-//
-//        selectedGender =  findViewById(radioGroup.getCheckedRadioButtonId());
-//        String _gender = selectedGender.getText().toString();
-//
-//        int day = datePicker.getDayOfMonth();
-//        int month = datePicker.getMonth();
-//        int year = datePicker.getYear();
-//
-//        String date = day+"/"+month+"/"+year;
+        if(!validateGender() | !validateAge()){
+            return;
+        }
+
+        selectedGender =  findViewById(radioGroup.getCheckedRadioButtonId());
+        String _gender = selectedGender.getText().toString();
+
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year = datePicker.getYear();
+
+        String date = day+"/"+month+"/"+year;
 
         Intent intent = new Intent(getApplicationContext(), SignUpActivity3rdClass.class);
 
@@ -73,8 +73,13 @@ public class SignUp2ndClass extends AppCompatActivity {
         pairs[3] = new Pair<View, String>(signin, "transition_signin_btn");
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp2ndClass.this, pairs);
-            startActivity(intent, options.toBundle());
+            try{
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp2ndClass.this, pairs);
+                startActivity(intent, options.toBundle());
+            }catch (Exception e){
+                Toast.makeText(this, "There is an error", Toast.LENGTH_SHORT).show();
+            }
+
         } else {
             startActivity(intent);
         }

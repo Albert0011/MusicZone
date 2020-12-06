@@ -29,9 +29,9 @@ import java.util.concurrent.TimeUnit;
 
 public class VerifyOTP extends AppCompatActivity {
 
-
-    private FirebaseAuth mAuth;
     String codeBySystem;
+    PinView pinFromUser;
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
             new PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
 
@@ -63,7 +63,9 @@ public class VerifyOTP extends AppCompatActivity {
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
 
-        mAuth.signInWithCredential(credential)
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -81,7 +83,7 @@ public class VerifyOTP extends AppCompatActivity {
                 });
     }
 
-    PinView pinFromUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,22 +95,16 @@ public class VerifyOTP extends AppCompatActivity {
         String _phoneNo = getIntent().getStringExtra("phoneNo");
         sendVerificationCodeToUser(_phoneNo);
 
-        mAuth = FirebaseAuth.getInstance();
-
-
-
         }
 
     private void sendVerificationCodeToUser(String phoneNo) {
 
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phoneNo)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity((Activity) TaskExecutors.MAIN_THREAD)                 // Activity (for callback binding)
-                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNo,
+                60,
+                TimeUnit.SECONDS,
+                TaskExecutors.MAIN_THREAD,
+                mCallbacks);
 
     }
 
@@ -118,8 +114,6 @@ public class VerifyOTP extends AppCompatActivity {
         if(code.isEmpty()){
             verifyCode(code);
         }
-
-
 
     }
 }
