@@ -88,7 +88,7 @@
             android:fontFamily="@font/montserrat_extrabold"
             android:text="@string/finish"
             android:transitionName="transition_next_btn"
-            android:onClick="callLoginScreen"/>
+            android:onClick="callVerifyOTPScreen"/>
 
 
     </LinearLayout>

@@ -49,18 +49,18 @@ public class SignUp2ndClass extends AppCompatActivity {
 
     public void callNextSignUpScreen(View view) {
 
-        if(!validateGender() | !validateAge()){
-            return;
-        }
-
-        selectedGender =  findViewById(radioGroup.getCheckedRadioButtonId());
-        String _gender = selectedGender.getText().toString();
-
-        int day = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth();
-        int year = datePicker.getYear();
-
-        String date = day+"/"+month+"/"+year;
+//        if(!validateGender() | !validateAge()){
+//            return;
+//        }
+//
+//        selectedGender =  findViewById(radioGroup.getCheckedRadioButtonId());
+//        String _gender = selectedGender.getText().toString();
+//
+//        int day = datePicker.getDayOfMonth();
+//        int month = datePicker.getMonth();
+//        int year = datePicker.getYear();
+//
+//        String date = day+"/"+month+"/"+year;
 
         Intent intent = new Intent(getApplicationContext(), SignUpActivity3rdClass.class);
 

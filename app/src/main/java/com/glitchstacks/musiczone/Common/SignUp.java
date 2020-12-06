@@ -45,9 +45,9 @@ public class SignUp extends AppCompatActivity {
 
     public void callNextSignUpScreen(View view) {
 
-        if(!validateFullname() | !validateEmail() | !validateUsername() | validatePassword()){
-            return;
-        }
+//        if(!validateFullname() | !validateEmail() | !validateUsername() | validatePassword()){
+//            return;
+//        }
 
         Intent intent = new Intent(getApplicationContext(), SignUp2ndClass.class);
 
@@ -84,7 +84,7 @@ public class SignUp extends AppCompatActivity {
 
     private boolean validateUsername() {
         String val = username.getEditText().getText().toString().trim();
-        String checkspaces = "\\A\\w(1,20)\\z";
+        String checkspaces = " ";
 
         if (val.isEmpty()) {
             fullname.setError("Field cannot be empty");

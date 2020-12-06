@@ -33,7 +33,7 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
         //Hooks
 
         scrollView = findViewById(R.id.signup_scrollview);
-        countryCodePicker = findViewById(R.id.signup_phone_number);
+        countryCodePicker = findViewById(R.id.signup_country_picker);
         phoneNumber = findViewById(R.id.signup_phone_number);
 
 
@@ -64,7 +64,6 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
 
         //Get values from previous screen
 
-
         String _fullname = getIntent().getStringExtra("fullname");
         String _email = getIntent().getStringExtra("email");
         String _username = getIntent().getStringExtra("username");
@@ -74,7 +73,6 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
 
         String _getUserEnteredPhoneNumber = phoneNumber.getEditText().getText().toString().trim();
         String _phoneNo = "+"+countryCodePicker.getFullNumber()+_getUserEnteredPhoneNumber;
-
 
         Intent intent = new Intent(getApplicationContext(), VerifyOTP.class);
 
@@ -111,7 +109,7 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
             return false;
         }
 
-
+        return true;
     }
 
     public void callLoginScreen(View view){
@@ -120,4 +118,5 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 }

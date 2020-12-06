@@ -12,5 +12,5 @@
     <color name="lightBlue">#DADADA</color>
     <color name="lightGrey">#C7C8CF</color>
     <color name="lightPurple">#8E97FD</color>
-    <color name="transparent">#00</color>
+    <color name="transparent">#00000000</color>
 </resources>

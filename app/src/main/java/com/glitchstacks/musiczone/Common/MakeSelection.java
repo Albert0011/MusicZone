@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.glitchstacks.musiczone.R;
+
 public class MakeSelection extends AppCompatActivity {
 
     @Override
