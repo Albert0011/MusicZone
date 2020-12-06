@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.glitchstacks.musiczone.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUp extends AppCompatActivity {
@@ -164,7 +165,18 @@ public class SignUp extends AppCompatActivity {
 
     public void callLoginScreen(View view) {
 
+        String _fullname = fullname.getEditText().getText().toString();
+        String _email = email.getEditText().getText().toString();
+        String _username = username.getEditText().getText().toString();
+        String _password = password.getEditText().getText().toString();
+
         Intent intent = new Intent(getApplicationContext(), Login.class);
+
+        intent.putExtra("fullname", _fullname);
+        intent.putExtra("email", _email);
+        intent.putExtra("username", _username);
+        intent.putExtra("password", _password);
+
         startActivity(intent);
 
     }

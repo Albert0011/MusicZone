@@ -64,8 +64,7 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
         }
 
         //Get values from previous screen
-
-        String _fullname = getIntent().getStringExtra("fullName");
+        String _fullname = getIntent().getStringExtra("fullname");
         String _email = getIntent().getStringExtra("email");
         String _username = getIntent().getStringExtra("username");
         String _password = getIntent().getStringExtra("password");
