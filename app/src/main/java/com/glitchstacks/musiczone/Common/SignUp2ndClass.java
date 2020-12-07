@@ -55,6 +55,13 @@ public class SignUp2ndClass extends AppCompatActivity {
             return;
         }
 
+        String _fullname = getIntent().getStringExtra("fullname");
+        String _email = getIntent().getStringExtra("email");
+        String _username = getIntent().getStringExtra("username");
+        String _password = getIntent().getStringExtra("password");
+        String _date = date;
+        String _gender = gender;
+
         selectedGender =  findViewById(radioGroup.getCheckedRadioButtonId());
         gender = selectedGender.getText().toString();
 
@@ -65,6 +72,13 @@ public class SignUp2ndClass extends AppCompatActivity {
         date = day+"/"+month+"/"+year;
 
         Intent intent = new Intent(getApplicationContext(), SignUpActivity3rdClass.class);
+
+        intent.putExtra("fullname", _fullname);
+        intent.putExtra("email", _email);
+        intent.putExtra("username", _username);
+        intent.putExtra("password", _password);
+        intent.putExtra("date", _date);
+        intent.putExtra("gender", _gender);
 
         //Add Transition
         Pair[] pairs = new Pair[4];
@@ -130,21 +144,7 @@ public class SignUp2ndClass extends AppCompatActivity {
 
     public void callLoginScreen(View view){
 
-        String _fullname = getIntent().getStringExtra("fullname");
-        String _email = getIntent().getStringExtra("email");
-        String _username = getIntent().getStringExtra("username");
-        String _password = getIntent().getStringExtra("password");
-        String _date = date;
-        String _gender = gender;
-
         Intent intent = new Intent(getApplicationContext(), Login.class);
-
-        intent.putExtra("fullname", _fullname);
-        intent.putExtra("email", _email);
-        intent.putExtra("username", _username);
-        intent.putExtra("password", _password);
-        intent.putExtra("date", _date);
-        intent.putExtra("gender", _gender);
 
         startActivity(intent);
 
