@@ -46,7 +46,6 @@ public class SignUp2ndClass extends AppCompatActivity {
         radioGroup = findViewById(R.id.radio_group);
         datePicker = findViewById(R.id.age_picker);
 
-
     }
 
     public void callNextSignUpScreen(View view) {
@@ -59,8 +58,6 @@ public class SignUp2ndClass extends AppCompatActivity {
         String _email = getIntent().getStringExtra("email");
         String _username = getIntent().getStringExtra("username");
         String _password = getIntent().getStringExtra("password");
-        String _date = date;
-        String _gender = gender;
 
         selectedGender =  findViewById(radioGroup.getCheckedRadioButtonId());
         gender = selectedGender.getText().toString();
@@ -70,6 +67,9 @@ public class SignUp2ndClass extends AppCompatActivity {
         int year = datePicker.getYear();
 
         date = day+"/"+month+"/"+year;
+
+        String _date = date;
+        String _gender = gender;
 
         Intent intent = new Intent(getApplicationContext(), SignUpActivity3rdClass.class);
 

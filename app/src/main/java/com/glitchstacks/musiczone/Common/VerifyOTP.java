@@ -37,29 +37,7 @@ public class VerifyOTP extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String codeBySystem;
     PinView pinFromUser;
-
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks =
-            new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-                @Override
-                public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                    codeBySystem = s;
-                }
-
-                @Override
-                public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                    String code = phoneAuthCredential.getSmsCode();
-                    if (code != null) {
-                        pinFromUser.setText(code);
-                        verifyCode(code);
-                    }
-                }
-
-                @Override
-                public void onVerificationFailed(@NonNull FirebaseException e) {
-                    Toast.makeText(VerifyOTP.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            };
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     private void verifyCode(String code) {
 
@@ -143,15 +121,34 @@ public class VerifyOTP extends AppCompatActivity {
         setContentView(R.layout.activity_verify_o_t_p);
 
         mAuth = FirebaseAuth.getInstance();
+        mCallbacks =
+                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+//                    Toast.makeText(VerifyOTP.this, s+" is in message", Toast.LENGTH_SHORT).show();
+                        codeBySystem = s;
+                    }
+
+                    @Override
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+                        Toast.makeText(VerifyOTP.this, "masuk KOK", Toast.LENGTH_SHORT).show();
+
+                        String code = phoneAuthCredential.getSmsCode();
+                        if (code != null) {
+                            pinFromUser.setText(code);
+                            verifyCode(code);
+                        }
+                    }
+
+                    @Override
+                    public void onVerificationFailed(@NonNull FirebaseException e) {
+                        Toast.makeText(VerifyOTP.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                };
+
         //hooks
         pinFromUser = findViewById(R.id.pin_view);
-
-        String fullname = getIntent().getStringExtra("fullname");
-        String email = getIntent().getStringExtra("email");
-        String username = getIntent().getStringExtra("username");
-        String password = getIntent().getStringExtra("password");
-        String date = getIntent().getStringExtra("date");
-        String gender = getIntent().getStringExtra("gender");
         String phoneNo = getIntent().getStringExtra("phoneNo");
 
         sendVerificationCodeToUser(phoneNo.toString());
