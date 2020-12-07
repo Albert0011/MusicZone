@@ -58,24 +58,24 @@ public class IntroductoryActivity extends AppCompatActivity {
         logo.animate().translationY(-2000).setDuration(1000).setStartDelay(3000);
         lottieAnimationView.animate().translationY(-2000).setDuration(1000).setStartDelay(3000);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mSharedPref = getSharedPreferences("SharedPref", MODE_PRIVATE);
-                boolean isFirstTime = mSharedPref.getBoolean("firstTime", true);
-
-                if(isFirstTime){
-                    SharedPreferences.Editor editor = mSharedPref.edit();
-                    editor.putBoolean("firstTime",false);
-                    editor.commit();
-                }
-                else{
-                    Intent intent = new Intent(IntroductoryActivity.this, MusicZoneStartUpScreen.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        },SPLASH_TIME_OUT);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mSharedPref = getSharedPreferences("SharedPref", MODE_PRIVATE);
+//                boolean isFirstTime = mSharedPref.getBoolean("firstTime", true);
+//
+//                if(isFirstTime){
+//                    SharedPreferences.Editor editor = mSharedPref.edit();
+//                    editor.putBoolean("firstTime",false);
+//                    editor.commit();
+//                }
+//                else{
+//                    Intent intent = new Intent(IntroductoryActivity.this, MusicZoneStartUpScreen.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
+//            }
+//        },SPLASH_TIME_OUT);
 
 
     }

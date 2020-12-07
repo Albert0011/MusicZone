@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White">
+    android:background="#848be3">
 
 
     <ImageView
@@ -26,7 +26,7 @@
         android:layout_height="36dp"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="@string/slide3text"
-        android:textColor="@color/Grey"
+        android:textColor="@color/White"
         android:textSize="14sp"
         app:fontFamily="@font/roboto"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,12 +48,23 @@
         app:layout_constraintVertical_bias="0.543"
         app:srcCompat="@drawable/slide1" />
 
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.829"
+        app:srcCompat="@drawable/tab3" />
+
     <Button
         android:id="@+id/btn_getstarted"
         style="@style/black_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="152dp"
+        android:layout_width="169dp"
+        android:layout_height="69dp"
+        android:layout_marginBottom="136dp"
         android:width="200dp"
         android:fontFamily="@font/montserrat_extrabold"
         android:text="Let's get started"
@@ -61,8 +72,8 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.673"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

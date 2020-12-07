@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Common.ForgetPasswordSuccessMessage"></activity>
+        <activity android:name=".Common.ChoosePeople"></activity>
+        <activity android:name=".Common.ForgetPasswordSuccessMessage" />
         <activity android:name=".Common.SetNewPassword" />
         <activity android:name=".Common.MakeSelection" />
         <activity android:name=".Common.ForgetPassword" />
