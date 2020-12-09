@@ -3,28 +3,318 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".LocationOwner.ProfileFragment"
-    android:orientation="vertical">
+    tools:context=".LocationOwner.ProfileFragment">
 
+    // Name
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_extrabold"
-        android:text="@string/Ray"
-        android:textColor="@color/Black"
+        android:gravity="center"
+        android:text="@string/Albert"
+        android:textColor="@color/Grey"
         android:textSize="16sp" />
+
+    // Profile
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/rounded_corners_purple">
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corners_purple"
+        android:elevation="5dp"
+        android:padding="20dp">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:elevation="8dp"
+            android:src="@drawable/albert" />
 
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/profile_picture"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="albertch@gmail.com"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/username"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/profile_picture"
+            android:fontFamily="@font/roboto"
+            android:text="+6281216131100"
+            android:textColor="@color/White" />
+
+        <TextView
+            android:id="@+id/description_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_picture"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="@string/about_me"
+            android:textColor="@color/White"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/description_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description_header"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/montserrat"
+            android:text="I'm into music, especially playing guitar.\nGoogle Designer,20 years old."
+            android:textColor="@color/White"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/arrow_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow_right"
+            android:tint="@color/White" />
 
     </RelativeLayout>
 
+    // Number
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="0"
+                android:textColor="@color/Grey"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/friends"
+                android:textColor="@color/Grey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="0"
+                android:textColor="@color/Grey"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/requests"
+                android:textColor="@color/Grey" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="0"
+                android:textColor="@color/Grey"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/concert"
+                android:textColor="@color/Grey" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    // Preferences
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_corners_purple"
+        android:elevation="5dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:id="@+id/setting_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/settings"
+                android:tint="@color/White"
+
+                />
+
+            <TextView
+
+                android:id="@+id/setting_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/setting_icon"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/setting"
+                android:textColor="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:id="@+id/bookmark_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/bookmark"
+                android:tint="@color/White"
+
+                />
+
+            <TextView
+                android:id="@+id/bookmark_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/bookmark_icon"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/saved"
+                android:textColor="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:id="@+id/promotor_layout"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/rounded_corners_white"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/megaphone"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/promotor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/promotor_layout"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/promotor"
+                android:textColor="@color/White" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            >
+
+            <ImageView
+                android:id="@+id/logout_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/log_out"
+                android:tint="@color/White"
+
+                />
+
+            <TextView
+                android:id="@+id/logout_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/logout_icon"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="@string/logout"
+                android:textColor="@color/White" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

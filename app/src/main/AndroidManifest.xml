@@ -21,8 +21,8 @@
         <activity android:name=".Common.Login" />
         <activity android:name=".Common.MusicZoneStartUpScreen" />
         <activity android:name=".Common.LoginActivity" />
-        <activity android:name=".RetailerDashboard">
-
+        <activity android:name=".RetailerDashboard"
+            android:noHistory = "true">
         </activity>
         <activity android:name=".Common.IntroductoryActivity">
             <intent-filter>
