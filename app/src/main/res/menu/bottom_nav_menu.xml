@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/bottom_nav_ticket"
-        android:title=""
-        android:icon="@drawable/ticket_icon" />
+        android:title="Ticket"
+        android:icon="@drawable/house"
+        app:cnb_backgroundColor="@color/White"
+        app:cnb_iconColor="@color/lightPurple"/>
     <item
         android:id="@+id/bottom_nav_explore"
-        android:title=""
-        android:icon="@drawable/explore_icon" />
+        android:title="Discover"
+        android:icon="@drawable/discover"
+        app:cnb_backgroundColor="@color/White"
+        app:cnb_iconColor="@color/lightPurple"/>
     <item
         android:id="@+id/bottom_nav_chat"
-        android:title=""
-        android:icon="@drawable/chat_icon" />
+        android:title="Inbox"
+        android:icon="@drawable/chat"
+        app:cnb_backgroundColor="@color/White"
+        app:cnb_iconColor="@color/lightPurple"/>
+
+    <item
+        android:id="@+id/bottom_nav_me"
+        android:title="Me"
+        android:icon="@drawable/me"
+        app:cnb_backgroundColor="@color/White"
+        app:cnb_iconColor="@color/lightPurple"/>
 
 </menu>

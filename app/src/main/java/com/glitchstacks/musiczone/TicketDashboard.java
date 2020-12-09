@@ -15,7 +15,7 @@ public class TicketDashboard extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_ticket);
+        setContentView(R.layout.retailer_dashboard);
 
         chipNavigationBar = findViewById(R.id.bottom_nav_menu);
         bottomMenu();
