@@ -46,9 +46,9 @@ public class SignUp extends AppCompatActivity {
 
     public void callNextSignUpScreen(View view) {
 
-//        if(!validateFullname() | !validateEmail() | !validateUsername() | validatePassword()){
-//            return;
-//        }
+        if(!validateFullname() | !validateEmail() | !validateUsername() | validatePassword()){
+            return;
+        }
 
         String _fullname = fullname.getEditText().getText().toString();
         String _email = email.getEditText().getText().toString();
@@ -96,10 +96,10 @@ public class SignUp extends AppCompatActivity {
 
     private boolean validateUsername() {
         String val = username.getEditText().getText().toString().trim();
-        String checkspaces = " ";
+        String checkspaces = "\\A\\w{1,20}\\z";
 
         if (val.isEmpty()) {
-            fullname.setError("Field cannot be empty");
+            username.setError("Field cannot be empty");
             return false;
         } else if (val.length() > 20) {
             username.setError("Username is too long!");
@@ -108,8 +108,8 @@ public class SignUp extends AppCompatActivity {
             username.setError("White space is now allowed!");
             return false;
         } else {
-            fullname.setError(null);
-            fullname.setErrorEnabled(false);
+            username.setError(null);
+            username.setErrorEnabled(false);
             return true;
         }
 
@@ -120,14 +120,14 @@ public class SignUp extends AppCompatActivity {
         String checkemail = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         if (val.isEmpty()) {
-            fullname.setError("Field cannot be empty");
+            email.setError("Field cannot be empty");
             return false;
         } else if (!val.matches(checkemail)) {
-            username.setError("Invalid Email Address");
+            email.setError("Invalid Email Address");
             return false;
         } else {
-            fullname.setError(null);
-            fullname.setErrorEnabled(false);
+            email.setError(null);
+            email.setErrorEnabled(false);
             return true;
         }
 
@@ -139,7 +139,7 @@ public class SignUp extends AppCompatActivity {
                 //"(?=.*[0-9])" +         //at least 1 digit
                 //"(?=.*[a-z])" +         //at least 1 lower case letter
                 //"(?=.*[A-Z])" +         //at least 1 upper case letter
-                "(?=.*[a-zA-Z])" +      //any letter
+                //"(?=.*[a-zA-Z])" +      //any letter
                 //"(?=.*[@#$%^&+=])" +    //at least 1 special character
                 "(?=S+$)" +           //no white spaces
                 ".{4,}" +               //at least 4 characters

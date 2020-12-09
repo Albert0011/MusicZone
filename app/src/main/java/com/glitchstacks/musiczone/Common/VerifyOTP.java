@@ -101,14 +101,12 @@ public class VerifyOTP extends AppCompatActivity {
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Users");
 
-        reference.setValue("FirstRecord!");
-
         UserHelperClass addNewUser = new UserHelperClass(fullname, username, email, phoneNo, password, date, gender);
 
         reference.child(phoneNo).setValue(addNewUser);
 
-//        startActivity(new Intent(getApplicationContext(), TicketDashboard.class));
-//        finish();
+        startActivity(new Intent(getApplicationContext(), TicketDashboard.class));
+        finish();
 
 
     }
