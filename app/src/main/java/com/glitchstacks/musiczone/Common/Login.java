@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.RetailerDashboard;
 import com.glitchstacks.musiczone.TicketDashboard;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -111,7 +112,7 @@ public class Login extends AppCompatActivity {
 
     private void checkUserExist() {
 
-        startActivity(new Intent(Login.this, TicketDashboard.class));
+        startActivity(new Intent(Login.this, RetailerDashboard.class));
 //        if (mAuth.getCurrentUser() != null){
 //
 //            //Check the user's UID is in the database or not
