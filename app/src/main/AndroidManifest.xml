@@ -21,12 +21,14 @@
         <activity android:name=".Common.Login" />
         <activity android:name=".Common.MusicZoneStartUpScreen" />
         <activity android:name=".Common.LoginActivity" />
-        <activity android:name=".Common.IntroductoryActivity">
+        <activity android:name=".RetailerDashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Common.IntroductoryActivity">
         </activity>
         <activity
             android:name=".MainActivity"

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@color/White"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="5dp"
+    >
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/most_viewed_image"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/raissa_poster2" />
+
+            <TextView
+                android:id="@+id/most_viewed_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/most_viewed_image"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="Raissa Concert"
+                android:textColor="@color/Black"
+                android:textSize="20sp" />
+
+            <RatingBar
+                android:id="@+id/most_viewed_ratingbar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/most_viewed_title"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/most_viewed_image"
+                android:progressTint="@color/lightPurple"
+                android:rating="4.5" />
+
+            <TextView
+                android:id="@+id/most_viewed_passage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Raissa concert has always been the best over the years"
+                android:layout_below="@id/most_viewed_ratingbar"
+                android:layout_toRightOf="@+id/most_viewed_image"
+                android:padding="10dp"
+                />
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+</androidx.cardview.widget.CardView>
