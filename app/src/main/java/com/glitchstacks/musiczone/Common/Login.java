@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -67,14 +68,14 @@ public class Login extends AppCompatActivity {
     private void checkLogin() {
 
         // Get the text of email and password from EditText
-        String _username = email.getText().toString();
+        String _email = email.getText().toString();
         String _password = password.getText().toString();
-        Toast.makeText(Login.this, _username+_password, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Login.this, _username+_password, Toast.LENGTH_SHORT).show();
 
-        if (TextUtils.isEmpty(_username)){ // Empty email field
+        if (TextUtils.isEmpty(_email)){ // Empty email field
 
             // Set the error message
-            Toast.makeText(Login.this, "Username is empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "Email is empty", Toast.LENGTH_SHORT).show();
 
         } else if (TextUtils.isEmpty(_password)){ //Empty password field
 
@@ -88,12 +89,13 @@ public class Login extends AppCompatActivity {
             mProgress.show();
 
             // Start signing in
-            mAuth.signInWithEmailAndPassword(_username, _password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(_email, _password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()){ // Email and password match
 
+                        mProgress.dismiss();
                         checkUserExist(); // Check if first user or not
 
                     } else {
@@ -112,6 +114,7 @@ public class Login extends AppCompatActivity {
 
     private void checkUserExist() {
 
+        FirebaseUser user = mAuth.getCurrentUser();
         startActivity(new Intent(Login.this, RetailerDashboard.class));
 //        if (mAuth.getCurrentUser() != null){
 //
