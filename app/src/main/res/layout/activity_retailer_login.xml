@@ -53,6 +53,7 @@
                 app:startIconTint="@color/Black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat"
@@ -75,6 +76,7 @@
                 app:startIconTint="@color/Black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat"
@@ -110,6 +112,7 @@
             </RelativeLayout>
 
             <Button
+                android:id="@+id/login_button"
                 style="@style/black_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
