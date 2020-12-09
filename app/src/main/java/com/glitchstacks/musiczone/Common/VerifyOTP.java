@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.chaos.view.PinView;
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.RetailerDashboard;
 import com.glitchstacks.musiczone.TicketDashboard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -43,7 +44,8 @@ public class VerifyOTP extends AppCompatActivity {
 
         try {
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeBySystem, code);
-            signInWithPhoneAuthCredential(credential);
+            createNewUser();
+//            signInWithPhoneAuthCredential(credential);
         } catch (Exception e) {
             Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -51,6 +53,7 @@ public class VerifyOTP extends AppCompatActivity {
         }
 
     }
+
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
 
@@ -96,7 +99,7 @@ public class VerifyOTP extends AppCompatActivity {
         String gender = getIntent().getStringExtra("gender");
         String phoneNo = getIntent().getStringExtra("phoneNo");
 
-        Toast.makeText(VerifyOTP.this, username+password+date+gender+phoneNo+fullname, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(VerifyOTP.this, username+password+date+gender+phoneNo+fullname, Toast.LENGTH_SHORT).show();
 
         FirebaseDatabase rootNode = FirebaseDatabase.getInstance();
         DatabaseReference reference = rootNode.getReference("Users");
@@ -126,7 +129,7 @@ public class VerifyOTP extends AppCompatActivity {
                 });
 
 
-        startActivity(new Intent(getApplicationContext(), TicketDashboard.class));
+        startActivity(new Intent(VerifyOTP.this, Login.class));
         finish();
 
 
