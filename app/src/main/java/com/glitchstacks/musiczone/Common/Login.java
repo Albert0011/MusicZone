@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.RetailerDashboard;
 import com.glitchstacks.musiczone.TicketDashboard;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -33,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
-    EditText username, password;
+    EditText email, password;
     Button mLoginBtn;
     FirebaseAuth mAuth;
     ProgressDialog mProgress;
@@ -44,7 +45,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retailer_login);
 
-        username = findViewById(R.id.username_input);
+        email = findViewById(R.id.username_input);
         password = findViewById(R.id.password_input);
         mLoginBtn = findViewById(R.id.login_button);
 
@@ -66,7 +67,7 @@ public class Login extends AppCompatActivity {
     private void checkLogin() {
 
         // Get the text of email and password from EditText
-        String _username = username.getText().toString();
+        String _username = email.getText().toString();
         String _password = password.getText().toString();
         Toast.makeText(Login.this, _username+_password, Toast.LENGTH_SHORT).show();
 
@@ -111,33 +112,35 @@ public class Login extends AppCompatActivity {
 
     private void checkUserExist() {
 
-        if (mAuth.getCurrentUser() != null){
-
-            //Check the user's UID is in the database or not
-            final String userId = mAuth.getCurrentUser().getUid(); //Get the current user's UID
-            mDatabaseUsers.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.hasChild(userId)) { //Database has the current user's UID value
-
-                        //Go to MainActivity
-                        mProgress.dismiss();
-                        finish();
-                        startActivity(new Intent(Login.this, TicketDashboard.class));
-
-                    } else {
-
-                        Toast.makeText(Login.this, "User does not exist", Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-        }
+        startActivity(new Intent(Login.this, RetailerDashboard.class));
+//        if (mAuth.getCurrentUser() != null){
+//
+//            //Check the user's UID is in the database or not
+//            final String userId = mAuth.getCurrentUser().getUid(); //Get the current user's UID
+//            mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    if (dataSnapshot.hasChild(userId)) { //Database has the current user's UID value
+//
+//                        //Go to MainActivity
+//                        Toast.makeText(Login.this, "Login Success!", Toast.LENGTH_SHORT).show();
+//                        mProgress.dismiss();
+//                        finish();
+//                        startActivity(new Intent(Login.this, TicketDashboard.class));
+//
+//                    } else {
+//
+//                        Toast.makeText(Login.this, "User does not exist", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
+//        }
     }
 
 
