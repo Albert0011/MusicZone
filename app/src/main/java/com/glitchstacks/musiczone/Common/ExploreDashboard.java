@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.Common;
 
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -6,6 +6,7 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.glitchstacks.musiczone.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class ExploreDashboard extends AppCompatActivity {

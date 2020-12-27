@@ -1,21 +1,15 @@
 package com.glitchstacks.musiczone.LocationOwner;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.glitchstacks.musiczone.Common.Login;
-import com.glitchstacks.musiczone.Common.MusicZoneStartUpScreen;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedAdapter;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedHelperClass;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedAdapter;

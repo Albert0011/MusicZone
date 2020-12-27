@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone.Common;
+package com.glitchstacks.musiczone.Entries;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,13 +8,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ScrollView;
 
 import com.glitchstacks.musiczone.R;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
 
 public class SignUpActivity3rdClass extends AppCompatActivity {

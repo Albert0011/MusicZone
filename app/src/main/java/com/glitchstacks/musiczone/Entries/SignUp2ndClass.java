@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone.Common;
+package com.glitchstacks.musiczone.Entries;
 
 import androidx.appcompat.app.AppCompatActivity;
 

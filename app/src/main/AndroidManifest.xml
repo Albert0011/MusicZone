@@ -14,14 +14,14 @@
         <activity android:name=".Common.SetNewPassword" />
         <activity android:name=".Common.MakeSelection" />
         <activity android:name=".Common.ForgetPassword" />
-        <activity android:name=".Common.VerifyOTP" />
-        <activity android:name=".Common.SignUpActivity3rdClass" />
-        <activity android:name=".Common.SignUp2ndClass" />
-        <activity android:name=".Common.SignUp" />
-        <activity android:name=".Common.Login" />
+        <activity android:name=".Entries.VerifyOTP" />
+        <activity android:name=".Entries.SignUpActivity3rdClass" />
+        <activity android:name=".Entries.SignUp2ndClass" />
+        <activity android:name=".Entries.SignUp" />
+        <activity android:name=".Entries.Login" />
         <activity android:name=".Common.MusicZoneStartUpScreen" />
-        <activity android:name=".Common.LoginActivity" />
-        <activity android:name=".RetailerDashboard"
+        <activity android:name=".Entries.LoginActivity" />
+        <activity android:name=".Common.RetailerDashboard"
             android:noHistory = "true">
         </activity>
         <activity android:name=".Common.IntroductoryActivity">
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Common.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 

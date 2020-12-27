@@ -10,6 +10,8 @@ import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.glitchstacks.musiczone.Entries.Login;
+import com.glitchstacks.musiczone.Entries.SignUp;
 import com.glitchstacks.musiczone.R;
 
 public class MusicZoneStartUpScreen extends AppCompatActivity {

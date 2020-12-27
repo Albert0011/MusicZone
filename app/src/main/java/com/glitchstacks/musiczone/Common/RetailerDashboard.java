@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.Common;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -11,19 +11,14 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.glitchstacks.musiczone.Common.Login;
-import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedAdapter;
-import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedHelperClass;
+import com.glitchstacks.musiczone.Entries.Login;
 import com.glitchstacks.musiczone.LocationOwner.ChatDashboardFragment;
 import com.glitchstacks.musiczone.LocationOwner.ExploreDashboardFragment;
 import com.glitchstacks.musiczone.LocationOwner.ProfileFragment;
 import com.glitchstacks.musiczone.LocationOwner.TicketDashboardFragment;
+import com.glitchstacks.musiczone.R;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
-
-import java.util.ArrayList;
 
 public class RetailerDashboard extends AppCompatActivity {
 

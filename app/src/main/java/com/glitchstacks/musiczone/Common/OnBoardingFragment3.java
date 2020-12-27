@@ -7,15 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.glitchstacks.musiczone.MainActivity;
 import com.glitchstacks.musiczone.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.ls.LSOutput;
 
 public class OnBoardingFragment3 extends Fragment{
 

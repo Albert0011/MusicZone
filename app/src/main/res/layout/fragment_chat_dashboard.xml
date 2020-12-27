@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LocationOwner.ChatDashboardFragment"
-    android:background="@color/Grey">
+    android:background="@color/White"
+    android:orientation="vertical"
+    tools:context=".LocationOwner.ChatDashboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment Dashboard"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
-</FrameLayout>
+        // Music Zone Logo
+
+        // Search Bar
+
+        <ImageView
+            android:id="@+id/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/music_zone_logo" />
+
+    </RelativeLayout>
+
+    // ScrollBar
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        // Scrollable Body
+
+
+    </ScrollView>
+
+</LinearLayout>

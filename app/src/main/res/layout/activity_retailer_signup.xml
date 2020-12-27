@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightPurple"
     android:padding="30dp"
-    tools:context=".Common.SignUp"
+    tools:context=".Entries.SignUp"
     android:transitionName="transition_signup_btn">
 
     <LinearLayout

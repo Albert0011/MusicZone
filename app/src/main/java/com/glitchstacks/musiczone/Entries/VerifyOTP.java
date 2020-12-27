@@ -1,25 +1,20 @@
-package com.glitchstacks.musiczone.Common;
+package com.glitchstacks.musiczone.Entries;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.arch.core.executor.TaskExecutor;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
+import com.glitchstacks.musiczone.Common.UserHelperClass;
 import com.glitchstacks.musiczone.R;
-import com.glitchstacks.musiczone.RetailerDashboard;
-import com.glitchstacks.musiczone.TicketDashboard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
