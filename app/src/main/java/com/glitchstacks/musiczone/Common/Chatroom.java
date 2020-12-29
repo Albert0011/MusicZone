@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class chatroom extends AppCompatActivity {
+public class Chatroom extends AppCompatActivity {
 
     private Button btn_send_msg;
     private EditText input_msg;
