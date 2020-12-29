@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.glitchstacks.musiczone.Common.MainChat;
 import com.glitchstacks.musiczone.Common.MusicZoneStartUpScreen;
 import com.glitchstacks.musiczone.Common.RetailerDashboard;
 import com.glitchstacks.musiczone.R;
@@ -109,7 +110,7 @@ public class Login extends AppCompatActivity {
     private void checkUserExist() {
 
         FirebaseUser user = mAuth.getCurrentUser();
-        startActivity(new Intent(Login.this, RetailerDashboard.class));
+        startActivity(new Intent(Login.this, MainChat.class));
 //        if (mAuth.getCurrentUser() != null){
 //
 //            //Check the user's UID is in the database or not
