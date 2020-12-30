@@ -40,7 +40,7 @@ public class VerifyOTP extends AppCompatActivity {
         try {
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeBySystem, code);
             createNewUser();
-//            signInWithPhoneAuthCredential(credential);
+            //signInWithPhoneAuthCredential(credential);
         } catch (Exception e) {
             Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -50,39 +50,39 @@ public class VerifyOTP extends AppCompatActivity {
     }
 
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-
-        try{
-            mAuth.signInWithCredential(credential)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-
-                                Toast.makeText(VerifyOTP.this, "Verification Completed!", Toast.LENGTH_SHORT).show();
-
-                                try{
-                                    createNewUser();
-                                }catch (Exception i){
-                                    Toast.makeText(VerifyOTP.this, i.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-
-                            } else {
-
-                                if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                    Toast.makeText(VerifyOTP.this, "Verification Failed! Try Again!", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }
-
-
-                    });
-        }catch(Exception e){
-            Toast toast = Toast.makeText(this, e.getMessage().toString(), Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
-        }
-    }
+//    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+//
+//        try{
+//            mAuth.signInWithCredential(credential)
+//                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            if (task.isSuccessful()) {
+//
+//                                Toast.makeText(VerifyOTP.this, "Verification Completed!", Toast.LENGTH_SHORT).show();
+//
+//                                try{
+//                                    createNewUser();
+//                                }catch (Exception i){
+//                                    Toast.makeText(VerifyOTP.this, i.getMessage(), Toast.LENGTH_SHORT).show();
+//                                }
+//
+//                            } else {
+//
+//                                if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+//                                    Toast.makeText(VerifyOTP.this, "Verification Failed! Try Again!", Toast.LENGTH_SHORT).show();
+//                                }
+//                            }
+//                        }
+//
+//
+//                    });
+//        }catch(Exception e){
+//            Toast toast = Toast.makeText(this, e.getMessage().toString(), Toast.LENGTH_SHORT);
+//            toast.setGravity(Gravity.CENTER, 0, 0);
+//            toast.show();
+//        }
+//    }
 
     private void createNewUser() {
 
@@ -124,8 +124,8 @@ public class VerifyOTP extends AppCompatActivity {
                 });
 
 
-        startActivity(new Intent(VerifyOTP.this, Login.class));
-        finish();
+//        startActivity(new Intent(VerifyOTP.this, Login.class));
+//        finish();
 
 
     }
@@ -142,16 +142,18 @@ public class VerifyOTP extends AppCompatActivity {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-//                    Toast.makeText(VerifyOTP.this, s+" is in message", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VerifyOTP.this, "Code is sent!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VerifyOTP.this, s+" is in message", Toast.LENGTH_SHORT).show();
                         codeBySystem = s;
                     }
 
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
 
-                        Toast.makeText(VerifyOTP.this, "masuk KOK", Toast.LENGTH_SHORT).show();
-
                         String code = phoneAuthCredential.getSmsCode();
+
+                        Toast.makeText(VerifyOTP.this, code, Toast.LENGTH_SHORT).show();
+
                         if (code != null) {
                             pinFromUser.setText(code);
                             verifyCode(code);
@@ -167,8 +169,7 @@ public class VerifyOTP extends AppCompatActivity {
         //hooks
         pinFromUser = findViewById(R.id.pin_view);
         String phoneNo = getIntent().getStringExtra("phoneNo");
-
-        sendVerificationCodeToUser(phoneNo.toString());
+        sendVerificationCodeToUser(phoneNo);
 
     }
 
@@ -177,10 +178,11 @@ public class VerifyOTP extends AppCompatActivity {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
                         .setPhoneNumber(phoneNo)       // Phone number to verify
-                        .setTimeout(10L, TimeUnit.SECONDS) // Timeout and unit
+                        .setTimeout(5L, TimeUnit.SECONDS) // Timeout and unit
                         .setActivity(VerifyOTP.this)                 // Activity (for callback binding)
                         .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
                         .build();
+
         PhoneAuthProvider.verifyPhoneNumber(options);
 
     }

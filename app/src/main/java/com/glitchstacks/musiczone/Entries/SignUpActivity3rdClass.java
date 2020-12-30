@@ -1,5 +1,6 @@
 package com.glitchstacks.musiczone.Entries;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
@@ -10,14 +11,24 @@ import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
+import com.glitchstacks.musiczone.Common.RetailerDashboard;
+import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.hbb20.CountryCodePicker;
 
 public class SignUpActivity3rdClass extends AppCompatActivity {
 
     //Variables
+    TextInputLayout phoneNumberLayout;
     ScrollView scrollView;
     TextInputEditText phoneNumber;
     CountryCodePicker countryCodePicker;
@@ -34,6 +45,7 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
         scrollView = findViewById(R.id.signup_scrollview);
         countryCodePicker = findViewById(R.id.signup_country_picker);
         phoneNumber = findViewById(R.id.signup_phone_number);
+        phoneNumberLayout = findViewById(R.id.phoneNumberLayout);
 
 
     }
@@ -61,38 +73,75 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
             return;
         }
 
-        //Get values from previous screen
-        String _fullname = getIntent().getStringExtra("fullname");
-        String _email = getIntent().getStringExtra("email");
-        String _username = getIntent().getStringExtra("username");
-        String _password = getIntent().getStringExtra("password");
-        String _date = getIntent().getStringExtra("date");
-        String _gender = getIntent().getStringExtra("gender");
+
 
         String _getUserEnteredPhoneNumber = phoneNumber.getText().toString().trim();
         String _phoneNo = "+"+countryCodePicker.getSelectedCountryCode()+_getUserEnteredPhoneNumber;
 
-        Intent intent = new Intent(getApplicationContext(), VerifyOTP.class);
+        checkUserExist(_phoneNo);
 
-        //Pass all fields to the next activity
-        intent.putExtra("fullname", _fullname);
-        intent.putExtra("email", _email);
-        intent.putExtra("username", _username);
-        intent.putExtra("password", _password);
-        intent.putExtra("date", _date);
-        intent.putExtra("gender", _gender);
-        intent.putExtra("phoneNo", _phoneNo);
-        intent.putExtra("whatToDO", "createNewUser"); // This is to identify that which action should OTP perform after verification.
 
-        //Add Transition
-        Pair[] pairs = new Pair[1];
-        pairs[0] = new Pair<View, String>(scrollView, "transition_OTP_screen");
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUpActivity3rdClass.this, pairs);
-            startActivity(intent, options.toBundle());
-        } else {
-            startActivity(intent);
-        }
+    }
+
+
+
+    private void checkUserExist(final String phoneNo) {
+
+        Toast.makeText(SignUpActivity3rdClass.this, phoneNo, Toast.LENGTH_LONG).show();
+
+        Query checkUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("phoneNo").equalTo(phoneNo);
+
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Toast.makeText(SignUpActivity3rdClass.this, "masuk2", Toast.LENGTH_LONG).show();
+                if(snapshot.exists()) {
+                    phoneNumberLayout.setError("This number is already exists.");
+                    phoneNumberLayout.setErrorEnabled(true);
+                }
+                else{
+                    phoneNumberLayout.setError(null);
+                    phoneNumberLayout.setErrorEnabled(false);
+
+                    //Get values from previous screen
+                    String _fullname = getIntent().getStringExtra("fullname");
+                    String _email = getIntent().getStringExtra("email");
+                    String _username = getIntent().getStringExtra("username");
+                    String _password = getIntent().getStringExtra("password");
+                    String _date = getIntent().getStringExtra("date");
+                    String _gender = getIntent().getStringExtra("gender");
+
+                    Intent intent = new Intent(getApplicationContext(), VerifyOTP.class);
+
+                    //Pass all fields to the next activity
+                    intent.putExtra("fullname", _fullname);
+                    intent.putExtra("email", _email);
+                    intent.putExtra("username", _username);
+                    intent.putExtra("password", _password);
+                    intent.putExtra("date", _date);
+                    intent.putExtra("gender", _gender);
+                    intent.putExtra("phoneNo", phoneNo);
+                    //intent.putExtra("whatToDO", "createNewUser"); // This is to identify that which action should OTP perform after verification.
+
+                    //Add Transition
+                    Pair[] pairs = new Pair[1];
+                    pairs[0] = new Pair<View, String>(scrollView, "transition_OTP_screen");
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUpActivity3rdClass.this, pairs);
+                        startActivity(intent, options.toBundle());
+                    } else {
+                        startActivity(intent);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
 
     }
 

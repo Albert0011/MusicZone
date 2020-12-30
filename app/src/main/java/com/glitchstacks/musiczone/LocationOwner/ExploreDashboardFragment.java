@@ -15,6 +15,7 @@ import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedHelpe
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedAdapter;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedHelperClass;
 import com.glitchstacks.musiczone.R;
+import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,6 @@ public class ExploreDashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_explore_dashboard, container, false);
-
         // Inflate the layout for this fragment
         featuredRecycler = root.findViewById(R.id.featured_recycler);
         featuredRecycler();

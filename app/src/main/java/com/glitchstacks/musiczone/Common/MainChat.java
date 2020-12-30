@@ -50,8 +50,6 @@ public class MainChat extends AppCompatActivity {
         room_name = (EditText) findViewById(R.id.etNeme_room);
         listView = (ListView) findViewById(R.id.listView);
 
-        Toast.makeText(MainChat.this, "Masuk", Toast.LENGTH_SHORT).show();
-
         /*
         mAuth = FirebaseAuth.getInstance();
 

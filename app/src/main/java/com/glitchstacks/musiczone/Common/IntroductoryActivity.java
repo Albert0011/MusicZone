@@ -17,7 +17,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.Entries.Login;
 import com.glitchstacks.musiczone.R;
+
+import java.util.HashMap;
 
 
 public class IntroductoryActivity extends AppCompatActivity {
@@ -69,9 +73,18 @@ public class IntroductoryActivity extends AppCompatActivity {
                     editor.commit();
                 }
                 else{
-                    Intent intent = new Intent(IntroductoryActivity.this, MusicZoneStartUpScreen.class);
-                    startActivity(intent);
-                    finish();
+
+                    SessionManager sessionManager = new SessionManager(IntroductoryActivity.this, SessionManager.SESSION_USERSESSION);
+                    if(sessionManager.checkLogin()){
+                        Intent intent = new Intent(IntroductoryActivity.this, RetailerDashboard.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else{
+                        Intent intent = new Intent(IntroductoryActivity.this, MusicZoneStartUpScreen.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
         },SPLASH_TIME_OUT);

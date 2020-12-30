@@ -7,18 +7,23 @@ import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.Entries.Login;
 import com.glitchstacks.musiczone.LocationOwner.ChatDashboardFragment;
 import com.glitchstacks.musiczone.LocationOwner.ExploreDashboardFragment;
 import com.glitchstacks.musiczone.LocationOwner.ProfileFragment;
 import com.glitchstacks.musiczone.LocationOwner.TicketDashboardFragment;
 import com.glitchstacks.musiczone.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+
+import java.util.HashMap;
 
 public class RetailerDashboard extends AppCompatActivity {
 
@@ -29,6 +34,19 @@ public class RetailerDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.retailer_dashboard);
+
+        SessionManager sessionManager = new SessionManager(this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> userDetails = sessionManager.getUsersDetailFromSession();
+
+        String fullName = userDetails.get(SessionManager.KEY_FULLNAME);
+        String phoneNumber = userDetails.get(SessionManager.KEY_PHONENUMBER);
+        String gender = userDetails.get(SessionManager.KEY_GENDER);
+        String email = userDetails.get(SessionManager.KEY_EMAIL);
+        String password = userDetails.get(SessionManager.KEY_PASSWORD);
+        String date = userDetails.get(SessionManager.KEY_DATE);
+        String username = userDetails.get(SessionManager.KEY_USERNAME);
+
+        Toast.makeText(RetailerDashboard.this, username, Toast.LENGTH_LONG).show();
 
         chipNavigationBar = findViewById(R.id.bottom_nav_menu);
         chipNavigationBar.setItemSelected(R.id.bottom_nav_explore, true);
@@ -66,7 +84,7 @@ public class RetailerDashboard extends AppCompatActivity {
 
                 }
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
 
             }
         });
