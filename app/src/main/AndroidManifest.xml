@@ -15,6 +15,7 @@
         <activity android:name=".Common.SetNewPassword" />
         <activity android:name=".Common.MakeSelection" />
         <activity android:name=".Common.ForgetPassword" />
+        <activity android:name=".Common.chatroom"></activity>
         <activity android:name=".Common.MainChat"/>
         <activity android:name=".Entries.VerifyOTP" />
         <activity android:name=".Entries.SignUpActivity3rdClass" />

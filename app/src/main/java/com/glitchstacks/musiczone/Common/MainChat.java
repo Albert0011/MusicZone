@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.glitchstacks.musiczone.Entries.Login;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +39,7 @@ public class MainChat extends AppCompatActivity {
     private  EditText room_name;
     private ListView listView;
     private String name;
-    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().getRoot();
+    private DatabaseReference root = FirebaseDatabase.getInstance().getReference().child("Rooms");
 
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> list_of_rooms = new ArrayList();
@@ -50,7 +51,7 @@ public class MainChat extends AppCompatActivity {
         room_name = (EditText) findViewById(R.id.etNeme_room);
         listView = (ListView) findViewById(R.id.listView);
 
-        /*
+
         mAuth = FirebaseAuth.getInstance();
 
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list_of_rooms);
@@ -69,7 +70,7 @@ public class MainChat extends AppCompatActivity {
         });
         root.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
                 Set<String> set = new HashSet<String>();
                 Iterator i = dataSnapshot.getChildren().iterator();
                 while ( i.hasNext())
@@ -92,7 +93,7 @@ public class MainChat extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Intent I = new Intent(getApplicationContext(), chatroom.class);
+                Intent I = new Intent(getApplicationContext(), Chatroom.class);
                 I.putExtra("room_name",((TextView)view).getText().toString());
                 I.putExtra("user_name",name);
                 startActivity(I);
@@ -109,9 +110,8 @@ public class MainChat extends AppCompatActivity {
 
     }
 
-         */
-
-    /*private void request_user_name() {
+    /*
+    private void request_user_name() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter Name");
         final EditText input_field = new EditText(this);
@@ -130,6 +130,6 @@ public class MainChat extends AppCompatActivity {
             }
         });
         builder.show();
-    }*/
     }
+    */
 }
