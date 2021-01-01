@@ -145,7 +145,7 @@ public class SettingsActivity extends AppCompatActivity {
         userInfo.put("phoneNo", phone);
         mUserDatabase.updateChildren(userInfo);
         if(resultUri != null){
-            StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
+            final StorageReference filepath = FirebaseStorage.getInstance().getReference().child("profileImages").child(userId);
             Bitmap bitmap = null;
 
             try {
@@ -164,17 +164,29 @@ public class SettingsActivity extends AppCompatActivity {
                     finish();
                 }
             });
+
+
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
+                        @Override
+                        public void onSuccess(Uri downloadUrl) {
+
+                            Map userInfo = new HashMap();
+                            userInfo.put("profileImageUrl", downloadUrl.toString());
+                            mUserDatabase.updateChildren(userInfo);
+
+                            finish();
+                            return;
+                        }
+                    });
+
+                    /*
                     Task<Uri> downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                     */
 
-                    Map userInfo = new HashMap();
-                    userInfo.put("profileImageUrl", downloadUrl.toString());
-                    mUserDatabase.updateChildren(userInfo);
 
-                    finish();
-                    return;
                 }
             });
         }else{

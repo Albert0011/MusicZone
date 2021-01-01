@@ -58,8 +58,9 @@ public class SwipeActivity extends AppCompatActivity {
         phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
         currentUId = phoneNumber;
 
-
+        Toast.makeText(SwipeActivity.this, "MASUKSBLMSEX", Toast.LENGTH_SHORT).show();
         checkUserSex();
+        Toast.makeText(SwipeActivity.this, "AFTERSEX", Toast.LENGTH_SHORT).show();
 
         rowItems = new ArrayList<cards>();
 
@@ -143,7 +144,9 @@ public class SwipeActivity extends AppCompatActivity {
         HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
         phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
 
-        DatabaseReference userDb = usersDb.child("Users").child(phoneNumber);
+        DatabaseReference userDb = usersDb.child(phoneNumber);
+        Toast.makeText(SwipeActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
+
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -175,6 +178,7 @@ public class SwipeActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if (dataSnapshot.child("gender").getValue() != null) {
                     if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentUId) && !dataSnapshot.child("connections").child("yeps").hasChild(currentUId) && dataSnapshot.child("gender").getValue().toString().equals(oppositeUserSex)) {
+                        Toast.makeText(SwipeActivity.this, dataSnapshot.child("fullname").getValue().toString(), Toast.LENGTH_SHORT).show();
                         String profileImageUrl = "default";
                         if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
                             profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
