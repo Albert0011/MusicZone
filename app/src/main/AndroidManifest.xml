@@ -16,8 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Common.SwipeActivity"></activity>
-        <activity android:name=".Common.SettingsActivity"></activity>
+        <activity android:name=".Common.SwipeActivity"/>
+        <activity android:name=".Matches.MatchesActivity"/>
+        <activity android:name=".Common.SettingsActivity"/>
         <activity android:name=".Common.ChoosePeople" />
         <activity android:name=".Common.ForgetPasswordSuccessMessage" />
         <activity android:name=".Common.SetNewPassword" />
@@ -34,7 +35,7 @@
         <activity android:name=".Entries.LoginActivity" />
         <activity
             android:name=".Common.RetailerDashboard"
-            android:noHistory="true"></activity>
+            android:noHistory="true"/>
         <activity android:name=".Common.IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
