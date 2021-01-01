@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,10 +44,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     private ImageView mProfileImage;
 
-    private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
 
-    private String userId, name, phone, profileImageUrl, userSex;
+    private String userId, name, phone, profileImageUrl, userSex, phoneNumber;
 
     private Uri resultUri;
 
@@ -63,8 +63,10 @@ public class SettingsActivity extends AppCompatActivity {
         mBack = (Button) findViewById(R.id.back);
         mConfirm = (Button) findViewById(R.id.confirm);
 
-        mAuth = FirebaseAuth.getInstance();
-        userId = mAuth.getCurrentUser().getUid();
+        SessionManager sessionManager = new SessionManager(SettingsActivity.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
+        phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
+        userId = phoneNumber;
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 

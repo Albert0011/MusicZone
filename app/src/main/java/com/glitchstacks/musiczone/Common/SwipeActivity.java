@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.glitchstacks.musiczone.Cards.arrayAdapter;
 import com.glitchstacks.musiczone.Cards.cards;
+import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SwipeActivity extends AppCompatActivity {
@@ -31,9 +33,9 @@ public class SwipeActivity extends AppCompatActivity {
     private com.glitchstacks.musiczone.Cards.arrayAdapter arrayAdapter;
     private int i;
 
-    private FirebaseAuth mAuth;
-
     private String currentUId;
+
+    private String phoneNumber;
 
     private DatabaseReference usersDb;
 
@@ -49,8 +51,13 @@ public class SwipeActivity extends AppCompatActivity {
 
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        mAuth = FirebaseAuth.getInstance();
-        currentUId = mAuth.getCurrentUser().getUid();
+
+
+        SessionManager sessionManager = new SessionManager(SwipeActivity.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
+        phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
+        currentUId = phoneNumber;
+
 
         checkUserSex();
 
@@ -131,8 +138,12 @@ public class SwipeActivity extends AppCompatActivity {
     private String userSex;
     private String oppositeUserSex;
     public void checkUserSex(){
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference userDb = usersDb.child(user.getUid());
+        //final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        SessionManager sessionManager = new SessionManager(SwipeActivity.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
+        phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
+
+        DatabaseReference userDb = usersDb.child("Users").child(phoneNumber);
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -191,9 +202,8 @@ public class SwipeActivity extends AppCompatActivity {
     }
 
     public void goToSettings(View view) {
-        Intent intent = new Intent(SwipeActivity.this, SettingsActivity.class);
+        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(intent);
-        return;
     }
 
     /*

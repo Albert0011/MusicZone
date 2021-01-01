@@ -124,8 +124,8 @@ public class VerifyOTP extends AppCompatActivity {
                 });
 
 
-//        startActivity(new Intent(VerifyOTP.this, Login.class));
-//        finish();
+        startActivity(new Intent(VerifyOTP.this, Login.class));
+        finish();
 
 
     }
