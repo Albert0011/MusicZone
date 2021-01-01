@@ -29,6 +29,7 @@ import com.glitchstacks.musiczone.Common.Chatroom;
 import com.glitchstacks.musiczone.Common.MainChat;
 import com.glitchstacks.musiczone.Common.MusicZoneStartUpScreen;
 import com.glitchstacks.musiczone.Common.RetailerDashboard;
+import com.glitchstacks.musiczone.Common.SwipeActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -290,7 +291,7 @@ public class Login extends AppCompatActivity {
                         sessionManagerLogin = new SessionManager(Login.this, SessionManager.SESSION_USERSESSION);
                         sessionManagerLogin.createLoginSession(_fullname,_username,_email, _phoneNo, _password, _gender, _date);
 
-                        Intent intent = new Intent(getApplicationContext(), RetailerDashboard.class);
+                        Intent intent = new Intent(getApplicationContext(), SwipeActivity.class);
                         startActivity(intent);
                         finish();
 

@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.glitchstacks.musiczone"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.glitchstacks.musiczone">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        tools:node="remove" />
 
     <application
         android:allowBackup="true"
@@ -10,13 +19,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Common.ChoosePeople"></activity>
+        <uses-library
+            android:name="com.google.android.wearable"
+            android:required="false" />
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
+        <activity
+            android:name=".Common.SettingsActivity"
+            android:label="@string/title_activity_settings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Common.SwipeActivity" />
+        <activity android:name=".Common.ChoosePeople" />
         <activity android:name=".Common.ForgetPasswordSuccessMessage" />
         <activity android:name=".Common.SetNewPassword" />
         <activity android:name=".Common.MakeSelection" />
         <activity android:name=".Common.ForgetPassword" />
-        <activity android:name=".Common.chatroom"></activity>
-        <activity android:name=".Common.MainChat"/>
+        <activity android:name=".Common.Chatroom" />
+        <activity android:name=".Common.MainChat" />
         <activity android:name=".Entries.VerifyOTP" />
         <activity android:name=".Entries.SignUpActivity3rdClass" />
         <activity android:name=".Entries.SignUp2ndClass" />
@@ -24,12 +55,13 @@
         <activity android:name=".Entries.Login" />
         <activity android:name=".Common.MusicZoneStartUpScreen" />
         <activity android:name=".Entries.LoginActivity" />
-        <activity android:name=".Common.RetailerDashboard"
-            android:noHistory = "true">
-        </activity>
+        <activity
+            android:name=".Common.RetailerDashboard"
+            android:noHistory="true" />
         <activity android:name=".Common.IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -42,9 +74,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
-    <uses-permission
-        android:name="android.permission.READ_PHONE_STATE"
-        tools:node="remove" />
 
 </manifest>
