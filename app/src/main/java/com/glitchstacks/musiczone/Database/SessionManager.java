@@ -63,7 +63,7 @@ public class SessionManager {
         userData.put(KEY_USERNAME, usersSession.getString(KEY_USERNAME, null));
         userData.put(KEY_PHONENUMBER, usersSession.getString(KEY_PHONENUMBER, null));
         userData.put(KEY_DATE, usersSession.getString(KEY_DATE, null));
-        userData.put(KEY_EMAIL, usersSession.getString(KEY_PASSWORD, null));
+        userData.put(KEY_EMAIL, usersSession.getString(KEY_EMAIL, null));
         userData.put(KEY_GENDER, usersSession.getString(KEY_GENDER, null));
         userData.put(KEY_PASSWORD, usersSession.getString(KEY_PASSWORD, null));
 
@@ -86,8 +86,8 @@ public class SessionManager {
 
     public void createRememberMeSession(String phoneNo, String password) {
         editor = this.editor.putBoolean(IS_REMEMBERME, true);
-        editor.putString(KEY_PHONENUMBER, phoneNo);
-        editor.putString(KEY_PASSWORD, password);
+        editor.putString(KEY_SESSIONPHONENUMBER, phoneNo);
+        editor.putString(KEY_SESSIONPASSWORD, password);
         editor.commit();
     }
 

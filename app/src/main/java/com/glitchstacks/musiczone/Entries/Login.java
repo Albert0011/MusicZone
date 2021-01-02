@@ -48,6 +48,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.hbb20.CountryCodePicker;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class Login extends AppCompatActivity {
@@ -267,43 +268,43 @@ public class Login extends AppCompatActivity {
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Toast.makeText(Login.this, "masuk2", Toast.LENGTH_LONG).show();
+                //Toast.makeText(Login.this, "masuk2", Toast.LENGTH_LONG).show();
                 if(snapshot.exists()){
                     phoneNo.setError(null);
                     phoneNo.setErrorEnabled(false);
-                    String pass = snapshot.child(_phoneNo).child("password").getValue(String.class);
+                    String _password = snapshot.child(_phoneNo).child("password").getValue(String.class);
+                    String _username = snapshot.child(_phoneNo).child("username").getValue(String.class);
+                    String _email = snapshot.child(_phoneNo).child("email").getValue(String.class);
+                    String _phoneNumber = snapshot.child(_phoneNo).child("phoneNo").getValue(String.class);
+                    String _fullname = snapshot.child(_phoneNo).child("fullname").getValue(String.class);
+                    String _gender = snapshot.child(_phoneNo).child("gender").getValue(String.class);
+                    String _date = snapshot.child(_phoneNo).child("date").getValue(String.class);
 
-                    if(pass.equals(password.getEditText().getText().toString())){
+                    if(_password.equals(password.getEditText().getText().toString())){
                         password.setError(null);
                         password.setErrorEnabled(false);
                         mProgress.dismiss();
 
-                        //Toast.makeText(Login.this, "masuk3", Toast.LENGTH_LONG).show();
-                        String _fullname = snapshot.child(_phoneNo).child("fullname").getValue(String.class);
-                        String _username = snapshot.child(_phoneNo).child("username").getValue(String.class);
-                        String _date = snapshot.child(_phoneNo).child("date").getValue(String.class);
-                        String _email = snapshot.child(_phoneNo).child("email").getValue(String.class);
-                        String _gender = snapshot.child(_phoneNo).child("gender").getValue(String.class);
-                        String _password = snapshot.child(_phoneNo).child("pasword").getValue(String.class);
-
-//                        Toast.makeText(Login.this, _username, Toast.LENGTH_LONG).show();
 
                         sessionManagerLogin = new SessionManager(Login.this, SessionManager.SESSION_USERSESSION);
                         sessionManagerLogin.createLoginSession(_fullname,_username,_email, _phoneNo, _password, _gender, _date);
+                        HashMap<String, String> userDetails = sessionManagerLogin.getUsersDetailFromSession();
 
-                        Intent intent = new Intent(getApplicationContext(), SwipeActivity.class);
+                        Toast.makeText(Login.this, _email, Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getApplicationContext(), RetailerDashboard.class);
                         startActivity(intent);
                         finish();
 
 
                     }else{
                         mProgress.dismiss();
-                        Toast.makeText(Login.this, "Your password is wrong!", Toast.LENGTH_LONG).show();
+                        //.makeText(Login.this, "Your password is wrong!", Toast.LENGTH_LONG).show();
                     }
                 }else{
                     mProgress.dismiss();
                     phoneNo.setError("Such user did not exists.");
-                    Toast.makeText(Login.this, "Phone number not recognized!", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Login.this, "Phone number not recognized!", Toast.LENGTH_LONG).show();
                 }
             }
 

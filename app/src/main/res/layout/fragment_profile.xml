@@ -10,19 +10,21 @@
     // Name
 
     <TextView
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_extrabold"
         android:gravity="center"
-        android:text="@string/Albert"
+        android:text="Username"
         android:textColor="@color/Grey"
         android:textSize="16sp" />
 
     // Profile
 
     <RelativeLayout
+        android:id="@+id/layout_profile"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="20dp"
@@ -38,26 +40,26 @@
             android:src="@drawable/albert" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/profile_picture"
             android:fontFamily="@font/montserrat_extrabold"
-            android:text="albertch@gmail.com"
+            android:text="Email"
             android:textColor="@color/White" />
 
         <TextView
             android:id="@+id/phone_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/username"
+            android:layout_below="@id/email"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/profile_picture"
             android:fontFamily="@font/roboto"
-            android:text="+6281216131100"
+            android:text="Phone Number"
             android:textColor="@color/White" />
 
         <TextView
@@ -78,7 +80,7 @@
             android:layout_below="@id/description_header"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/montserrat"
-            android:text="I'm into music, especially playing guitar.\nGoogle Designer,20 years old."
+            android:text="Detail Description"
             android:textColor="@color/White"
             android:textSize="12sp" />
 
@@ -189,35 +191,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp">
 
-            <ImageView
-                android:id="@+id/setting_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/settings"
-                android:tint="@color/White"
-
-                />
-
-            <TextView
-
-                android:id="@+id/setting_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/setting_icon"
-                android:fontFamily="@font/montserrat_extrabold"
-                android:text="@string/setting"
-                android:textColor="@color/White" />
-
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

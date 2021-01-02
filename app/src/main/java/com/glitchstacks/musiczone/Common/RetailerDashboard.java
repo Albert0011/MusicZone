@@ -1,14 +1,18 @@
 package com.glitchstacks.musiczone.Common;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -20,7 +24,12 @@ import com.glitchstacks.musiczone.LocationOwner.ExploreDashboardFragment;
 import com.glitchstacks.musiczone.LocationOwner.ProfileFragment;
 import com.glitchstacks.musiczone.LocationOwner.TicketDashboardFragment;
 import com.glitchstacks.musiczone.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.HashMap;
@@ -28,14 +37,16 @@ import java.util.HashMap;
 public class RetailerDashboard extends AppCompatActivity {
 
     ChipNavigationBar chipNavigationBar;
+    FirebaseAuth mAuth;
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.retailer_dashboard);
 
-        SessionManager sessionManager = new SessionManager(this, SessionManager.SESSION_USERSESSION);
+        SessionManager sessionManager = new SessionManager(RetailerDashboard.this, SessionManager.SESSION_USERSESSION);
         HashMap<String, String> userDetails = sessionManager.getUsersDetailFromSession();
 
         String fullName = userDetails.get(SessionManager.KEY_FULLNAME);
@@ -45,6 +56,27 @@ public class RetailerDashboard extends AppCompatActivity {
         String password = userDetails.get(SessionManager.KEY_PASSWORD);
         String date = userDetails.get(SessionManager.KEY_DATE);
         String username = userDetails.get(SessionManager.KEY_USERNAME);
+//
+        Toast.makeText(RetailerDashboard.this, email, Toast.LENGTH_SHORT).show();
+        Toast.makeText(RetailerDashboard.this, password, Toast.LENGTH_SHORT).show();
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+
+                    if (task.isSuccessful()){ // Email and password match
+                        Toast.makeText(RetailerDashboard.this, "Logged in!", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        // Set the error message
+                        Toast.makeText(RetailerDashboard.this, "Login Fail!", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            });
+
+
 
         Toast.makeText(RetailerDashboard.this, username, Toast.LENGTH_LONG).show();
 
@@ -55,6 +87,7 @@ public class RetailerDashboard extends AppCompatActivity {
 
 
     }
+
 
 
 
@@ -107,4 +140,11 @@ public class RetailerDashboard extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
 }
