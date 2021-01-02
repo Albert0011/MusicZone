@@ -88,8 +88,6 @@ public class IntroductoryActivity extends AppCompatActivity {
                 }
             }
         },SPLASH_TIME_OUT);
-
-
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {

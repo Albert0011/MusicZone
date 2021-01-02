@@ -34,9 +34,7 @@ public class SwipeActivity extends AppCompatActivity {
     private int i;
 
     private String currentUId;
-
     private String phoneNumber;
-
     private DatabaseReference usersDb;
 
 
@@ -48,10 +46,7 @@ public class SwipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
 
-
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
-
-
 
         SessionManager sessionManager = new SessionManager(SwipeActivity.this, SessionManager.SESSION_USERSESSION);
         HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
