@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.glitchstacks.musiczone.Cards.arrayAdapter;
 import com.glitchstacks.musiczone.Cards.cards;
 import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.Matches.MatchesActivity;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -205,10 +206,9 @@ public class SwipeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*
     public void goToMatches(View view) {
-        Intent intent = new Intent(MainActivity.this, MatchesActivity.class);
+        Intent intent = new Intent(getApplicationContext(), MatchesActivity.class);
         startActivity(intent);
         return;
-    }*/
+    }
 }

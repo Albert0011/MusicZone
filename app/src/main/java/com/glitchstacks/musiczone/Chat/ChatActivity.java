@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.glitchstacks.musiczone.Common.SwipeActivity;
+import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -32,7 +34,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private Button mSendButton;
 
-    private String currentUserID, matchId, chatId;
+    private String currentUserID, matchId, chatId, phoneNumber;
 
     DatabaseReference mDatabaseUser, mDatabaseChat;
     @Override
@@ -42,7 +44,10 @@ public class ChatActivity extends AppCompatActivity {
 
         matchId = getIntent().getExtras().getString("matchId");
 
-        currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        SessionManager sessionManager = new SessionManager(ChatActivity.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
+        phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
+        currentUserID = phoneNumber;
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchId).child("ChatId");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");

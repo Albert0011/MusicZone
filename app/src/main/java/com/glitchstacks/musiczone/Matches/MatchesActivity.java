@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.glitchstacks.musiczone.Common.SwipeActivity;
+import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MatchesActivity extends AppCompatActivity {
@@ -22,14 +25,18 @@ public class MatchesActivity extends AppCompatActivity {
     private RecyclerView.Adapter mMatchesAdapter;
     private RecyclerView.LayoutManager mMatchesLayoutManager;
 
-    private String cusrrentUserID;
+    private String currentUserID, phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
 
-        cusrrentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        SessionManager sessionManager = new SessionManager(MatchesActivity.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
+        phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
+
+        currentUserID = phoneNumber;
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -46,7 +53,7 @@ public class MatchesActivity extends AppCompatActivity {
 
     private void getUserMatchId() {
 
-        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(cusrrentUserID).child("connections").child("matches");
+        DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -73,8 +80,8 @@ public class MatchesActivity extends AppCompatActivity {
                     String userId = dataSnapshot.getKey();
                     String name = "";
                     String profileImageUrl = "";
-                    if(dataSnapshot.child("name").getValue()!=null){
-                        name = dataSnapshot.child("name").getValue().toString();
+                    if(dataSnapshot.child("fullname").getValue()!=null){
+                        name = dataSnapshot.child("fullname").getValue().toString();
                     }
                     if(dataSnapshot.child("profileImageUrl").getValue()!=null){
                         profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();

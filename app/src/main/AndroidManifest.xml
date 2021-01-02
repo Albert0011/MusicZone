@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Common.SwipeActivity"/>
+        <activity android:name=".Chat.ChatActivity"/>
         <activity android:name=".Matches.MatchesActivity"/>
         <activity android:name=".Common.SettingsActivity"/>
         <activity android:name=".Common.ChoosePeople" />
