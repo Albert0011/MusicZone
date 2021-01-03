@@ -90,7 +90,6 @@ public class SettingsActivity extends Fragment {
             @Override
             public void onClick(View view) {
                 saveUserInformation();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
             }
         });
         mBack.setOnClickListener(new View.OnClickListener() {
@@ -219,6 +218,10 @@ public class SettingsActivity extends Fragment {
             //getActivity().finish();
 
         }
+
+        Fragment fragment = new ProfileFragment();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
