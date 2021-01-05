@@ -60,6 +60,7 @@ public class RetailerDashboard extends AppCompatActivity {
         Toast.makeText(RetailerDashboard.this, email, Toast.LENGTH_SHORT).show();
         Toast.makeText(RetailerDashboard.this, password, Toast.LENGTH_SHORT).show();
 
+
         mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -76,6 +77,7 @@ public class RetailerDashboard extends AppCompatActivity {
                 }
             });
 
+         
 
 
         Toast.makeText(RetailerDashboard.this, username, Toast.LENGTH_LONG).show();
