@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.glitchstacks.musiczone.R;
 
 public class ChatViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public View avatar;
     public TextView mMessage;
     public LinearLayout mContainer;
     public ChatViewHolders(View itemView) {
