@@ -2,6 +2,7 @@ package com.glitchstacks.musiczone.Chat;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.format.DateUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
             holder.mMessage.setGravity(Gravity.END);
             holder.mMessage.setTextColor(Color.parseColor("#404040"));
             holder.mContainer.setBackgroundColor(Color.parseColor("#F4F4F4"));
+            holder.mContainer.setBaselineAligned(Gravity.RIGHT);
+            //holder.timeText.setText(DateUtils.formatDateTime());
+
         }else{
             holder.mMessage.setGravity(Gravity.START);
             holder.mMessage.setTextColor(Color.parseColor("#FFFFFF"));

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ConcertDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="-40dp"
+            android:background="@drawable/rounded_corners_black_gradient"
+            android:orientation="vertical">
+
+
+            <com.like.LikeButton
+                android:id="@+id/heart_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                app:anim_scale_factor="3"
+                app:icon_size="22dp"
+                app:icon_type="heart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.991"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.585" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="94dp"
+                android:layout_height="95dp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="7dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.105"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/profileImage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.641">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:text="Raisa Live in Concert"
+                    android:textColor="@color/White"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="155dp"
+                    tools:layout_editor_absoluteY="110dp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Cafe Dago, Bandung"
+                    android:textColor="@color/White"
+                    android:textSize="13sp"
+                    tools:layout_editor_absoluteX="155dp"
+                    tools:layout_editor_absoluteY="110dp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="20 November 2020"
+                    android:textColor="@color/White"
+                    android:textSize="13sp"
+                    tools:layout_editor_absoluteX="155dp"
+                    tools:layout_editor_absoluteY="110dp" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/Black"
+            android:text="playlist"
+            android:fontFamily="@font/niramit_semibold"
+            android:textSize="35sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="100dp"
+                android:layout_height="150dp"/>
+
+            <LinearLayout
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="15sp"
+                    android:textColor="@color/Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tetap Dalam Jiwa"/>
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="12sp"
+                    android:textColor="@color/Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Artist      Raisa"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+        <LinearLayout
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <Button
+
+                android:id="@+id/buy_now"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="@color/darkBlue"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="Buy Now"
+                android:textColor="@color/White"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/find_friend"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/find_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="@color/lightGrey"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="Find Friends"
+                android:textColor="@color/Blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+</LinearLayout>
