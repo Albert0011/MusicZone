@@ -71,6 +71,31 @@
     <string name="logout">Logout</string>
     <string name="detail_featured">All the concerts that are featured and have the top demand in town!</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="virtual_acc">ONCE-OFF VIRTUAL ACCOUNT NUMBER:</string>
+    <string name="account_numb">8302017407408318</string>
+    <string name="make_deposit">Make a deposit</string>
+    <string name="amount_bal">IDR 100,000.00</string>
+    <string name="fee_bal">IDR 4,000.00</string>
+    <string name="bank_name_string">BNI</string>
+    <string name="method_name">ATM</string>
+    <string name="payment_desc1">Insert your ATM card and enter your PIN</string>
+    <string name="payment_desc2">- Select MENU > LAIN > TRANSFER > SUMBER REKENING > KE REKENING BNI</string>
+    <string name="payment_desc3">- Choose your account type</string>
+    <string name="payment_desc4">- Enter your Virtual Account Number as the destination account number</string>
+    <string name="payment_desc5">- Enter your deposit amount and confirm the transaction</string>
+    <string name="confirm_payment">I have made the payment</string>
+    <string name="amount">Amount</string>
+    <string name="fee">Fee</string>
+    <string name="total">Total</string>
+    <string name="total_bal">IDR 104,000.00</string>
+    <string name="bankName">Bank Name</string>
+    <string name="method">Method</string>
+    <string name="standBy">Stand by</string>
+    <string name="desc_standBy1">When we receive your payment</string>
+    <string name="desc_standBy2">We will inform you by email</string>
+
+
+
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

@@ -13,4 +13,5 @@
     <color name="lightGrey">#C7C8CF</color>
     <color name="lightPurple">#8E97FD</color>
     <color name="transparent">#00000000</color>
+    <color name="bg_color">#4C45B3</color>
 </resources>
