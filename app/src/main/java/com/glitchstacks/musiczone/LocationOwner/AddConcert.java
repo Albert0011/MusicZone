@@ -365,6 +365,8 @@ public class AddConcert extends Fragment {
         concertInfo.put("date", concertDate);
         concertInfo.put("time", concertTime);
 
+        // Database Reference
+
         mDatabase.child("Concerts").child(key).updateChildren(concertInfo);
 
         if(resultUri != null){
