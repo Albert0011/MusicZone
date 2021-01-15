@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WaitConfirmationActivity"></activity>
+        <activity android:name=".ConcertDetailActivity"></activity>
+        <activity android:name=".WaitConfirmationActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".Common.SwipeActivity" />
         <activity android:name=".Chat.ChatActivity" />
