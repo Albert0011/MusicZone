@@ -6,36 +6,77 @@
     android:layout_height="match_parent"
     android:background="@color/White"
     android:orientation="vertical"
-    tools:context=".LocationOwner.ChatDashboardFragment">
+    tools:context=".LocationOwner.ChatDashboardFragment"
+    android:padding="20dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="20dp">
 
         // Music Zone Logo
 
         // Search Bar
 
-        <ImageView
-            android:id="@+id/app_name"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/music_zone_logo" />
+            android:fontFamily="@font/montserrat_extrabold"
+            android:gravity="center"
+            android:text="@string/direct_message"
+            android:textColor="@color/Black" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_input"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/app_name"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/search"
+            android:textColorHint="@color/Black"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="@color/Black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/Black"
+            app:hintTextColor="@color/Black"
+            app:startIconDrawable="@drawable/search2"
+            app:startIconTint="@color/Black">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:textSize="12sp"
+                android:inputType="text"
+                android:textColor="@color/Black" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recyclerView"
-            android:scrollbars="vertical">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+
     </androidx.core.widget.NestedScrollView>
     // ScrollBar
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

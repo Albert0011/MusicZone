@@ -221,7 +221,6 @@ public class SettingsActivity extends Fragment {
 
         Fragment fragment = new ProfileFragment();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

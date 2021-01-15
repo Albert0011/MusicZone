@@ -1,6 +1,8 @@
 package com.glitchstacks.musiczone.LocationOwner;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -36,6 +38,7 @@ import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
+    public RetailerDashboard activity;
     ImageView mProfileImage;
     RelativeLayout logout_layout;
     RelativeLayout profile_layout;
@@ -135,7 +138,12 @@ public class ProfileFragment extends Fragment {
                                 Glide.with(getActivity().getApplication()).load(R.mipmap.ic_launcher).into(mProfileImage);
                                 break;
                             default:
-                                Glide.with(getActivity().getApplication()).load(profileImageUrl).into(mProfileImage);
+                                try {
+                                    Glide.with(getActivity().getApplication()).load(profileImageUrl).into(mProfileImage);
+                                }catch(Exception e){
+
+                                }
+
                                 break;
                         }
                     }
@@ -147,7 +155,12 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+    }
 
+
+    public void onAttach(Context activity) {
+        super.onAttach(activity);
+        this.activity = (RetailerDashboard) activity;
     }
 
 }

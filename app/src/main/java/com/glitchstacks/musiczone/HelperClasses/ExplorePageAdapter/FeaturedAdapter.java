@@ -24,7 +24,6 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
     @NonNull
     @Override
     public FeaturedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.featured_card_design, parent,false);
         FeaturedViewHolder featuredViewHolder = new FeaturedViewHolder(view);
         return featuredViewHolder;
@@ -33,7 +32,6 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
     @Override
     public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
         FeaturedHelperClass featuredHelperClass = featuredLocations.get(position);
-
         holder.image.setImageResource(featuredHelperClass.getImage());
         holder.title.setText(featuredHelperClass.getTitle());
         holder.passage .setText(featuredHelperClass.getPassage());
@@ -53,7 +51,6 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
             super(itemView);
 
             // Hooks
-
             image = itemView.findViewById(R.id.featured_image);
             title = itemView.findViewById(R.id.featured_title);
             passage = itemView.findViewById(R.id.featured_passage);

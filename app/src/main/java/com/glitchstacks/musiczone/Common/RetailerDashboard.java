@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.Entries.Login;
+import com.glitchstacks.musiczone.LocationOwner.AddConcert;
 import com.glitchstacks.musiczone.LocationOwner.ChatDashboardFragment;
 import com.glitchstacks.musiczone.LocationOwner.ExploreDashboardFragment;
 import com.glitchstacks.musiczone.LocationOwner.ProfileFragment;
@@ -90,9 +91,6 @@ public class RetailerDashboard extends AppCompatActivity {
 
     }
 
-
-
-
     private void bottomMenu() {
 
         chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
@@ -116,7 +114,9 @@ public class RetailerDashboard extends AppCompatActivity {
                     case R.id.bottom_nav_ticket:
                         fragment = new TicketDashboardFragment();
                         break;
-
+                    case R.id.bottom_nav_post:
+                        fragment = new AddConcert();
+                        break;
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
@@ -147,6 +147,7 @@ public class RetailerDashboard extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 
 
 }

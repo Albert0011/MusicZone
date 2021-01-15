@@ -71,6 +71,20 @@
     <string name="logout">Logout</string>
     <string name="detail_featured">All the concerts that are featured and have the top demand in town!</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="search_chat">search for name</string>
+    <string name="direct_message">Direct messages</string>
+    <string name="post_concert">Post Concert</string>
+    <string name="poster_image">Poster Image</string>
+    <string name="Title">Add your concert title</string>
+    <string name="Location">Add your concert location</string>
+    <string name="concert_name">Concert Name</string>
+    <string name="playlist_name">Playlist Name</string>
+    <string name="Date">Select Date</string>
+    <string name="Time"> Set Time</string>
+    <string name="ChosenTime">Chosen Time</string>
+    <string name="Duration">Duration (in minute)</string>
+
+
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

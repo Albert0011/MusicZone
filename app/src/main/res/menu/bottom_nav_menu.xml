@@ -14,6 +14,14 @@
         android:icon="@drawable/discover"
         app:cnb_backgroundColor="@color/White"
         app:cnb_iconColor="@color/lightPurple"/>
+
+    <item
+        android:id="@+id/bottom_nav_post"
+        android:title="Post"
+        android:icon="@drawable/add"
+        app:cnb_backgroundColor="@color/White"
+        app:cnb_iconColor="@color/lightPurple"/>
+
     <item
         android:id="@+id/bottom_nav_chat"
         android:title="Inbox"
@@ -27,5 +35,7 @@
         android:icon="@drawable/me"
         app:cnb_backgroundColor="@color/White"
         app:cnb_iconColor="@color/lightPurple"/>
+
+
 
 </menu>

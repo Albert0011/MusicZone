@@ -50,7 +50,7 @@ public class SignUp2ndClass extends AppCompatActivity {
 
     public void callNextSignUpScreen(View view) {
 
-        if(!validateGender() | !validateAge()){
+        if(!validateGender() || !validateAge()){
             return;
         }
 

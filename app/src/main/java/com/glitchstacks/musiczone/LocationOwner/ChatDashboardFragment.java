@@ -33,12 +33,13 @@ public class ChatDashboardFragment extends Fragment {
 
     private String currentUserID, phoneNumber;
 
+    private ArrayList<MatchesObject> resultsMatches = new ArrayList<MatchesObject>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_chat_dashboard, container, false);
-
 
         SessionManager sessionManager = new SessionManager(getContext(), SessionManager.SESSION_USERSESSION);
         HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
@@ -46,21 +47,25 @@ public class ChatDashboardFragment extends Fragment {
 
         currentUserID = phoneNumber;
 
+        // Chat Recycle View
         mRecyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
+
+        // Layout Manager for Chat Recycle View
         mMatchesLayoutManager = new LinearLayoutManager(getContext());
+
+        // Set Chat RecycleView Layout to mMatchesLayoutManager
         mRecyclerView.setLayoutManager(mMatchesLayoutManager);
+
+        // Setting Adapter for RecycleView
         mMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
         mRecyclerView.setAdapter(mMatchesAdapter);
-
-        getUserMatchId();
 
         return root;
     }
 
     private void getUserMatchId() {
-
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches");
         matchDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -110,8 +115,9 @@ public class ChatDashboardFragment extends Fragment {
 
     }
 
-    private ArrayList<MatchesObject> resultsMatches = new ArrayList<MatchesObject>();
     private List<MatchesObject> getDataSetMatches() {
+
+        getUserMatchId();
         return resultsMatches;
     }
 
