@@ -83,8 +83,6 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
 
     }
 
-
-
     private void checkUserExist(final String phoneNo) {
 
         Toast.makeText(SignUpActivity3rdClass.this, phoneNo, Toast.LENGTH_LONG).show();

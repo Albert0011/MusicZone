@@ -1,23 +1,18 @@
 package com.glitchstacks.musiczone.LocationOwner;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +24,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.glitchstacks.musiczone.Common.ChoosePlaylist;
+import com.glitchstacks.musiczone.AddPlaylist;
 import com.glitchstacks.musiczone.Database.SessionManager;
-import com.glitchstacks.musiczone.Entries.SignUp;
-import com.glitchstacks.musiczone.Entries.SignUp2ndClass;
-import com.glitchstacks.musiczone.Matches.MatchesAdapter;
 import com.glitchstacks.musiczone.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -163,17 +155,17 @@ public class AddConcert extends Fragment {
         }
 
         // membuat intent untuk aktivitas selanjutnya
-        Intent intent = new Intent(getActivity().getApplicationContext(), ChoosePlaylist.class);
+        Intent intent = new Intent(getActivity().getApplicationContext(), AddPlaylist.class);
 
         // memberikan informasi ke aktivitas selanjutnya
         intent.putExtra("concertName", concertName);
         intent.putExtra("playlistName", playlistName);
         intent.putExtra("concertDescription", concertDescription);
 
-        saveConcertInformation();
+        saveConcertInformation(intent);
 
         // memulai aktivitas selanjutnya
-        startActivity(intent);
+
 
     }
 
@@ -351,10 +343,13 @@ public class AddConcert extends Fragment {
 
     }
 
-    private void saveConcertInformation() {
+    private void saveConcertInformation(Intent intent) {
 
         final String key = mDatabase.child("Concerts").push().getKey();
         DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);
+
+        intent.putExtra("key", key);
+
 
         final Map concertInfo = new HashMap();
         concertInfo.put("id", key);
@@ -419,8 +414,7 @@ public class AddConcert extends Fragment {
         }
 
 
-
-
+            startActivity(intent);
         }
 
 
