@@ -34,27 +34,26 @@
                 android:textColor="@color/Black"
                 android:textSize="16sp" />
 
-            <RatingBar
-                android:id="@+id/fetaured_ratingbar"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:progressTint="@color/lightPurple"
-                android:rating="4.5" />
-
             <TextView
                 android:id="@+id/featured_passage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Raissa Concert has always been the best concert for years"
-                android:textSize="9sp"/>
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/featured_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="21/11/22"
+                android:textSize="9sp" />
 
 
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </androidx.cardview.widget.CardView>

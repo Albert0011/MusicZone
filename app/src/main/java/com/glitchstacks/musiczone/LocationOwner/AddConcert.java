@@ -170,7 +170,7 @@ public class AddConcert extends Fragment {
         intent.putExtra("playlistName", playlistName);
         intent.putExtra("concertDescription", concertDescription);
 
-        saveConcertInformation();
+        saveConcertInformation(intent);
 
         // memulai aktivitas selanjutnya
         startActivity(intent);
@@ -219,6 +219,8 @@ public class AddConcert extends Fragment {
         int month = datePicker.getMonth()+1;
         int year = datePicker.getYear();
 
+        String.format("%02d", month);
+
         concertDate = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
         concertTime = txtChosenTime.getText().toString().replaceAll(" ", "");
 
@@ -234,7 +236,7 @@ public class AddConcert extends Fragment {
 
         String temp_date = concertDate + " " + concertTime;
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
         Date temp_date1 = null;
 
@@ -268,7 +270,7 @@ public class AddConcert extends Fragment {
             return false;
         }
         else{
-            if(concertDescription.length() > 200){
+            if(concertDescription.length() > 60){
                 layoutDescription.setError("description is too long!");
                 return false;
             }else if(concertDescription.length() < 10){
@@ -289,8 +291,8 @@ public class AddConcert extends Fragment {
             return false;
         }else{
 
-            if(playlistName.length() > 30 || playlistName.length()<3){
-                layoutPlaylistName.setError("playlist name must between 3-10 character");
+            if(playlistName.length() > 20 || playlistName.length()<3){
+                layoutPlaylistName.setError("playlist name must between 3-20 character");
                 return false;
             }
             else{
@@ -311,8 +313,8 @@ public class AddConcert extends Fragment {
             return false;
         } else {
 
-            if (concertName.length() > 30 || concertName.length()<3){
-                layoutConcertName.setError("concert name must between 3-10 character");
+            if (concertName.length() > 20 || concertName.length()<3){
+                layoutConcertName.setError("concert name must between 3-20 character");
                 return false;
             }
             else{
@@ -351,10 +353,14 @@ public class AddConcert extends Fragment {
 
     }
 
-    private void saveConcertInformation() {
+    private void saveConcertInformation(Intent intent) {
 
         final String key = mDatabase.child("Concerts").push().getKey();
         DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);
+
+
+        intent.putExtra("concertKey", key);
+
 
         final Map concertInfo = new HashMap();
         concertInfo.put("id", key);
@@ -364,6 +370,7 @@ public class AddConcert extends Fragment {
         concertInfo.put("duration", concertDuration);
         concertInfo.put("date", concertDate);
         concertInfo.put("time", concertTime);
+        concertInfo.put("viewer",0);
 
         // Database Reference
 
