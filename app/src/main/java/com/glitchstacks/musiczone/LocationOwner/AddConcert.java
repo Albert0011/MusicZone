@@ -1,18 +1,23 @@
 package com.glitchstacks.musiczone.LocationOwner;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +29,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.glitchstacks.musiczone.AddPlaylist;
+import com.glitchstacks.musiczone.Common.ChoosePlaylist;
 import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.Entries.SignUp;
+import com.glitchstacks.musiczone.Entries.SignUp2ndClass;
+import com.glitchstacks.musiczone.Matches.MatchesAdapter;
 import com.glitchstacks.musiczone.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -155,7 +163,7 @@ public class AddConcert extends Fragment {
         }
 
         // membuat intent untuk aktivitas selanjutnya
-        Intent intent = new Intent(getActivity().getApplicationContext(), AddPlaylist.class);
+        Intent intent = new Intent(getActivity().getApplicationContext(), ChoosePlaylist.class);
 
         // memberikan informasi ke aktivitas selanjutnya
         intent.putExtra("concertName", concertName);
@@ -165,7 +173,7 @@ public class AddConcert extends Fragment {
         saveConcertInformation(intent);
 
         // memulai aktivitas selanjutnya
-
+        startActivity(intent);
 
     }
 
@@ -211,6 +219,8 @@ public class AddConcert extends Fragment {
         int month = datePicker.getMonth()+1;
         int year = datePicker.getYear();
 
+        String.format("%02d", month);
+
         concertDate = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
         concertTime = txtChosenTime.getText().toString().replaceAll(" ", "");
 
@@ -226,7 +236,7 @@ public class AddConcert extends Fragment {
 
         String temp_date = concertDate + " " + concertTime;
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
         Date temp_date1 = null;
 
@@ -260,7 +270,7 @@ public class AddConcert extends Fragment {
             return false;
         }
         else{
-            if(concertDescription.length() > 200){
+            if(concertDescription.length() > 60){
                 layoutDescription.setError("description is too long!");
                 return false;
             }else if(concertDescription.length() < 10){
@@ -281,8 +291,8 @@ public class AddConcert extends Fragment {
             return false;
         }else{
 
-            if(playlistName.length() > 30 || playlistName.length()<3){
-                layoutPlaylistName.setError("playlist name must between 3-10 character");
+            if(playlistName.length() > 20 || playlistName.length()<3){
+                layoutPlaylistName.setError("playlist name must between 3-20 character");
                 return false;
             }
             else{
@@ -303,8 +313,8 @@ public class AddConcert extends Fragment {
             return false;
         } else {
 
-            if (concertName.length() > 30 || concertName.length()<3){
-                layoutConcertName.setError("concert name must between 3-10 character");
+            if (concertName.length() > 20 || concertName.length()<3){
+                layoutConcertName.setError("concert name must between 3-20 character");
                 return false;
             }
             else{
@@ -348,7 +358,8 @@ public class AddConcert extends Fragment {
         final String key = mDatabase.child("Concerts").push().getKey();
         DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);
 
-        intent.putExtra("key", key);
+
+        intent.putExtra("concertKey", key);
 
 
         final Map concertInfo = new HashMap();
@@ -359,6 +370,7 @@ public class AddConcert extends Fragment {
         concertInfo.put("duration", concertDuration);
         concertInfo.put("date", concertDate);
         concertInfo.put("time", concertTime);
+        concertInfo.put("viewer",0);
 
         // Database Reference
 
@@ -414,7 +426,8 @@ public class AddConcert extends Fragment {
         }
 
 
-            startActivity(intent);
+
+
         }
 
 

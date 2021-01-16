@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.glitchstacks.musiczone.R;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.MostViewedHolder> {
 
     ArrayList<MostViewedHelperClass> mostViewedLocations;
+    View view;
 
     public MostViewedAdapter(ArrayList<MostViewedHelperClass> mostViewedLocations) {
         this.mostViewedLocations = mostViewedLocations;
@@ -25,7 +27,7 @@ public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.M
     @Override
     public MostViewedHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.most_viewed_card_design, parent,false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.most_viewed_card_design, parent,false);
         MostViewedAdapter.MostViewedHolder mostViewedHolder = new MostViewedAdapter.MostViewedHolder(view);
         return mostViewedHolder;
     }
@@ -34,9 +36,23 @@ public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.M
     public void onBindViewHolder(@NonNull MostViewedAdapter.MostViewedHolder holder, int position) {
         MostViewedHelperClass mostViewedHelperClass = mostViewedLocations.get(position);
 
-        holder.image.setImageResource(mostViewedHelperClass.getImage());
+        String profileUrl = mostViewedHelperClass.getImage();
+
+        if(!profileUrl.isEmpty()){
+            switch(profileUrl){
+                case "default":
+                    Glide.with(view.getContext()).load(R.mipmap.ic_launcher).into(holder.image);
+                    break;
+                default:
+                    Glide.clear(holder.image);
+                    Glide.with(view.getContext()).load(profileUrl).into(holder.image);
+                    break;
+            }
+        }
+
         holder.title.setText(mostViewedHelperClass.getTitle());
         holder.passage .setText(mostViewedHelperClass.getPassage());
+        holder.date.setText(mostViewedHelperClass.getDate());
     }
 
     @Override
@@ -47,7 +63,7 @@ public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.M
     public static class MostViewedHolder extends RecyclerView.ViewHolder{
 
         ImageView image;
-        TextView title, passage;
+        TextView title, passage,date;
 
         public MostViewedHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +73,7 @@ public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.M
             image = itemView.findViewById(R.id.most_viewed_image);
             title = itemView.findViewById(R.id.most_viewed_title);
             passage = itemView.findViewById(R.id.most_viewed_passage);
+            date = itemView.findViewById(R.id.most_viewed_date);
 
 
         }

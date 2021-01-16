@@ -2,16 +2,16 @@ package com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter;
 
 public class FeaturedHelperClass {
 
-    int image;
-    String title, passage;
+    String image, title, passage, date;
 
-    public FeaturedHelperClass(int image, String title, String passage) {
+    public FeaturedHelperClass(String image, String title, String passage, String date) {
         this.image = image;
         this.title = title;
         this.passage = passage;
+        this.date = date;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -22,4 +22,6 @@ public class FeaturedHelperClass {
     public String getPassage() {
         return passage;
     }
+
+    public String getDate(){return date;}
 }

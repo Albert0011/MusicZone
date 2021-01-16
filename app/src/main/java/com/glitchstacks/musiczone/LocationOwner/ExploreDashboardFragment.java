@@ -2,10 +2,13 @@ package com.glitchstacks.musiczone.LocationOwner;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,31 +18,61 @@ import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedHelpe
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedAdapter;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedHelperClass;
 import com.glitchstacks.musiczone.R;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class ExploreDashboardFragment extends Fragment {
 
-    RecyclerView featuredRecycler;
-    RecyclerView.Adapter adapter1;
+    private RecyclerView featuredRecycler;
+    private RecyclerView.Adapter featuredAdapter;
 
-    RecyclerView mostViewedRecycler;
-    RecyclerView.Adapter adapter2;
+    private RecyclerView mostViewedRecycler;
+    private RecyclerView.Adapter mostViewedAdapter;
+
+    private DatabaseReference mDatabase;
+
+    private ArrayList<FeaturedHelperClass> featuredList = new ArrayList<FeaturedHelperClass>();
+    private ArrayList<MostViewedHelperClass> mostViewedList = new ArrayList<MostViewedHelperClass>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_explore_dashboard, container, false);
         // Inflate the layout for this fragment
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_explore_dashboard, container, false);
+
+        // Database
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        // list of featured concerts
         featuredRecycler = root.findViewById(R.id.featured_recycler);
         featuredRecycler();
 
+        // list of mostViewedConcerts
         mostViewedRecycler = root.findViewById(R.id.most_viewed_recycler);
         mostViewedRecycler();
 
+        featuredAdapter = new FeaturedAdapter(getFeatured());
+        featuredRecycler.setAdapter(featuredAdapter);
+
+        mostViewedAdapter = new MostViewedAdapter(getPopular());
+        mostViewedRecycler.setAdapter(mostViewedAdapter);
         return root;
+    }
+
+    private ArrayList<MostViewedHelperClass> getPopular() {
+        return mostViewedList;
     }
 
     private void featuredRecycler() {
@@ -47,31 +80,153 @@ public class ExploreDashboardFragment extends Fragment {
         featuredRecycler.setHasFixedSize(true);
         featuredRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
-        ArrayList<FeaturedHelperClass> featuredLocations = new ArrayList<>();
+        mDatabase.child("Concerts").orderByKey().addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if(snapshot.exists()){
 
-        featuredLocations.add(new FeaturedHelperClass(R.drawable.raissa_poster2,"Raissa Concert","Raissa concert has always been the best over the year"));
-        featuredLocations.add(new FeaturedHelperClass(R.drawable.afgan_poster,"Afgan Concert","Afgan concert has always been the best over the year"));
-        featuredLocations.add(new FeaturedHelperClass(R.drawable.isyana_poster,"Isyana Concert","Isyana concert has always been the best over the year"));
+                    Log.d("child detected", "child detected");
 
-        adapter1 = new FeaturedAdapter(featuredLocations);
-        featuredRecycler.setAdapter(adapter1);
+                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null;
+                    Integer viewer;
+
+                    // Retreive currentDate
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    String currentdate = dateFormat.format(calendar.getTime());
+
+                    // Hook from database
+                    imageUrl = snapshot.child("imageURL").getValue().toString();
+                    concertTitle = snapshot.child("concert_name").getValue().toString();
+                    concertDesc = snapshot.child("description").getValue().toString();
+                    concertDate = snapshot.child("date").getValue().toString();
+
+                    // To be push
+
+                    Log.d("dateequal1", currentdate);
+
+                    if(!imageUrl.isEmpty() && !concertTitle.isEmpty() && !concertDesc.isEmpty() && !concertDate.isEmpty()
+                            && concertDate.equals(currentdate)){
+
+                        String messages = imageUrl + " " + concertTitle + " " + concertDesc + " " + concertDate;
+
+                        Log.d("child detected", messages );
+
+                        FeaturedHelperClass featuredHelperClass = new FeaturedHelperClass(imageUrl, concertTitle, concertDesc, concertDate);
+
+                        featuredList.add(featuredHelperClass);
+                        featuredAdapter.notifyDataSetChanged();
+
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
 
     }
+
 
     private void mostViewedRecycler() {
 
         mostViewedRecycler.setHasFixedSize(true);
         mostViewedRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
-        ArrayList<MostViewedHelperClass> mostViewedLocations = new ArrayList<>();
+        mDatabase.child("Concerts").orderByKey().addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if(snapshot.exists()){
 
-        mostViewedLocations.add(new MostViewedHelperClass(R.drawable.raissa_poster2,"Raissa Concert","Raissa concert has always been the best over the year"));
-        mostViewedLocations.add(new MostViewedHelperClass(R.drawable.afgan_poster,"Afgan Concert","Afgan concert has always been the best over the year"));
-        mostViewedLocations.add(new MostViewedHelperClass(R.drawable.isyana_poster,"Isyana Concert","Isyana concert has always been the best over the year"));
+                    Log.d("child detected", "child detected");
 
-        adapter2 = new MostViewedAdapter( mostViewedLocations);
-        mostViewedRecycler.setAdapter(adapter2);
+                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertTime = null;
+                    Integer viewer;
 
+                    // retreive currentDate
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    String currentdate = dateFormat.format(calendar.getTime());
+
+
+                    // Hook from database
+                    imageUrl = snapshot.child("imageURL").getValue().toString();
+                    concertTitle = snapshot.child("concert_name").getValue().toString();
+                    concertDesc = snapshot.child("description").getValue().toString();
+                    concertDate = snapshot.child("date").getValue().toString();
+                    concertTime = snapshot.child("time").getValue().toString();
+                    viewer = Integer.parseInt(snapshot.child("viewer").getValue().toString());
+
+                    String temp_date = concertDate + " " + concertTime;
+
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
+                    Date temp_date1 = null;
+
+                    try {
+                        temp_date1 = simpleDateFormat.parse(temp_date);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    if(viewer >= 100 && !imageUrl.isEmpty() && !concertTitle.isEmpty() && !concertDesc.isEmpty() && !concertDate.isEmpty()
+                            && temp_date1.after(calendar.getTime())){
+
+                        String messages = imageUrl + " " + concertTitle + " " + concertDesc + " " + concertDate;
+
+                        Log.d("child detected", messages );
+
+                        MostViewedHelperClass mostViewedHelperClass = new MostViewedHelperClass(imageUrl, concertTitle, concertDesc, concertDate);
+
+                        mostViewedList.add(mostViewedHelperClass);
+                        mostViewedAdapter.notifyDataSetChanged();
+
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
+    }
+
+    private ArrayList<FeaturedHelperClass> getFeatured(){
+        return featuredList;
     }
 
 
