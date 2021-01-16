@@ -29,7 +29,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.glitchstacks.musiczone.Common.ChoosePlaylist;
+import com.glitchstacks.musiczone.AddPlaylist;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.Entries.SignUp;
 import com.glitchstacks.musiczone.Entries.SignUp2ndClass;
@@ -163,7 +163,7 @@ public class AddConcert extends Fragment {
         }
 
         // membuat intent untuk aktivitas selanjutnya
-        Intent intent = new Intent(getActivity().getApplicationContext(), ChoosePlaylist.class);
+        Intent intent = new Intent(getActivity().getApplicationContext(), AddPlaylist.class);
 
         // memberikan informasi ke aktivitas selanjutnya
         intent.putExtra("concertName", concertName);
