@@ -101,6 +101,8 @@ public class ExploreDashboardFragment extends Fragment {
                     concertDesc = snapshot.child("description").getValue().toString();
                     concertDate = snapshot.child("date").getValue().toString();
 
+                    // To be push
+
                     Log.d("dateequal1", currentdate);
 
                     if(!imageUrl.isEmpty() && !concertTitle.isEmpty() && !concertDesc.isEmpty() && !concertDate.isEmpty()
