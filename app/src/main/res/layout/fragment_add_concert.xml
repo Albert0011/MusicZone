@@ -190,7 +190,9 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_corners_white"
                     android:fontFamily="@font/montserrat_extrabold"
-                    android:text="@string/Time" />
+                    android:textColor="@color/Black"
+                    android:text="@string/Time"
+                    />
 
                 <TextView
                     android:id="@+id/txtChosenTime"

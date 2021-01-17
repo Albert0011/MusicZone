@@ -1,200 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Black"
     android:orientation="vertical"
     tools:context=".ConcertDetailActivity">
 
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="280dp"
+        android:background="@drawable/concert_purple"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="-40dp"
-            android:background="@drawable/rounded_corners_black_gradient"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/Black"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:textAlignment="center"
+                app:layout_collapseMode="pin"
+                app:titleTextColor="@color/Black" />
+
+            <ImageView
+                android:id="@+id/imgConcertImage"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|center_vertical"
+                android:elevation="8dp"
+                android:src="@drawable/raissa_poster2"
+                app:layout_collapseMode="parallax" />
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="1"
+        android:background="@drawable/rounded_corners_black"
+        android:elevation="5dp"
+        android:padding="30dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <com.like.LikeButton
-                android:id="@+id/heart_button"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
-                app:anim_scale_factor="3"
-                app:icon_size="22dp"
-                app:icon_type="heart"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.991"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.585" />
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/concertImage"
-                android:layout_width="94dp"
-                android:layout_height="95dp"
-                android:layout_gravity="center_horizontal"
-                android:elevation="7dp"
-                android:src="@mipmap/ic_launcher"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.105"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.6" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtConcertName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:gravity="center"
+                        android:text="Concert Name"
+                        android:textColor="@color/White"
+                        android:textSize="28sp" />
+
+                    <TextView
+                        android:id="@+id/txtConcertDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/montserrat"
+                        android:gravity="center"
+                        android:text="Konser ini adalah sebuah persembahan dari raissan dengan keempat lagu barunya di dalam album tersebut."
+                        android:textColor="@color/White"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/profileImage"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.641">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_corners_white"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-                <TextView
-                    android:id="@+id/concert_name"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_extrabold"
-                    android:text="Raisa Live in Concert"
-                    android:textColor="@color/White"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="155dp"
-                    tools:layout_editor_absoluteY="110dp" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/concert_place"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Cafe Dago, Bandung"
-                    android:textColor="@color/White"
-                    android:textSize="13sp"
-                    tools:layout_editor_absoluteX="155dp"
-                    tools:layout_editor_absoluteY="110dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="@string/time"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/concert_date"
-                    android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/watch96" />
+
+                    <TextView
+                        android:id="@+id/txtTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/time" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat"
-                    android:text="20 November 2020"
-                    android:textColor="@color/White"
-                    android:textSize="13sp"
-                    tools:layout_editor_absoluteX="155dp"
-                    tools:layout_editor_absoluteY="110dp" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="@string/duration"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="( in minutes )"
+                        android:textColor="@color/Grey"
+                        android:textSize="10dp" />
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/queue_purple" />
+
+                    <TextView
+                        android:id="@+id/txtDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/duration" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="@string/date"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp" />
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/calendar_purple" />
+
+                    <TextView
+                        android:id="@+id/txtDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/date" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/Black"
-            android:text="playlist"
-            android:fontFamily="@font/niramit_semibold"
-            android:textSize="35sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/song_image"
-                android:layout_marginLeft="20dp"
-                android:src="@mipmap/ic_launcher"
-                android:layout_width="100dp"
-                android:layout_height="150dp"/>
-
-            <LinearLayout
-                android:layout_marginTop="40dp"
-                android:layout_marginLeft="40dp"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/song_name"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="15sp"
-                    android:textColor="@color/Black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tetap Dalam Jiwa"/>
-
-                <TextView
-                    android:id="@+id/artist_name"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/montserrat"
-                    android:textSize="12sp"
-                    android:textColor="@color/Grey"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Artist      Raisa"/>
-
-            </LinearLayout>
-
-
         </LinearLayout>
 
-        </LinearLayout>
 
-    </ScrollView>
-
-
-        <LinearLayout
-            android:gravity="bottom"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    </androidx.core.widget.NestedScrollView>
 
 
-            <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:backgroundTint="@color/White"
+        android:baselineAlignBottom="false"
+        android:clickable="true"
+        android:elevation="20dp"
+        android:scaleType="center"
+        android:src="@drawable/heart128"
+        android:tint="@color/Black"
+        app:fabSize="normal"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="end|bottom"
 
-                android:id="@+id/buy_now"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:background="@color/darkBlue"
-                android:fontFamily="@font/montserrat_extrabold"
-                android:text="Buy Now"
-                android:textColor="@color/White"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/find_friend"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        />
 
-            <Button
-                android:id="@+id/find_friend"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:background="@color/lightGrey"
-                android:fontFamily="@font/montserrat_extrabold"
-                android:text="Find Friends"
-                android:textColor="@color/Blue"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </LinearLayout>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

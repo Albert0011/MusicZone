@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AddPlaylist"></activity>
-        <activity android:name=".ConcertDetailActivity" />
+        <activity android:name=".ConcertDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".WaitConfirmationActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".Common.SwipeActivity" />

@@ -106,6 +106,9 @@
     <string name="desc_standBy1">When we receive your payment</string>
     <string name="desc_standBy2">We will inform you by email</string>
     <string name="todayconcert">Today Concert</string>
+    <string name="time">Time</string>
+    <string name="duration">Duration</string>
+    <string name="date">Date</string>
     <string name="todayconcertdetail">All the concert or live music that will be held today</string>
 
 

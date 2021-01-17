@@ -18,7 +18,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
     private List<ChatObject> chatList;
     private Context context;
 
-
     public ChatAdapter(List<ChatObject> matchesList, Context context){
         this.chatList = matchesList;
         this.context = context;
@@ -43,7 +42,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
             holder.mMessage.setTextColor(Color.parseColor("#404040"));
             holder.mContainer.setBackgroundColor(Color.parseColor("#F4F4F4"));
 //            holder.mContainer.setBaselineAligned(Gravity.RIGHT);
-            //holder.timeText.setText(DateUtils.formatDateTime());
+//            holder.timeText.setText(DateUtils.formatDateTime());
 
         }else{
             holder.mMessage.setGravity(Gravity.START);

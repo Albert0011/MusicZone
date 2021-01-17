@@ -1,13 +1,15 @@
 package com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter;
 
 public class MostViewedHelperClass {
-    String image,title, passage,date;
 
-    public MostViewedHelperClass(String image, String title, String passage, String date) {
+    private String image,title, passage,date, key;
+
+    public MostViewedHelperClass(String image, String title, String passage, String date, String key) {
         this.image = image;
         this.title = title;
         this.passage = passage;
         this.date = date;
+        this.key = key;
     }
 
     public String getImage() {
@@ -23,5 +25,7 @@ public class MostViewedHelperClass {
     }
 
     public String getDate(){return date;}
+
+    public String getKey(){return key;}
 
 }
