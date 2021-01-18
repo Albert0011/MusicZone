@@ -8,14 +8,11 @@
     app:cardCornerRadius="20dp"
     app:cardElevation="5dp">
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
         <RelativeLayout
             android:layout_width="300dp"
-            android:layout_height="150dp"
-            android:padding="15dp">
+            android:layout_height="200dp"
+            android:padding="15dp"
+            android:clickable="false">
 
             <ImageView
                 android:id="@+id/most_viewed_image"
@@ -56,9 +53,6 @@
 
 
         </RelativeLayout>
-
-
-    </ScrollView>
 
 
 </androidx.cardview.widget.CardView>

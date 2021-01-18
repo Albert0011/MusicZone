@@ -6,14 +6,16 @@
     android:layout_height="wrap_content"
     android:background="@drawable/concert_purple"
     android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".AddPlaylist">
+    android:padding="0dp"
+    tools:context=".AddPlaylist"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:alpha="0.8">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +24,8 @@
             android:fontFamily="@font/montserrat_extrabold"
             android:text="Add Playlist"
             android:textColor="@color/White"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -161,8 +164,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/rounded_corners_white"
                 android:fontFamily="@font/montserrat_extrabold"
+                android:textColor="@color/Black"
                 android:text="Add Song" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"

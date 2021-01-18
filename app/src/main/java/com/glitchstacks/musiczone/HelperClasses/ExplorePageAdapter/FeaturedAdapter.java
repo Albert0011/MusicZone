@@ -1,5 +1,6 @@
 package com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.glitchstacks.musiczone.ConcertDetailActivity;
 import com.glitchstacks.musiczone.R;
 
 import java.util.ArrayList;
@@ -55,6 +57,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
         holder.title.setText(featuredHelperClass.getTitle());
         holder.passage .setText(featuredHelperClass.getPassage());
         holder.date.setText(featuredHelperClass.getDate());
+
     }
 
     @Override
@@ -62,13 +65,15 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
         return featuredLocations.size();
     }
 
-    public static class FeaturedViewHolder extends RecyclerView.ViewHolder{
+    public class FeaturedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView image;
         TextView title, passage, date;
 
         public FeaturedViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            itemView.setOnClickListener(this);
 
             // Hooks
             image = itemView.findViewById(R.id.featured_image);
@@ -77,6 +82,19 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
             date = itemView.findViewById(R.id.featured_date);
 
 
+        }
+
+        @Override
+        public void onClick(View view) {
+            Log.d("clicked", "clicked");
+            Intent intent = new Intent(view.getContext(), ConcertDetailActivity.class);
+
+            // Position of the adapter
+            Integer position = getAdapterPosition();
+
+            intent.putExtra("concertKey",featuredLocations.get(position).getKey());
+
+            view.getContext().startActivity(intent);
         }
     }
 

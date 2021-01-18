@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedAdapter;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedHelperClass;
@@ -87,7 +88,7 @@ public class ExploreDashboardFragment extends Fragment {
 
                     Log.d("child detected", "child detected");
 
-                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null;
+                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertKey = null;
                     Integer viewer;
 
                     // Retreive currentDate
@@ -96,14 +97,13 @@ public class ExploreDashboardFragment extends Fragment {
                     String currentdate = dateFormat.format(calendar.getTime());
 
                     // Hook from database
-
+                    imageUrl = snapshot.child("imageURL").getValue().toString();
                     concertTitle = snapshot.child("concert_name").getValue().toString();
                     concertDesc = snapshot.child("description").getValue().toString();
                     concertDate = snapshot.child("date").getValue().toString();
-                    imageUrl = snapshot.child("imageURL").getValue().toString();
+                    concertKey = snapshot.child("id").getValue().toString();
 
                     // To be push
-
                     Log.d("dateequal1", currentdate);
 
                     if(!imageUrl.isEmpty() && !concertTitle.isEmpty() && !concertDesc.isEmpty() && !concertDate.isEmpty()
@@ -113,7 +113,7 @@ public class ExploreDashboardFragment extends Fragment {
 
                         Log.d("child detected", messages );
 
-                        FeaturedHelperClass featuredHelperClass = new FeaturedHelperClass(imageUrl, concertTitle, concertDesc, concertDate);
+                        FeaturedHelperClass featuredHelperClass = new FeaturedHelperClass(imageUrl, concertTitle, concertDesc, concertDate, concertKey);
 
                         featuredList.add(featuredHelperClass);
                         featuredAdapter.notifyDataSetChanged();
@@ -144,7 +144,6 @@ public class ExploreDashboardFragment extends Fragment {
 
     }
 
-
     private void mostViewedRecycler() {
 
         mostViewedRecycler.setHasFixedSize(true);
@@ -157,7 +156,7 @@ public class ExploreDashboardFragment extends Fragment {
 
                     Log.d("child detected", "child detected");
 
-                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertTime = null;
+                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertTime = null, concertKey=null;
                     Integer viewer;
 
                     // retreive currentDate
@@ -172,6 +171,8 @@ public class ExploreDashboardFragment extends Fragment {
                     concertDesc = snapshot.child("description").getValue().toString();
                     concertDate = snapshot.child("date").getValue().toString();
                     concertTime = snapshot.child("time").getValue().toString();
+                    concertKey = snapshot.child("id").getValue().toString();
+
                     viewer = Integer.parseInt(snapshot.child("viewer").getValue().toString());
 
                     String temp_date = concertDate + " " + concertTime;
@@ -195,7 +196,7 @@ public class ExploreDashboardFragment extends Fragment {
 
                         Log.d("child detected", messages );
 
-                        MostViewedHelperClass mostViewedHelperClass = new MostViewedHelperClass(imageUrl, concertTitle, concertDesc, concertDate);
+                        MostViewedHelperClass mostViewedHelperClass = new MostViewedHelperClass(imageUrl, concertTitle, concertDesc, concertDate, concertKey);
 
                         mostViewedList.add(mostViewedHelperClass);
                         mostViewedAdapter.notifyDataSetChanged();
@@ -229,6 +230,7 @@ public class ExploreDashboardFragment extends Fragment {
     private ArrayList<FeaturedHelperClass> getFeatured(){
         return featuredList;
     }
+
 
 
 }
