@@ -173,7 +173,7 @@ public class AddConcert extends Fragment {
         saveConcertInformation(intent);
 
         // memulai aktivitas selanjutnya
-        startActivity(intent);
+
 
     }
 
@@ -219,9 +219,9 @@ public class AddConcert extends Fragment {
         int month = datePicker.getMonth()+1;
         int year = datePicker.getYear();
 
-        String.format("%02d", month);
+        String month2 = String.format("%02d", month);
 
-        concertDate = String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year);
+        concertDate = String.valueOf(day) + "/" + String.valueOf(month2) + "/" + String.valueOf(year);
         concertTime = txtChosenTime.getText().toString().replaceAll(" ", "");
 
         Log.d("txtChosentime", txtChosenTime.getText().toString());
@@ -359,22 +359,11 @@ public class AddConcert extends Fragment {
         DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);
 
 
-        intent.putExtra("concertKey", key);
+        intent.putExtra("key", key);
 
 
         final Map concertInfo = new HashMap();
-        concertInfo.put("id", key);
-        concertInfo.put("concert_name", concertName);
-        concertInfo.put("playlist_name", playlistName);
-        concertInfo.put("description", concertDescription);
-        concertInfo.put("duration", concertDuration);
-        concertInfo.put("date", concertDate);
-        concertInfo.put("time", concertTime);
-        concertInfo.put("viewer",0);
 
-        // Database Reference
-
-        mDatabase.child("Concerts").child(key).updateChildren(concertInfo);
 
         if(resultUri != null){
             final StorageReference filepath = FirebaseStorage.getInstance().getReference().child("concertImages").child(key);
@@ -402,16 +391,33 @@ public class AddConcert extends Fragment {
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
                     filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri downloadUrl) {
 
+                            Log.d("uploadSucess","uploadSuccess");
                             Map userInfo = new HashMap();
+
+                            concertInfo.put("id", key);
+                            concertInfo.put("concert_name", concertName);
+                            concertInfo.put("playlist_name", playlistName);
+                            concertInfo.put("description", concertDescription);
+                            concertInfo.put("duration", concertDuration);
+                            concertInfo.put("date", concertDate);
+                            concertInfo.put("time", concertTime);
+                            concertInfo.put("viewer", 0);
                             concertInfo.put("imageURL", downloadUrl.toString());
+
                             mDatabase.child("Concerts").child(key).updateChildren(concertInfo);
 
                             //getActivity().finish();
 
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("uploadFail",e.getMessage().toString());
                         }
                     });
                     /*
@@ -427,7 +433,7 @@ public class AddConcert extends Fragment {
 
 
 
-
+        startActivity(intent);
         }
 
 

@@ -40,6 +40,8 @@ public class AddPlaylist extends AppCompatActivity {
 
     private EditText artistNameInput, artistLinkInput, songNameInput, songLinkInput;
     private DatabaseReference mDatabase;
+    private String artistName, artistLink, songName, songLink;
+    private TextInputLayout artistNameLayout, artistLinkLayout, songNameLayout, songLinkLayout;
 
 
     @Override
@@ -59,10 +61,10 @@ public class AddPlaylist extends AppCompatActivity {
         Button nextBtn = (Button)findViewById(R.id.btnNext);
         Button add_song = (Button)findViewById(R.id.btnAddSong);
 
-        TextInputLayout artistNameLayout = findViewById(R.id.artist_layout);
-        TextInputLayout artistLinkLayout = findViewById(R.id.artist_link_layout);
-        TextInputLayout songNameLayout = findViewById(R.id.song_layout);
-        TextInputLayout songLinkLayout = findViewById(R.id.song_link_layout);
+        artistNameLayout = findViewById(R.id.artist_layout);
+        artistLinkLayout = findViewById(R.id.artist_link_layout);
+        songNameLayout = findViewById(R.id.song_layout);
+        songLinkLayout = findViewById(R.id.song_link_layout);
 
         artistNameInput = findViewById(R.id.artist_input);
         artistLinkInput = findViewById(R.id.artist_link_input);
@@ -86,15 +88,81 @@ public class AddPlaylist extends AppCompatActivity {
 
     }
 
+    private Boolean isArtistNameValid() {
+
+        artistName = artistNameInput.getText().toString();
+        if(artistName.isEmpty()){
+            artistNameLayout.setError("field can't be empty");
+            return false;
+        } else {
+            artistNameLayout.setError(null);
+            artistNameLayout.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private Boolean isArtistLinkValid() {
+
+        artistLink = artistLinkInput.getText().toString();
+        if(artistLink.isEmpty()){
+            artistLinkLayout.setError("field can't be empty");
+            return false;
+        } else {
+            artistLinkLayout.setError(null);
+            artistLinkLayout.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private Boolean isSongNameValid() {
+
+        songName = songNameInput.getText().toString();
+        if(songName.isEmpty()){
+            songNameLayout.setError("field can't be empty");
+            return false;
+        } else {
+            songNameLayout.setError(null);
+            songNameLayout.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private Boolean isSongLinkValid() {
+
+        songLink = songLinkInput.getText().toString();
+        if(songLink.isEmpty()){
+            songLinkLayout.setError("field can't be empty");
+            return false;
+        } else {
+            songLinkLayout.setError(null);
+            songLinkLayout.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
     private void saveSongInformation() {
+
+        Boolean a,b,c,d;
+        a = isArtistNameValid();
+        b = isArtistLinkValid();
+        c = isSongNameValid();
+        d = isSongLinkValid();
+
+        if(!a || !b || !c || !d){
+            return;
+        }
 
         String playlistName = getIntent().getStringExtra("playlistName");
         String key = getIntent().getStringExtra("key");
 
-        String artistName = artistNameInput.getText().toString();
-        String artistLink = artistLinkInput.getText().toString();
-        String songName = songNameInput.getText().toString();
-        String songLink = songLinkInput.getText().toString();
+        artistName = artistNameInput.getText().toString();
+        artistLink = artistLinkInput.getText().toString();
+        songName = songNameInput.getText().toString();
+        songLink = songLinkInput.getText().toString();
 
         Log.d("cek Key", key);
         Log.d("cek PlaylistName", playlistName);
@@ -118,12 +186,14 @@ public class AddPlaylist extends AppCompatActivity {
         String playlistName = getIntent().getStringExtra("playlistName");
         String key = getIntent().getStringExtra("key");
 
-        Intent intent = new Intent(getApplicationContext(), ExploreDashboardFragment.class);
+        Intent intent = new Intent(getApplicationContext(), AddArea.class);
         intent.putExtra("key",key);
         intent.putExtra("playlistName",playlistName);
 
         startActivity(intent);
 
     }
+
+
 
 }
