@@ -2,9 +2,12 @@ package com.glitchstacks.musiczone.LocationOwner;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,16 +18,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -48,6 +56,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -55,17 +64,19 @@ import java.util.Map;
 
 public class AddConcert extends Fragment {
 
-    private EditText inputConcertName, inputPlaylistName, inputDescription, inputDuration;
-    private TextInputLayout layoutConcertName, layoutPlaylistName, layoutDescription, layoutDuration;
+    private EditText inputConcertName, inputDescription, inputDuration;
+    private TextInputLayout layoutConcertName, layoutDescription, layoutDuration;
     private DatePicker datePicker;
     private Button btnSetTime, btnNext;
-    private TextView txtChosenTime;
+    private TextView txtChosenTime, txtMainGenre;
     private TimePickerDialog timePickerDialog;
-    private String concertName, playlistName, concertDescription, concertDate, concertTime, concertDurationStr, phoneNumber;
+    private String concertName, concertDescription, concertDate, concertTime, concertDurationStr, phoneNumber, mainGenre;
     private Integer concertDuration;
     private ImageView concertImage;
     private Uri resultUri;
     private DatabaseReference mDatabase;
+    private ArrayList<String> arrayList;
+    private Dialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -87,13 +98,11 @@ public class AddConcert extends Fragment {
 
         // TextLayout
         layoutConcertName = root.findViewById(R.id.title_layout);
-        layoutPlaylistName = root.findViewById(R.id.playlist_layout);
         layoutDescription = root.findViewById(R.id.description_layout);
         layoutDuration = root.findViewById(R.id.duration_layout);
 
         // EditText
         inputConcertName = root.findViewById(R.id.title_input);
-        inputPlaylistName = root.findViewById(R.id.playlist_input);
         inputDescription = root.findViewById(R.id.description_input);
         inputDuration = root.findViewById(R.id.duration_input);
 
@@ -106,6 +115,103 @@ public class AddConcert extends Fragment {
 
         // TextView
         txtChosenTime = root.findViewById(R.id.txtChosenTime);
+        txtMainGenre = root.findViewById(R.id.txtMainGenre);
+
+        // ArrayList
+
+        arrayList = new ArrayList<>();
+
+        // Memasukkan value ke dalam arrayList
+        arrayList.add("EDM");
+        arrayList.add("Jazz");
+        arrayList.add("Country");
+        arrayList.add("Classical");
+        arrayList.add("Pop");
+        arrayList.add("Indie");
+        arrayList.add("Dangdut");
+
+        txtMainGenre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Initiaize dialog
+                dialog = new Dialog(getContext());
+
+                // Set customer Dialog
+                dialog.setContentView(R.layout.dialog_searchable_spinner);
+                dialog.getWindow().setLayout(1000, 1500);
+
+                // transparent
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                dialog.show();
+
+
+                //Initialize and assign variable
+                EditText editText = dialog.findViewById(R.id.edit_text);
+                ListView listView = dialog.findViewById(R.id.listView);
+
+                // Initialize array adapter
+                final ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                        (getContext(), android.R.layout.simple_list_item_1, arrayList){
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent){
+                        // Get the Item from ListView
+                        View view = super.getView(position, convertView, parent);
+
+                        // Initialize a TextView for ListView each Item
+                        TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                        // Set the text color of TextView (ListView Item)
+                        tv.setTextColor(Color.BLACK);
+
+                        // Generate ListView Item using TextView
+                        return view;
+                    }
+                };
+
+
+                //set Adapter
+                listView.setAdapter(adapter);
+
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // Filter array List
+                        adapter.getFilter().filter(s);
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // When item selected from list
+
+                        // Set selected item on text View
+
+                        txtMainGenre.setText(adapter.getItem(position));
+
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
+
+
+
+
 
         // Image
         concertImage = root.findViewById(R.id.imgConcert);
@@ -146,13 +252,15 @@ public class AddConcert extends Fragment {
 
         // Hook
         concertName = inputConcertName.getText().toString();
-        playlistName = inputPlaylistName.getText().toString();
         concertDescription = inputDescription.getText().toString();
         concertDurationStr = inputDuration.getText().toString();
+        mainGenre = txtMainGenre.getText().toString();
 
         Boolean a,b,c,d,e,f;
+
+        b = isGenreValid();
+        Log.d("isGenreValid",b.toString());
         a = isConcertNameValid();
-        b = isPlayListNameValid();
         c = isConcertDateValid();
         d = isConcertDescriptionValid();
         e = isDurationValid();
@@ -167,7 +275,6 @@ public class AddConcert extends Fragment {
 
         // memberikan informasi ke aktivitas selanjutnya
         intent.putExtra("concertName", concertName);
-        intent.putExtra("playlistName", playlistName);
         intent.putExtra("concertDescription", concertDescription);
 
         saveConcertInformation(intent);
@@ -175,6 +282,16 @@ public class AddConcert extends Fragment {
         // memulai aktivitas selanjutnya
         startActivity(intent);
 
+    }
+
+    private Boolean isGenreValid() {
+        // Validate concert Main Genre
+        if(mainGenre.isEmpty()){
+            Toast.makeText(getContext(), "Choose genre first!", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
     }
 
     private Boolean isDurationValid() {
@@ -284,27 +401,6 @@ public class AddConcert extends Fragment {
         return true;
     }
 
-    private boolean isPlayListNameValid() {
-        // Validate playlistName
-        if(playlistName.isEmpty()){
-            layoutPlaylistName.setError("field cannot be empty");
-            return false;
-        }else{
-
-            if(playlistName.length() > 20 || playlistName.length()<3){
-                layoutPlaylistName.setError("playlist name must between 3-20 character");
-                return false;
-            }
-            else{
-                layoutPlaylistName.setError(null);
-                layoutPlaylistName.setErrorEnabled(false);
-            }
-        }
-
-        return true;
-
-    }
-
     private boolean isConcertNameValid() {
 
         // Validate concertName
@@ -398,7 +494,6 @@ public class AddConcert extends Fragment {
 
                              concertInfo.put("id", key);
                              concertInfo.put("concert_name", concertName);
-                             concertInfo.put("playlist_name", playlistName);
                              concertInfo.put("description", concertDescription);
                              concertInfo.put("duration", concertDuration);
                              concertInfo.put("date", concertDate);

@@ -172,6 +172,7 @@ public class ExploreDashboardFragment extends Fragment {
                     concertDate = snapshot.child("date").getValue().toString();
                     concertTime = snapshot.child("time").getValue().toString();
                     concertKey = snapshot.child("id").getValue().toString();
+
                     viewer = Integer.parseInt(snapshot.child("viewer").getValue().toString());
 
                     String temp_date = concertDate + " " + concertTime;

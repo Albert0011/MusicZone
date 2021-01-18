@@ -109,7 +109,15 @@
     <string name="time">Time</string>
     <string name="duration">Duration</string>
     <string name="date">Date</string>
+    <string name="playlist">Playlist</string>
+    <string name="playlistDesc">Playlist berisikan lagu-lagu yang akan ditampilkan dalam konser atau live music</string>
     <string name="todayconcertdetail">All the concert or live music that will be held today</string>
+    <string name="mainGenre">Main Genre</string>
+    <string name="selectMainGenre">Select Main Genre</string>
+    <string name="nofriends">No Friends?</string>
+    <string name="clicktofindfriend">Click here to find friends</string>
+    <string name="buyticket">Buy ticket!</string>
+    <string name="clicktobuyticket">Click here to buy ticket</string>
 
 
     <!--

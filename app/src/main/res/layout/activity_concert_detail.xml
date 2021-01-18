@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Black"
@@ -47,6 +48,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="1"
@@ -219,17 +221,129 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/playlist"
+                android:textColor="@color/White"
+                android:textSize="28sp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/playlistDesc"
+                android:textColor="@color/White"
+                android:textSize="12sp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutFriends"
+                    android:layout_width="80dp"
+                    android:layout_height="200dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="@drawable/rounded_corners_white">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="@string/nofriends"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp"
+                        android:layout_marginBottom="0dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/clicktofindfriend"
+                        android:textColor="@color/Black"
+                        android:textSize="10dp"
+                        android:layout_marginBottom="-30dp"/>
+
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/people_choose" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layoutTicket"
+                    android:layout_width="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="200dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    android:background="@drawable/rounded_corners_white">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="@string/buyticket"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp"
+                        android:layout_marginBottom="0dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/clicktobuyticket"
+                        android:textColor="@color/Black"
+                        android:textSize="10dp"
+                        android:layout_marginBottom="-40dp"
+                        android:elevation="3dp"/>
+
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ticket" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
-
-
     </androidx.core.widget.NestedScrollView>
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnLove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="40dp"
         android:backgroundTint="@color/White"
         android:baselineAlignBottom="false"
         android:clickable="true"
@@ -239,8 +353,8 @@
         android:tint="@color/Black"
         app:fabSize="normal"
         app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="end|bottom"
+        app:layout_anchorGravity="end|bottom" />
 
-        />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

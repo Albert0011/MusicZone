@@ -4,17 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.glitchstacks.musiczone.Common.RetailerDashboard;
+import com.glitchstacks.musiczone.Database.SessionManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ConcertDetailActivity extends AppCompatActivity {
@@ -23,6 +29,9 @@ public class ConcertDetailActivity extends AppCompatActivity {
     private TextView concertNameText, concertTimeText, concertDateText, concertDurationText, concertDetailText;
     private DatabaseReference mDatabase;
     private String concertName, concertTime, concertDate, concertDuration, concertDetail, concertKey, imageURL;
+    private FloatingActionButton btnLove;
+    private LinearLayout findFriendsLayout, buyTicketLayout;
+    private Integer loveButtonClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,8 @@ public class ConcertDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_concert_detail);
 
         // Hook
+
+        loveButtonClicked = 0;
 
         // for Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -46,8 +57,38 @@ public class ConcertDetailActivity extends AppCompatActivity {
         // for Image
         concertImage = findViewById(R.id.imgConcertImage);
 
+        // for Button
+        btnLove = findViewById(R.id.btnLove);
+
+        // for Layout
+        findFriendsLayout = findViewById(R.id.layoutFriends);
+        buyTicketLayout = findViewById(R.id.layoutTicket);
+
         // Getting from the Intent
         concertKey = getIntent().getStringExtra("concertKey");
+
+        // set Button Listener
+        findFriendsLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMatchesScreen();
+            }
+        });
+
+        buyTicketLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToTicketScreen();
+            }
+        });
+
+        btnLove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addUserToConcertLike();
+            }
+        });
+
 
         Log.d("intentActivityConcertDetail", concertKey);
 
@@ -56,6 +97,44 @@ public class ConcertDetailActivity extends AppCompatActivity {
         // Mengisi Informasi
         loadConcertInformation();
 
+    }
+
+    private void addUserToConcertLike() {
+
+        SessionManager sessionManager = new SessionManager(ConcertDetailActivity.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> userDetails = sessionManager.getUsersDetailFromSession();
+
+        final String phoneNumber = userDetails.get(SessionManager.KEY_PHONENUMBER);
+
+        final DatabaseReference mUserLike = mDatabase.child("Concerts").child(concertKey).child("likedBy");
+
+        mUserLike.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Map<String, Object> map = (Map<String, Object>)dataSnapshot.getValue();
+                    // Hook
+                    if(dataSnapshot.child(phoneNumber).exists()){
+                        mUserLike.child(phoneNumber).removeValue();
+                    }else{
+                        mDatabase.child("Concerts").child(concertKey).child("likedBy").child(phoneNumber).setValue("true");
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    private void goToTicketScreen() {
+    }
+
+    private void goToMatchesScreen() {
     }
 
     private void loadConcertInformation() {
