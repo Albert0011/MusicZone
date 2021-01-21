@@ -2,54 +2,65 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="200dp"
     android:layout_margin="10dp"
     android:background="@color/White"
     app:cardCornerRadius="20dp"
-    app:cardElevation="5dp">
+    app:cardElevation="5dp"
+    >
 
         <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:padding="15dp"
-            android:clickable="false">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            >
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/most_viewed_image"
-                android:layout_width="100dp"
-                android:layout_height="150dp"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/raissa_poster2" />
+                android:src="@drawable/raissa_poster2"
+                app:riv_corner_radius_bottom_right="0dp"
+                app:riv_corner_radius="10dip"
+                app:riv_border_width="0dp"
+                android:elevation="20dp"/>
 
-            <TextView
-                android:id="@+id/most_viewed_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@id/most_viewed_image"
-                android:fontFamily="@font/montserrat_extrabold"
-                android:text="Raissa Concert"
-                android:textColor="@color/Black"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/most_viewed_passage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/most_viewed_title"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/most_viewed_image"
-                android:padding="10dp"
-                android:text="Raissa concert has always been the best over the years" />
+                android:orientation="vertical"
+                android:padding="10dp">
 
-            <TextView
-                android:id="@+id/most_viewed_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/most_viewed_passage"
-                android:layout_toRightOf="@+id/most_viewed_image"
-                android:padding="10dp"
-                android:text="tanggal" />
+                <TextView
+                    android:id="@+id/most_viewed_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:text="Raissa Concert"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/most_viewed_passage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Raissa concert has always been the best over the years" />
+
+                <TextView
+                    android:id="@+id/most_viewed_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="tanggal" />
+
+
+            </LinearLayout>
+
 
 
         </RelativeLayout>

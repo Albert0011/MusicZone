@@ -1,7 +1,10 @@
 package com.glitchstacks.musiczone;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.glitchstacks.musiczone.Common.RetailerDashboard;
+import com.glitchstacks.musiczone.Common.SwipeActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +45,8 @@ public class ConcertDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_concert_detail);
 
         // Hook
+
+        Log.d("ConcertDetailMasuk", "ConcertDetailMasuk");
 
         loveButtonClicked = 0;
 
@@ -83,23 +89,13 @@ public class ConcertDetailActivity extends AppCompatActivity {
         });
 
         btnLove.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                Log.d("loveButtonClicked", "true");
                 addUserToConcertLike();
             }
         });
-
-
-        Log.d("intentActivityConcertDetail", concertKey);
-
-        // Mengisi TextView
-
-        // Mengisi Informasi
-        loadConcertInformation();
-
-    }
-
-    private void addUserToConcertLike() {
 
         SessionManager sessionManager = new SessionManager(ConcertDetailActivity.this, SessionManager.SESSION_USERSESSION);
         HashMap<String, String> userDetails = sessionManager.getUsersDetailFromSession();
@@ -115,10 +111,71 @@ public class ConcertDetailActivity extends AppCompatActivity {
                     Map<String, Object> map = (Map<String, Object>)dataSnapshot.getValue();
                     // Hook
                     if(dataSnapshot.child(phoneNumber).exists()){
+                        btnLove.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.heart128));
+                    }else{
+                        btnLove.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.circle_love));
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        Log.d("intentActivityConcertDetail", concertKey);
+
+        // Mengisi TextView
+
+        // Mengisi Informasi
+        loadConcertInformation();
+
+    }
+
+    private void addUserToConcertLike() {
+
+        Log.d("masukKeDalamAddConcertLikte", "True");
+
+        SessionManager sessionManager = new SessionManager(ConcertDetailActivity.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> userDetails = sessionManager.getUsersDetailFromSession();
+
+        final String phoneNumber = userDetails.get(SessionManager.KEY_PHONENUMBER);
+
+        final DatabaseReference mUserLike = mDatabase.child("Concerts").child(concertKey).child("likedBy");
+        Log.d("masukStelahDatabaseReference", "True");
+        Log.d("phoneNumber", phoneNumber);
+        Log.d("concertKey", concertKey);
+
+        if(mUserLike != null){
+            Log.d("mUsertidakNull", "True");
+        }
+
+        mUserLike.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    Log.d("masukSnapshot", "True");
+
+                    Map<String, Object> map = (Map<String, Object>)dataSnapshot.getValue();
+                    // Hook
+                    if(dataSnapshot.child(phoneNumber).exists()){
+                        Log.d("masukExist", "True");
                         mUserLike.child(phoneNumber).removeValue();
+                        btnLove.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.circle_love));
+                        mDatabase.child("Users").child(phoneNumber).child("concertLikes").child(concertKey).removeValue();
                     }else{
                         mDatabase.child("Concerts").child(concertKey).child("likedBy").child(phoneNumber).setValue("true");
+                        btnLove.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.heart128));
+                        mDatabase.child("Users").child(phoneNumber).child("concertLikes").child(concertKey).setValue("true");
                     }
+                } else if(!dataSnapshot.exists()){
+                    mDatabase.child("Concerts").child(concertKey).child("likedBy").child(phoneNumber).setValue("true");
+                    btnLove.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.heart128));
+                    mDatabase.child("Users").child(phoneNumber).child("concertLikes").child(concertKey).setValue("true");
                 }
 
             }
@@ -135,6 +192,9 @@ public class ConcertDetailActivity extends AppCompatActivity {
     }
 
     private void goToMatchesScreen() {
+        Intent intent = new Intent(ConcertDetailActivity.this, SwipeActivity.class);
+        intent.putExtra("concertKey", concertKey);
+        startActivity(intent);
     }
 
     private void loadConcertInformation() {

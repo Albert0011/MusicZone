@@ -2,14 +2,23 @@
 
     <!-- Base application theme. -->
 
+    <style name="themeOverlay_timePicker" parent="@style/ThemeOverlay.MaterialComponents.Dialog">
+
+        <item name="colorControlActivated"> @color/lightPurple</item>
+        <item name="colorAccent"> @color/lightPurple </item>
+        <item name="android:textColorPrimary">@color/Black</item>
+        <item name="android:textColorSecondary">@color/Black</item>
+
+    </style>
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="android:textColorPrimary">@color/White</item>
+        <item name="android:textColorPrimary">@color/Black</item>
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textSize">14sp</item>
-        <item name="colorPrimary">@color/White</item>
+        <item name="colorPrimary">@color/lightPurple</item>
         <item name="colorPrimaryDark">@color/Black</item>
-        <item name="colorAccent">@color/White</item>
+        <item name="colorAccent">@color/Black</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -20,6 +29,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
     <style name="blue_button" >
         <item name="android:layout_width">311dp</item>

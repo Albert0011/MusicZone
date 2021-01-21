@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import com.glitchstacks.musiczone.Common.SettingsActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.Entries.Login;
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.SavedConcerts;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,20 +36,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileFragment extends Fragment {
 
     public RetailerDashboard activity;
-    ImageView mProfileImage;
-    RelativeLayout logout_layout;
-    RelativeLayout profile_layout;
-    TextView mNameField, mPhoneField, mEmailField, mDescField;
-    DatabaseReference mUserDatabase;
-    SessionManager sessionManager;
-    ProgressDialog mProgress;
-    String phoneNumber, userId, name, phoneNo, email, desc, profileImageUrl;
+    private ImageView mProfileImage;
+    private RelativeLayout logout_layout;
+    private RelativeLayout profile_layout, layout_saveConcert;
+    private TextView mNameField, mPhoneField, mEmailField, mDescField, txtFriends, txtSavedConcerts, txtConcerts;
+    private DatabaseReference mUserDatabase;
+    private SessionManager sessionManager;
+    private ProgressDialog mProgress;
+    private String phoneNumber, userId, name, phoneNo, email, desc, profileImageUrl;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +68,11 @@ public class ProfileFragment extends Fragment {
         mEmailField = root.findViewById(R.id.email);
         mDescField = root.findViewById(R.id.description_detail);
         mProfileImage = root.findViewById(R.id.profile_picture);
+        txtConcerts = root.findViewById(R.id.txtConcerts);
+        txtFriends = root.findViewById(R.id.txtFriends);
+        txtSavedConcerts = root.findViewById(R.id.txtSavedConcerts);
+        layout_saveConcert = root.findViewById(R.id.layout_savedConcert);
+
         mProgress = new ProgressDialog(getActivity());
 
 
@@ -86,10 +95,17 @@ public class ProfileFragment extends Fragment {
         mProgress.dismiss();
 
 
+        layout_saveConcert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SavedConcerts.class);
+                startActivity(intent);
+            }
+        });
+
         logout_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 sessionManager.logoutUserSession();
                 Intent intent = new Intent(getContext(), MusicZoneStartUpScreen.class);
                 startActivity(intent);
@@ -129,8 +145,6 @@ public class ProfileFragment extends Fragment {
                         desc = map.get("description").toString();
                         mDescField.setText(desc);
                     }
-
-                    Glide.clear(mProfileImage);
                     if (map.get("profileImageUrl") != null) {
                         profileImageUrl = map.get("profileImageUrl").toString();
                         switch (profileImageUrl) {
@@ -139,14 +153,26 @@ public class ProfileFragment extends Fragment {
                                 break;
                             default:
                                 try {
+                                    Glide.clear(mProfileImage);
                                     Glide.with(getActivity().getApplication()).load(profileImageUrl).into(mProfileImage);
                                 }catch(Exception e){
 
                                 }
-
                                 break;
                         }
                     }
+
+                    if(dataSnapshot.child("concertLikes").exists()){
+                        Integer concertCount = Integer.parseInt(String.valueOf(dataSnapshot.child("concertLikes").getChildrenCount()));
+                        txtSavedConcerts.setText(concertCount.toString());
+                    }
+
+                    if(dataSnapshot.child("connections").child("yeps").exists()){
+
+                        Integer friendsCount = Integer.parseInt(String.valueOf(dataSnapshot.child("connections").child("matches").getChildrenCount()));
+                        txtFriends.setText(String.valueOf(friendsCount));
+                    }
+
                 }
             }
 

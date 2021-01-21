@@ -1,15 +1,16 @@
-package com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter;
+package com.glitchstacks.musiczone.SearchPageRecycler;
 
-public class FeaturedHelperClass {
+public class ConcertObject {
 
-    String image, title, passage, date, key, genre;
+    private String image,title, passage,date, key, genre;
 
-    public FeaturedHelperClass(String image, String title, String passage, String date, String key, String genre) {
+    public ConcertObject(String image, String title, String passage, String date, String key, String genre) {
         this.image = image;
         this.title = title;
         this.passage = passage;
         this.date = date;
         this.key = key;
+        this.genre = genre;
     }
 
     public String getImage() {

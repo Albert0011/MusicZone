@@ -1,5 +1,7 @@
 package com.glitchstacks.musiczone.Common;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -34,9 +36,11 @@ public class SwipeActivity extends AppCompatActivity {
     private com.glitchstacks.musiczone.Cards.arrayAdapter arrayAdapter;
     private int i;
 
-    private String currentUId;
+    private String currentUId, concertKey;
     private String phoneNumber;
-    private DatabaseReference usersDb;
+    private DatabaseReference usersDb, mDatabase;
+
+    private ArrayList<String> userLikeList;
 
 
     ListView listView;
@@ -47,12 +51,15 @@ public class SwipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
 
         SessionManager sessionManager = new SessionManager(SwipeActivity.this, SessionManager.SESSION_USERSESSION);
         HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
         phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
         currentUId = phoneNumber;
+        concertKey = getIntent().getStringExtra("concertKey");
+        userLikeList = new ArrayList<String>();
 
         Toast.makeText(SwipeActivity.this, "MASUKSBLMSEX", Toast.LENGTH_SHORT).show();
         checkUserSex();
@@ -87,6 +94,7 @@ public class SwipeActivity extends AppCompatActivity {
                 cards obj = (cards) dataObject;
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("connections").child("yeps").child(currentUId).setValue(true);
+
                 isConnectionMatch(userId);
                 Toast.makeText(SwipeActivity.this, "Right", Toast.LENGTH_SHORT).show();
             }
@@ -100,6 +108,7 @@ public class SwipeActivity extends AppCompatActivity {
             }
         });
 
+        getConcertMatches();
 
         // Optionally add an OnItemClickListener
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
@@ -168,12 +177,52 @@ public class SwipeActivity extends AppCompatActivity {
         });
     }
 
+    public void getConcertMatches(){
+        mDatabase.child("Concerts").child(concertKey).child("likedBy").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                if(snapshot.exists()){
+                    String userID = snapshot.getKey();
+                    userLikeList.add(userID);
+                    Log.d("UserIniMasuk", userID);
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public void getOppositeSexUsers(){
         usersDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                String snapshotID = dataSnapshot.getKey();
+
                 if (dataSnapshot.child("gender").getValue() != null) {
-                    if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentUId) && !dataSnapshot.child("connections").child("yeps").hasChild(currentUId) && dataSnapshot.child("gender").getValue().toString().equals(oppositeUserSex)) {
+                    if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("nope").hasChild(currentUId) && !dataSnapshot.child("connections").child("yeps").hasChild(currentUId)
+                    && userLikeList.contains(snapshotID) && (!currentUId.equals(snapshotID))) {
+
+                        Log.d("UserIniMasukKarena", "currentUserID = " + snapshotID + ", " + currentUId);
+
                         Toast.makeText(SwipeActivity.this, dataSnapshot.child("fullname").getValue().toString(), Toast.LENGTH_SHORT).show();
                         String profileImageUrl = "default";
                         if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {

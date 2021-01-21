@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -91,7 +92,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/arrow_right"
-            android:tint="@color/White" />
+            app:tint="@color/White" />
 
     </RelativeLayout>
 
@@ -113,6 +114,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -136,6 +138,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtSavedConcerts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -148,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/requests"
+                android:text="@string/saved"
                 android:textColor="@color/Grey" />
 
         </LinearLayout>
@@ -160,6 +163,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtConcerts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -194,6 +198,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/layout_savedConcert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -205,10 +210,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/bookmark"
-                android:tint="@color/White"
-
-                />
-
+                app:tint="@color/White" />
             <TextView
                 android:id="@+id/bookmark_name"
                 android:layout_width="wrap_content"
@@ -271,9 +273,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/log_out"
-                android:tint="@color/White"
-
-                />
+                app:tint="@color/White" />
 
             <TextView
                 android:id="@+id/logout_name"
