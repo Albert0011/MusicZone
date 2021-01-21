@@ -15,7 +15,8 @@
         android:layout_height="280dp"
         android:background="@drawable/concert_purple"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -349,7 +350,7 @@
         android:clickable="true"
         android:elevation="20dp"
         android:scaleType="center"
-        android:src="@drawable/heart128"
+        android:src="@drawable/circle_love"
         android:tint="@color/Black"
         app:fabSize="normal"
         app:layout_anchor="@id/appbar"

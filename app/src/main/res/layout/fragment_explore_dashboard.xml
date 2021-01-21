@@ -8,10 +8,17 @@
     android:orientation="vertical"
     tools:context=".LocationOwner.ExploreDashboardFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+    <LinearLayout
+
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/White"
+
+        >
 
         // Music Zone Logo
 
@@ -19,45 +26,13 @@
 
         <ImageView
             android:id="@+id/app_name"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/music_zone_logo" />
+            android:src="@drawable/music_zone_logo"
+            android:layout_gravity="center"
+            />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_input"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/app_name"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/search"
-            android:textColorHint="@color/Grey"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:boxStrokeColor="@color/lightPurple"
-            app:boxStrokeWidthFocused="2dp"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/Black"
-            app:hintTextColor="@color/Black"
-            app:startIconDrawable="@drawable/search2"
-            app:startIconTint="@color/Grey">
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_extrabold"
-                android:inputType="text"
-                android:textColor="@color/Grey" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 
     // ScrollBar
     <ScrollView
@@ -70,130 +45,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            // Categories
-
-            <LinearLayout
-                android:id="@+id/layout_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/search_input"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:layout_marginTop="0dp"
-                android:orientation="horizontal">
-
-                // Genre
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/rock_nroll"
-                        android:tint="@color/Black"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/genre"
-                        android:textColor="@color/Black" />
-                </LinearLayout>
-
-                // City
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/location"
-                        android:tint="@color/Black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/city"
-                        android:textColor="@color/Black" />
-                </LinearLayout>
-
-                //Artist
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/artist"
-                        android:tint="@color/Black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/artist"
-                        android:textColor="@color/Black" />
-                </LinearLayout>
-
-                // Live
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="30dp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/live"
-                        android:tint="@color/Black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text="@string/live"
-                        android:textColor="@color/Black" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-
             // Layout Top Places
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_corners_white"
-                android:elevation="8dp">
+                android:elevation="8dp"
+                >
 
                 <LinearLayout
                     android:id="@+id/featured_desc"
@@ -278,19 +139,35 @@
                     android:id="@+id/most_viewed_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"/>
+                    />
 
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/search_input"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Click here to discover more!"
+                android:textColor="@color/Grey"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat"
+                />
+
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:background="@color/White"/>
+
+
+
 
         </LinearLayout>
 

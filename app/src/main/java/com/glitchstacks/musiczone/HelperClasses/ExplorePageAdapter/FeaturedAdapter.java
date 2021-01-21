@@ -13,9 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.glitchstacks.musiczone.ConcertDetailActivity;
+import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.FeaturedViewHolder> {
 
@@ -92,9 +96,21 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
             // Position of the adapter
             Integer position = getAdapterPosition();
 
-            intent.putExtra("concertKey",featuredLocations.get(position).getKey());
+            String currentConcertKey = featuredLocations.get(position).getKey();
+
+            SessionManager sessionManager = new SessionManager(view.getContext(), SessionManager.SESSION_USERSESSION);
+            HashMap<String, String> userDetails = sessionManager.getUsersDetailFromSession();
+
+            final String phoneNumber = userDetails.get(SessionManager.KEY_PHONENUMBER);
+
+            DatabaseReference mConcerts = FirebaseDatabase.getInstance().getReference().child("Concerts").child(currentConcertKey).child("concertView").child(phoneNumber);
+
+            mConcerts.setValue("true");
+
+            intent.putExtra("concertKey",currentConcertKey);
 
             view.getContext().startActivity(intent);
+
         }
     }
 

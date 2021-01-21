@@ -146,7 +146,6 @@ public class AddConcert extends Fragment {
 
                 dialog.show();
 
-
                 //Initialize and assign variable
                 EditText editText = dialog.findViewById(R.id.edit_text);
                 ListView listView = dialog.findViewById(R.id.listView);
@@ -207,11 +206,6 @@ public class AddConcert extends Fragment {
                 });
             }
         });
-
-
-
-
-
 
         // Image
         concertImage = root.findViewById(R.id.imgConcert);
@@ -494,6 +488,7 @@ public class AddConcert extends Fragment {
 
                              concertInfo.put("id", key);
                              concertInfo.put("concert_name", concertName);
+                             concertInfo.put("main_genre",mainGenre);
                              concertInfo.put("description", concertDescription);
                              concertInfo.put("duration", concertDuration);
                              concertInfo.put("date", concertDate);

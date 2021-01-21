@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter;
+package com.glitchstacks.musiczone.SearchPageRecycler;
 
 import android.content.Intent;
 import android.util.Log;
@@ -7,49 +7,48 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.glitchstacks.musiczone.AddPlaylist;
-import com.glitchstacks.musiczone.Chat.ChatActivity;
-import com.glitchstacks.musiczone.Common.MusicZoneStartUpScreen;
 import com.glitchstacks.musiczone.ConcertDetailActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
-import com.glitchstacks.musiczone.Entries.SignUpActivity3rdClass;
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.SearchActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.MostViewedHolder> {
+public class ConcertAdapter extends RecyclerView.Adapter<ConcertAdapter.ConcertAdapterViewHolder> {
 
-    ArrayList<MostViewedHelperClass> mostViewedLocations;
+    ArrayList<ConcertObject> concertObjectLocations;
     View view;
 
-    public MostViewedAdapter(ArrayList<MostViewedHelperClass> mostViewedLocations) {
-        this.mostViewedLocations = mostViewedLocations;
+    public ConcertAdapter(ArrayList<ConcertObject> concertObjectLocations) {
+        this.concertObjectLocations = concertObjectLocations;
     }
 
     @NonNull
     @Override
-    public MostViewedHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ConcertAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.most_viewed_card_design, parent,false);
-
-        MostViewedAdapter.MostViewedHolder mostViewedHolder = new MostViewedAdapter.MostViewedHolder(view);
-        return mostViewedHolder;
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_concert_card, parent,false);
+        ConcertAdapter.ConcertAdapterViewHolder concertAdapterViewHolder = new ConcertAdapter.ConcertAdapterViewHolder(view);
+        return concertAdapterViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MostViewedAdapter.MostViewedHolder holder, int position) {
-        MostViewedHelperClass mostViewedHelperClass = mostViewedLocations.get(position);
+    public void onBindViewHolder(@NonNull ConcertAdapter.ConcertAdapterViewHolder holder, int position) {
+        ConcertObject ConcertObject = concertObjectLocations.get(position);
 
-        String profileUrl = mostViewedHelperClass.getImage();
+        String profileUrl = ConcertObject.getImage();
+
+        if(holder == null){
+            Log.d("viewisnull", "viewisnull");
+        }
 
         if(!profileUrl.isEmpty()){
             switch(profileUrl){
@@ -63,31 +62,31 @@ public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.M
             }
         }
 
-        holder.title.setText(mostViewedHelperClass.getTitle());
-        holder.passage .setText(mostViewedHelperClass.getPassage());
-        holder.date.setText(mostViewedHelperClass.getDate());
+        holder.title.setText(ConcertObject.getTitle());
+        holder.passage .setText(ConcertObject.getPassage());
+        holder.date.setText(ConcertObject.getDate());
 
 
     }
 
     @Override
     public int getItemCount() {
-        return mostViewedLocations.size();
+        return concertObjectLocations.size();
     }
 
-    public class MostViewedHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ConcertAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public ImageView image;
         public TextView title, passage,date;
-        public MostViewedHolder(@NonNull View itemView) {
+        public ConcertAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
 
             // Hooks
             itemView.setOnClickListener(this);
-            image = itemView.findViewById(R.id.most_viewed_image);
-            title = itemView.findViewById(R.id.most_viewed_title);
-            passage = itemView.findViewById(R.id.most_viewed_passage);
-            date = itemView.findViewById(R.id.most_viewed_date);
+            image = itemView.findViewById(R.id.featured_image);
+            title = itemView.findViewById(R.id.featured_title);
+            passage = itemView.findViewById(R.id.featured_passage);
+            date = itemView.findViewById(R.id.featured_date);
 
         }
 
@@ -99,7 +98,7 @@ public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.M
             // Position of the adapter
             Integer position = getAdapterPosition();
 
-            String currentConcertKey = mostViewedLocations.get(position).getKey();
+            String currentConcertKey = concertObjectLocations.get(position).getKey();
 
             SessionManager sessionManager = new SessionManager(view.getContext(), SessionManager.SESSION_USERSESSION);
             HashMap<String, String> userDetails = sessionManager.getUsersDetailFromSession();
@@ -115,4 +114,5 @@ public class MostViewedAdapter  extends RecyclerView.Adapter<MostViewedAdapter.M
             view.getContext().startActivity(intent);
         }
     }
+    
 }

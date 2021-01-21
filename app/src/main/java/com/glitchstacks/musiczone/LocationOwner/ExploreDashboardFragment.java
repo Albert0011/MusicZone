@@ -1,5 +1,6 @@
 package com.glitchstacks.musiczone.LocationOwner;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedAdapter;
@@ -19,6 +21,8 @@ import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedHelpe
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedAdapter;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedHelperClass;
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.SearchActivity;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +47,8 @@ public class ExploreDashboardFragment extends Fragment {
 
     private DatabaseReference mDatabase;
 
+    private TextView searchLayout;
+
     private ArrayList<FeaturedHelperClass> featuredList = new ArrayList<FeaturedHelperClass>();
     private ArrayList<MostViewedHelperClass> mostViewedList = new ArrayList<MostViewedHelperClass>();
 
@@ -52,6 +58,16 @@ public class ExploreDashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_explore_dashboard, container, false);
+
+        searchLayout = root.findViewById(R.id.search_input);
+
+        searchLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -88,7 +104,7 @@ public class ExploreDashboardFragment extends Fragment {
 
                     Log.d("child detected", "child detected");
 
-                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertKey = null;
+                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertKey = null, concerMainGenre;
                     Integer viewer;
 
                     // Retreive currentDate
@@ -102,6 +118,7 @@ public class ExploreDashboardFragment extends Fragment {
                     concertDesc = snapshot.child("description").getValue().toString();
                     concertDate = snapshot.child("date").getValue().toString();
                     concertKey = snapshot.child("id").getValue().toString();
+                    concerMainGenre = snapshot.child("main_genre").getValue().toString();
 
                     // To be push
                     Log.d("dateequal1", currentdate);
@@ -113,7 +130,7 @@ public class ExploreDashboardFragment extends Fragment {
 
                         Log.d("child detected", messages );
 
-                        FeaturedHelperClass featuredHelperClass = new FeaturedHelperClass(imageUrl, concertTitle, concertDesc, concertDate, concertKey);
+                        FeaturedHelperClass featuredHelperClass = new FeaturedHelperClass(imageUrl, concertTitle, concertDesc, concertDate, concertKey, concerMainGenre);
 
                         featuredList.add(featuredHelperClass);
                         featuredAdapter.notifyDataSetChanged();
@@ -156,7 +173,7 @@ public class ExploreDashboardFragment extends Fragment {
 
                     Log.d("child detected", "child detected");
 
-                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertTime = null, concertKey=null;
+                    String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertTime = null, concertKey=null, concertMainGenre;
                     Integer viewer;
 
                     // retreive currentDate
@@ -172,14 +189,19 @@ public class ExploreDashboardFragment extends Fragment {
                     concertDate = snapshot.child("date").getValue().toString();
                     concertTime = snapshot.child("time").getValue().toString();
                     concertKey = snapshot.child("id").getValue().toString();
-
-                    viewer = Integer.parseInt(snapshot.child("viewer").getValue().toString());
+                    concertMainGenre = snapshot.child("main_genre").getValue().toString();
 
                     String temp_date = concertDate + " " + concertTime;
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
                     Date temp_date1 = null;
+
+                    if(snapshot.child("concertView").exists()){
+                        viewer = Integer.parseInt(String.valueOf(snapshot.child("concertView").getChildrenCount()));
+                    }else{
+                        viewer = 0;
+                    }
 
                     try {
                         temp_date1 = simpleDateFormat.parse(temp_date);
@@ -189,21 +211,19 @@ public class ExploreDashboardFragment extends Fragment {
                     }
 
 
-                    if(viewer >= 100 && !imageUrl.isEmpty() && !concertTitle.isEmpty() && !concertDesc.isEmpty() && !concertDate.isEmpty()
+                    if(viewer >= 2 && !imageUrl.isEmpty() && !concertTitle.isEmpty() && !concertDesc.isEmpty() && !concertDate.isEmpty()
                             && temp_date1.after(calendar.getTime())){
 
                         String messages = imageUrl + " " + concertTitle + " " + concertDesc + " " + concertDate;
 
                         Log.d("child detected", messages );
 
-                        MostViewedHelperClass mostViewedHelperClass = new MostViewedHelperClass(imageUrl, concertTitle, concertDesc, concertDate, concertKey);
+                        MostViewedHelperClass mostViewedHelperClass = new MostViewedHelperClass(imageUrl, concertTitle, concertDesc, concertDate, concertKey, concertMainGenre);
 
                         mostViewedList.add(mostViewedHelperClass);
                         mostViewedAdapter.notifyDataSetChanged();
 
                     }
-
-
                 }
             }
 
