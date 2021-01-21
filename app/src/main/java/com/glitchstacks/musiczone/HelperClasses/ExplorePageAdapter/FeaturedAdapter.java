@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.glitchstacks.musiczone.ConcertDetailActivity;
+import com.glitchstacks.musiczone.Concert.ConcertDetailActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.database.DatabaseReference;

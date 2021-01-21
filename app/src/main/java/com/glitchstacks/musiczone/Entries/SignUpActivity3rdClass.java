@@ -13,8 +13,6 @@ import android.view.WindowManager;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.glitchstacks.musiczone.Common.RetailerDashboard;
-import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.glitchstacks.musiczone.Common.RetailerDashboard;
+import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
 
 public class WaitConfirmationActivity extends AppCompatActivity {
 

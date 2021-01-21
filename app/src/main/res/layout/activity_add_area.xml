@@ -7,7 +7,7 @@
     android:background="@drawable/concert_purple"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".AddPlaylist">
+    tools:context=".PostConcert.AddPlaylist">
 
     <LinearLayout
         android:layout_width="match_parent"

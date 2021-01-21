@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/Black"
     android:orientation="vertical"
-    tools:context=".ConcertDetailActivity">
+    tools:context=".Concert.ConcertDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"

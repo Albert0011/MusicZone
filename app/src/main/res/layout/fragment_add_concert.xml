@@ -7,7 +7,7 @@
     android:background="@drawable/concert_purple"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".LocationOwner.AddConcert">
+    tools:context=".PostConcert.AddConcert">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/txtMainGenre"
-                android:layout_width="293dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alpha="1"
                 android:background="@drawable/rounded_corners_white"

@@ -16,8 +16,6 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.se.omapi.Session;
-import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -25,30 +23,19 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.glitchstacks.musiczone.Common.Chatroom;
-import com.glitchstacks.musiczone.Common.MainChat;
-import com.glitchstacks.musiczone.Common.MusicZoneStartUpScreen;
-import com.glitchstacks.musiczone.Common.RetailerDashboard;
-import com.glitchstacks.musiczone.Common.SwipeActivity;
+import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.hbb20.CountryCodePicker;
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class Login extends AppCompatActivity {

@@ -7,7 +7,7 @@
     android:background="@drawable/concert_purple"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".BuyTicket">
+    tools:context=".BuyTicket.BuyTicket">
 
     <LinearLayout
         android:layout_width="match_parent"

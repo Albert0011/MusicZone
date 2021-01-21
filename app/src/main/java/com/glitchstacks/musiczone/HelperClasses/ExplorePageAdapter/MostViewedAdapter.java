@@ -7,18 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.glitchstacks.musiczone.AddPlaylist;
-import com.glitchstacks.musiczone.Chat.ChatActivity;
-import com.glitchstacks.musiczone.Common.MusicZoneStartUpScreen;
-import com.glitchstacks.musiczone.ConcertDetailActivity;
+import com.glitchstacks.musiczone.Concert.ConcertDetailActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
-import com.glitchstacks.musiczone.Entries.SignUpActivity3rdClass;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

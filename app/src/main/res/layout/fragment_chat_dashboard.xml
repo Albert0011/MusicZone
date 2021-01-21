@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/White"
     android:orientation="vertical"
-    tools:context=".LocationOwner.ChatDashboardFragment"
+    tools:context=".Dashboard.DashboardFragment.ChatDashboardFragment"
     android:padding="20dp">
 
     <RelativeLayout
