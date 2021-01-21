@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.glitchstacks.musiczone.Common.MusicZoneStartUpScreen;
 import com.glitchstacks.musiczone.R;
 import com.google.android.material.textfield.TextInputLayout;
 

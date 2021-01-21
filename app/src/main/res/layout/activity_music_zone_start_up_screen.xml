@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Common.MusicZoneStartUpScreen"
+    tools:context=".Entries.MusicZoneStartUpScreen"
     android:background="@color/White"
     android:padding="0dp"
     android:transitionName="transition_back_btn">
