@@ -150,7 +150,6 @@ public class AddAddress extends AppCompatActivity {
             return;
         }
 
-        String playlistName = getIntent().getStringExtra("playlistName");
         String key = getIntent().getStringExtra("key");
 
         String place = placeInput.getText().toString();
@@ -160,7 +159,6 @@ public class AddAddress extends AppCompatActivity {
         String address = addressInput.getText().toString();
 
         Log.d("cek Key", key);
-        Log.d("cek PlaylistName", playlistName);
 
         DatabaseReference addressDatabase = mDatabase.child("Address").child(key);
 
@@ -172,8 +170,7 @@ public class AddAddress extends AppCompatActivity {
         placeInfo.put("desc",desc);
 
         // Database Reference
-        final String key2 = addressDatabase.push().getKey();
-        addressDatabase.child(key2).updateChildren(placeInfo);
+        addressDatabase.updateChildren(placeInfo);
         Toast.makeText(this, "Address is successfully added!", Toast.LENGTH_SHORT).show();
 
     }

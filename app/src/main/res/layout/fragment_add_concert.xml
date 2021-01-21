@@ -76,15 +76,15 @@
 
             <TextView
                 android:id="@+id/txtMainGenre"
-                android:layout_width="match_parent"
+                android:layout_width="293dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/selectMainGenre"
-                android:textColorHint="@color/Black"
-                android:padding="12dp"
-                android:gravity="center_vertical"
-                android:drawableEnd="@drawable/drop_down"
+                android:alpha="1"
                 android:background="@drawable/rounded_corners_white"
-                android:alpha="1"/>
+                android:drawableEnd="@drawable/drop_down"
+                android:gravity="center_vertical"
+                android:hint="@string/selectMainGenre"
+                android:padding="12dp"
+                android:textColorHint="@color/Black" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/description_layout"

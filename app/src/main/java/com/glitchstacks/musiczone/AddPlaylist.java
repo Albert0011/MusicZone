@@ -156,7 +156,6 @@ public class AddPlaylist extends AppCompatActivity {
             return;
         }
 
-        String playlistName = getIntent().getStringExtra("playlistName");
         String key = getIntent().getStringExtra("key");
 
         artistName = artistNameInput.getText().toString();
@@ -165,7 +164,6 @@ public class AddPlaylist extends AppCompatActivity {
         songLink = songLinkInput.getText().toString();
 
         Log.d("cek Key", key);
-        Log.d("cek PlaylistName", playlistName);
 
         DatabaseReference artistDatabase = mDatabase.child("Playlists").child(key).child(artistName);
         artistDatabase.child("artist_link").setValue(artistLink);
@@ -183,12 +181,10 @@ public class AddPlaylist extends AppCompatActivity {
 
     public void callNextScreen() {
 
-        String playlistName = getIntent().getStringExtra("playlistName");
         String key = getIntent().getStringExtra("key");
 
         Intent intent = new Intent(getApplicationContext(), AddArea.class);
         intent.putExtra("key",key);
-        intent.putExtra("playlistName",playlistName);
 
         startActivity(intent);
 

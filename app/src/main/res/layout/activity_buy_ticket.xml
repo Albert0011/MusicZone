@@ -7,12 +7,12 @@
     android:background="@drawable/concert_purple"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".AddPlaylist">
+    tools:context=".BuyTicket">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <TextView
@@ -20,68 +20,55 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_extrabold"
-            android:text="Add Area Image"
+            android:text="Buy Ticket"
             android:textColor="@color/White"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:id="@+id/imgArea"
-            android:layout_width="350dp"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:elevation="7dp"
-            android:src="@drawable/raissaposter2" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_corners_black"
             android:elevation="15dp"
             android:orientation="vertical"
-            android:alpha="0.8"
             android:padding="25dp">
 
+            <ImageView
+                android:id="@+id/imgArea"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="10dp"
+                android:elevation="7dp"
+                android:src="@drawable/raissaposter2" />
+
+            <Spinner
+                android:id="@+id/spinner_area"
+                android:layout_marginBottom="-30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/txtArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corners_white"
+                android:drawableEnd="@drawable/drop_down"
+                android:gravity="center_vertical"
+                android:hint="Select Area"
+                android:padding="12dp"
+                android:textColorHint="@color/Black" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/name_layout"
+                android:id="@+id/amount_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Add Area Name"
-                android:textColorHint="@color/White"
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/White"
-                app:hintTextAppearance="@style/MyHintStyle"
-                app:hintTextColor="@color/White"
-                app:startIconDrawable="@drawable/title"
-                app:startIconTint="@color/White">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/name_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/montserrat"
-                    android:inputType="text"
-                    android:textColor="@color/White"
-                    android:textSize="15sp" />
-
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/price_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:hint="Add Area Price"
+                android:hint="Amount of ticket"
                 android:textColorHint="@color/White"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
@@ -93,7 +80,7 @@
                 app:startIconTint="@color/White">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/price_input"
+                    android:id="@+id/amount_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat"
@@ -104,33 +91,77 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnAddArea"
+                android:id="@+id/btnUpdate"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_weight="1"
                 android:background="@drawable/rounded_corners_white"
                 android:fontFamily="@font/montserrat_extrabold"
                 android:textColor="@color/Black"
-                android:text="Add Area" />
+                android:text="Update Total" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_corners_white"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="Total Purchase"
+                        android:textColor="@color/Black"
+                        android:textSize="20dp" />
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ticket" />
+
+                    <TextView
+                        android:id="@+id/txtTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="IDR 0" />
+
+                </LinearLayout>
+
+                
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnNext"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_marginTop="200dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:background="#00000000"
                     android:fontFamily="@font/montserrat_extrabold"
                     android:text="@string/next"
                     android:textColor="@color/White" />
-
 
             </LinearLayout>
 

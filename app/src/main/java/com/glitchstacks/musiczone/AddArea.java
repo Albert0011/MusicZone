@@ -118,8 +118,7 @@ public class AddArea extends AppCompatActivity {
         areaInfo.put("area_price", areaPrice);
 
         // Database Reference
-        final String key2 = areaDatabase.push().getKey();
-        areaDatabase.child(key2).updateChildren(areaInfo);
+        areaDatabase.child("area_detail").push().updateChildren(areaInfo);
         Toast.makeText(this, areaName + " with price of " +areaPrice+ " is now saved!", Toast.LENGTH_SHORT).show();
 
     }
@@ -239,12 +238,10 @@ public class AddArea extends AppCompatActivity {
 
         saveImage();
 
-        String playlistName = getIntent().getStringExtra("playlistName");
         String key = getIntent().getStringExtra("key");
 
         Intent intent = new Intent(getApplicationContext(), AddAddress.class);
         intent.putExtra("key",key);
-        intent.putExtra("playlistName",playlistName);
 
         startActivity(intent);
 

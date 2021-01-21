@@ -2,6 +2,7 @@ package com.glitchstacks.musiczone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -132,6 +133,14 @@ public class ConcertDetailActivity extends AppCompatActivity {
     }
 
     private void goToTicketScreen() {
+
+        concertKey = getIntent().getStringExtra("concertKey");
+
+        Intent intent = new Intent(getApplicationContext(), BuyTicket.class);
+        intent.putExtra("concertKey",concertKey);
+
+        startActivity(intent);
+
     }
 
     private void goToMatchesScreen() {

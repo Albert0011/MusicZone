@@ -280,7 +280,7 @@ public class AddConcert extends Fragment {
         saveConcertInformation(intent);
 
         // memulai aktivitas selanjutnya
-        startActivity(intent);
+
 
     }
 
@@ -454,7 +454,7 @@ public class AddConcert extends Fragment {
         final String key = mDatabase.child("Concerts").push().getKey();
         DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);
 
-        intent.putExtra("concertKey", key);
+        intent.putExtra("key", key);
 
         final Map concertInfo = new HashMap();
 
@@ -524,7 +524,7 @@ public class AddConcert extends Fragment {
         }
 
 
-
+        startActivity(intent);
 
         }
 

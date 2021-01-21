@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LocationOwner.TicketDashboardFragment"
-    android:background="@color/White">
+    android:orientation="vertical"
+    android:background="@drawable/ticket_bg">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Fragment Dashboard"
-        android:gravity="center"/>
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Tickets"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:textSize="15sp"
+        android:textAllCaps="true"
+        android:textColor="@color/White"/>
 
-</FrameLayout>
+<!--    <ImageView-->
+<!--        android:layout_gravity="center"-->
+<!--        android:background="@drawable/ticket2"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="600dp"/>-->
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ticket_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/featured_desc" />
+
+
+</LinearLayout>

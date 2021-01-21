@@ -33,6 +33,7 @@
             android:background="@drawable/rounded_corners_black"
             android:elevation="15dp"
             android:orientation="vertical"
+            android:alpha="0.8"
             android:padding="25dp">
 
             <com.google.android.material.textfield.TextInputLayout
