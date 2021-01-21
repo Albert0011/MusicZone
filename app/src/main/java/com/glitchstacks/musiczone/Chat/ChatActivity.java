@@ -1,16 +1,23 @@
 package com.glitchstacks.musiczone.Chat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.glitchstacks.musiczone.AddArea;
 import com.glitchstacks.musiczone.Common.SwipeActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.Matches.MatchesActivity;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -31,12 +38,16 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mChatLayoutManager;
 
     private EditText mSendEditText;
+    private TextView usernameTxt;
 
     private Button mSendButton;
 
-    private String currentUserID, matchId, chatId, phoneNumber;
+    private String currentUserID, matchId, chatId, phoneNumber, username, imageURL;
+    private ImageView imageView;
 
-    DatabaseReference mDatabaseUser, mDatabaseChat;
+
+
+    DatabaseReference mDatabaseUser, mDatabaseChat, mDatabaseUserOther;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +60,18 @@ public class ChatActivity extends AppCompatActivity {
         phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
         currentUserID = phoneNumber;
 
+        mDatabaseUserOther = FirebaseDatabase.getInstance().getReference().child("Users").child(matchId);
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchId).child("ChatId");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chat");
 
         getChatId();
+
+
+        usernameTxt = findViewById(R.id.username_text);
+
+        imageView = findViewById(R.id.profile_image);
+
+        loadUserData();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -71,6 +90,45 @@ public class ChatActivity extends AppCompatActivity {
                 sendMessage();
             }
         });
+
+    }
+    
+
+
+    private void loadUserData(){
+
+        mDatabaseUserOther.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map<String, Object> map = (Map<String, Object>) snapshot.getValue();
+
+                username = snapshot.child("fullname").getValue().toString();
+                usernameTxt.setText(username);
+
+//                imageView.set(snapshot.child("profileImageUrl").getValue().toString());
+
+                if (map.get("profileImageUrl") != null) {
+                    imageURL = map.get("profileImageUrl").toString();
+                    switch (imageURL) {
+                        case "default":
+                            Glide.with(getApplication()).load(R.mipmap.ic_launcher).into(imageView);
+                            break;
+                        default:
+                            Glide.clear(imageView);
+                            Glide.with(getApplication()).load(imageURL).into(imageView);
+
+                            break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void sendMessage() {
@@ -126,7 +184,7 @@ public class ChatActivity extends AppCompatActivity {
                         if(createdByUser.equals(currentUserID)){
                             currentUserBoolean = true;
                         }
-                        ChatObject newMessage = new ChatObject(message, currentUserBoolean);
+                        ChatObject newMessage = new ChatObject(message, currentUserBoolean, username);
                         resultsChat.add(newMessage);
                         mChatAdapter.notifyDataSetChanged();
                     }

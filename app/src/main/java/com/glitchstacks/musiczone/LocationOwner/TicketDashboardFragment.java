@@ -85,56 +85,56 @@ public class TicketDashboardFragment extends Fragment {
 
                     Log.d("child detected", "child detected");
 
-                    final String[] imageUrl = {null};
-                    final String[] concertTitle = { null };
-                    final String[] concertDesc = { null };
-                    final String[] concertDate = { null };
-                    final String[] concertTime = { null };
-                    String concertKey = null;
-                    String amountTicket = null;
-                    String area = null;
-                    Integer viewer;
+                    if(snapshot.child("status").getValue().toString() == "true"){
 
-                    // Hook from database
-                    concertKey = snapshot.child("concert_key").getValue().toString();
-                    amountTicket = snapshot.child("amountTicket").getValue().toString();
-                    area = snapshot.child("area").getValue().toString();
+                        final String[] imageUrl = {null};
+                        final String[] concertTitle = { null };
+                        final String[] concertDesc = { null };
+                        final String[] concertDate = { null };
+                        final String[] concertTime = { null };
+                        String concertKey = null;
+                        String amountTicket = null;
+                        String area = null;
+                        Integer viewer;
 
-                    final String finalAmountTicket = amountTicket;
-                    final String finalArea = area;
-                    mDatabase.child("Concerts").child(concertKey).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        // Hook from database
+                        concertKey = snapshot.child("concert_key").getValue().toString();
+                        amountTicket = snapshot.child("amountTicket").getValue().toString();
+                        area = snapshot.child("area").getValue().toString();
 
-                            imageUrl[0] = snapshot.child("imageURL").getValue().toString();
-                            concertTitle[0] = snapshot.child("concert_name").getValue().toString();
-                            concertDesc[0] = snapshot.child("description").getValue().toString();
-                            concertDate[0] = snapshot.child("date").getValue().toString();
-                            concertTime[0] = snapshot.child("time").getValue().toString();
+                        final String finalAmountTicket = amountTicket;
+                        final String finalArea = area;
+                        mDatabase.child("Concerts").child(concertKey).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                imageUrl[0] = snapshot.child("imageURL").getValue().toString();
+                                concertTitle[0] = snapshot.child("concert_name").getValue().toString();
+                                concertDesc[0] = snapshot.child("description").getValue().toString();
+                                concertDate[0] = snapshot.child("date").getValue().toString();
+                                concertTime[0] = snapshot.child("time").getValue().toString();
 
 
-                            if(!imageUrl[0].isEmpty() && !concertTitle[0].isEmpty() && !concertDesc[0].isEmpty() && !concertDate[0].isEmpty()
-                                    && !finalArea.isEmpty() && !finalAmountTicket.isEmpty() && !concertTime[0].isEmpty() && !finalAmountTicket.isEmpty()){
+                                if(!imageUrl[0].isEmpty() && !concertTitle[0].isEmpty() && !concertDesc[0].isEmpty() && !concertDate[0].isEmpty()
+                                        && !finalArea.isEmpty() && !finalAmountTicket.isEmpty() && !concertTime[0].isEmpty() && !finalAmountTicket.isEmpty()){
 
-                                TicketHelperClass ticketHelperClass = new TicketHelperClass(imageUrl[0], concertTitle[0], concertDesc[0], concertDate[0], concertTime[0], finalArea, finalAmountTicket);
+                                    TicketHelperClass ticketHelperClass = new TicketHelperClass(imageUrl[0], concertTitle[0], concertDesc[0], concertDate[0], concertTime[0], finalArea, finalAmountTicket);
 
-                                ticketList.add(ticketHelperClass);
-                                ticketAdapter.notifyDataSetChanged();
+                                    ticketList.add(ticketHelperClass);
+                                    ticketAdapter.notifyDataSetChanged();
+
+                                }
 
                             }
 
-                        }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                            }
+                        });
 
 
-
-
-
+                    }
 
                 }
             }

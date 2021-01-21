@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment {
     public RetailerDashboard activity;
     private ImageView mProfileImage;
     private RelativeLayout logout_layout;
-    private RelativeLayout profile_layout, layout_saveConcert;
+    private RelativeLayout profile_layout, layout_saveConcert, layout_promotor;
     private TextView mNameField, mPhoneField, mEmailField, mDescField, txtFriends, txtSavedConcerts, txtConcerts;
     private DatabaseReference mUserDatabase;
     private SessionManager sessionManager;
@@ -72,6 +72,7 @@ public class ProfileFragment extends Fragment {
         txtFriends = root.findViewById(R.id.txtFriends);
         txtSavedConcerts = root.findViewById(R.id.txtSavedConcerts);
         layout_saveConcert = root.findViewById(R.id.layout_savedConcert);
+        layout_promotor = root.findViewById(R.id.layout_promotor);
 
         mProgress = new ProgressDialog(getActivity());
 
@@ -93,6 +94,14 @@ public class ProfileFragment extends Fragment {
         getUserInfo();
 
         mProgress.dismiss();
+
+        layout_promotor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SavedConcerts.class);
+                startActivity(intent);
+            }
+        });
 
 
         layout_saveConcert.setOnClickListener(new View.OnClickListener() {

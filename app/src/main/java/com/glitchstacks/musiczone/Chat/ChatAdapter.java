@@ -2,12 +2,12 @@ package com.glitchstacks.musiczone.Chat;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.format.DateUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.glitchstacks.musiczone.R;
@@ -17,6 +17,7 @@ import java.util.List;
 public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
     private List<ChatObject> chatList;
     private Context context;
+
 
     public ChatAdapter(List<ChatObject> matchesList, Context context){
         this.chatList = matchesList;
@@ -36,18 +37,15 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
 
     @Override
     public void onBindViewHolder(ChatViewHolders holder, int position) {
+
         holder.mMessage.setText(chatList.get(position).getMessage());
         if(chatList.get(position).getCurrentUser()){
-            holder.mMessage.setGravity(Gravity.END);
-            holder.mMessage.setTextColor(Color.parseColor("#404040"));
-            holder.mContainer.setBackgroundColor(Color.parseColor("#F4F4F4"));
-//            holder.mContainer.setBaselineAligned(Gravity.RIGHT);
-//            holder.timeText.setText(DateUtils.formatDateTime());
-
+            holder.mContainer.setGravity(Gravity.END);
+            holder.mUsername.setText("");
         }else{
-            holder.mMessage.setGravity(Gravity.START);
-            holder.mMessage.setTextColor(Color.parseColor("#FFFFFF"));
-            holder.mContainer.setBackgroundColor(Color.parseColor("#2DB4C8"));
+            holder.mMessage.setBackground(ContextCompat.getDrawable(context,R.drawable.their_message));
+            holder.mContainer.setGravity(Gravity.START);
+            holder.mUsername.setText(chatList.get(position).getUsername());
         }
 
     }
