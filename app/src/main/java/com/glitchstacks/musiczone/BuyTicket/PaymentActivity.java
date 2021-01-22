@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
-import com.glitchstacks.musiczone.WaitConfirmationActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.BuyTicket;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
+import com.glitchstacks.musiczone.R;
 
 public class WaitConfirmationActivity extends AppCompatActivity {
 

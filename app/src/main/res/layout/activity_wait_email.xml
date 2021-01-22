@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
-    tools:context=".BuyTicket.WaitConfirmationActivity">
+    tools:context=".PromoteUser.WaitEmail">
 
     <LinearLayout
         android:orientation="vertical"
@@ -23,11 +23,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:elevation="10dp"
             android:fontFamily="@font/montserrat_extrabold"
             android:gravity="center_horizontal"
-            android:text="@string/standBy"
+            android:text="Thank You!"
             android:textColor="@color/White"
             android:textSize="25sp" />
 
@@ -39,7 +39,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat"
             android:gravity="center_horizontal"
-            android:text="@string/desc_standBy1"
+            android:text="We will send you an email when we"
             android:textColor="@color/White"
             android:textSize="15sp" />
 
@@ -50,7 +50,18 @@
             android:elevation="10dp"
             android:fontFamily="@font/montserrat"
             android:gravity="center_horizontal"
-            android:text="@string/desc_standBy2"
+            android:text="finished confirming your data"
+            android:textColor="@color/White"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="10dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center_horizontal"
+            android:text="This usually takes 4 - 5 days"
             android:textColor="@color/White"
             android:textSize="15sp" />
 

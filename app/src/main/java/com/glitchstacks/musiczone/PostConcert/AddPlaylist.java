@@ -168,6 +168,13 @@ public class AddPlaylist extends AppCompatActivity {
         songLink = songLinkInput.getText().toString();
 
         Song currentSong = new Song(songName, songLink, artistName, artistLink);
+        for (Song cs:playlist) {
+            if(cs.getSong_name().equals(songName) && cs.getArtist_name().equals(artistName)){
+                Toast.makeText(this, "There is a duplicate song and artist!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        Toast.makeText(this, "The playlist is successfully added!", Toast.LENGTH_SHORT).show();
         playlist.add(currentSong);
 
     }

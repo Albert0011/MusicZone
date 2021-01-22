@@ -7,7 +7,7 @@
     android:background="@drawable/gradient_black"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".AddPlaylist">
+    tools:context=".PromoteUser.PromoteActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Add ID Number"
+                android:hint="ID Number"
                 android:textColorHint="@color/White"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"

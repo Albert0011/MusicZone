@@ -15,17 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".PromotorActivity"/>
-        <activity android:name=".Profile.SavedConcerts"></activity>
+        <activity android:name=".PromoteUser.WaitEmail"></activity>
+        <activity android:name=".PromoteUser.PromoteActivity" />
+        <activity android:name=".Profile.SavedConcerts" />
         <activity android:name=".Search.SearchActivity" />
         <activity android:name=".PostConcert.AddPlaylist" />
-        <activity android:name=".BuyTicket.BuyTicket"/>
-        <activity android:name=".PostConcert.AddArea"/>
-        <activity android:name=".PostConcert.AddAddress"/>
-        <activity android:name=".Concert.ConcertDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".WaitConfirmationActivity" />
+        <activity android:name=".BuyTicket.BuyTicket" />
+        <activity android:name=".PostConcert.AddArea" />
+        <activity android:name=".PostConcert.AddAddress" />
+        <activity
+            android:name=".Concert.ConcertDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".BuyTicket.WaitConfirmationActivity" />
         <activity android:name=".BuyTicket.PaymentActivity" />
         <activity android:name=".Matches.SwipeActivity" />
         <activity android:name=".Chat.ChatActivity" />
