@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightPurple"
+    android:background="@color/White"
     android:padding="30dp"
     tools:context=".Entries.SignUp2ndClass">
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_extrabold"
                 android:text="@string/choose_gender"
-                android:textColor="@color/Black"
+                android:textColor="@color/Blue"
                 android:textSize="16sp" />
 
             // Radio Group Choose Gender
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_extrabold"
                 android:text="@string/select_age"
-                android:textColor="@color/Black"
+                android:textColor="@color/Blue"
                 android:textSize="16sp"/>
 
             // Calendar
@@ -110,7 +110,7 @@
 
         <Button
             android:id="@+id/signup_next_btn"
-            style="@style/black_button"
+            android:background="@drawable/rounded_blue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -118,6 +118,7 @@
             android:fontFamily="@font/montserrat_extrabold"
             android:onClick="callNextSignUpScreen"
             android:text="@string/next"
+            android:textColor="@color/White"
             android:transitionName="transition_next_btn" />
 
         <Button

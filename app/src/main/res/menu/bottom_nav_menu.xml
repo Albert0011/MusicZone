@@ -7,34 +7,34 @@
         android:title="Ticket"
         android:icon="@drawable/house"
         app:cnb_backgroundColor="@color/White"
-        app:cnb_iconColor="@color/lightPurple"/>
+        app:cnb_iconColor="@color/Blue"/>
     <item
         android:id="@+id/bottom_nav_explore"
         android:title="Discover"
         android:icon="@drawable/discover"
         app:cnb_backgroundColor="@color/White"
-        app:cnb_iconColor="@color/lightPurple"/>
+        app:cnb_iconColor="@color/Blue"/>
 
     <item
         android:id="@+id/bottom_nav_post"
         android:title="Post"
         android:icon="@drawable/add"
         app:cnb_backgroundColor="@color/White"
-        app:cnb_iconColor="@color/lightPurple"/>
+        app:cnb_iconColor="@color/Blue"/>
 
     <item
         android:id="@+id/bottom_nav_chat"
         android:title="Inbox"
         android:icon="@drawable/chat"
         app:cnb_backgroundColor="@color/White"
-        app:cnb_iconColor="@color/lightPurple"/>
+        app:cnb_iconColor="@color/Blue"/>
 
     <item
         android:id="@+id/bottom_nav_me"
         android:title="Me"
         android:icon="@drawable/me"
         app:cnb_backgroundColor="@color/White"
-        app:cnb_iconColor="@color/lightPurple"/>
+        app:cnb_iconColor="@color/Blue"/>
 
 
 

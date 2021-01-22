@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:layout_marginTop="-250dp"
-            android:background="@drawable/circle_top_rectangle_purple"
+            android:background="@color/Blue"
             android:elevation="5dp"
             android:orientation="vertical"
             android:padding="20dp">
@@ -67,7 +67,7 @@
                 app:endIconTint="@color/Black"
                 app:hintTextColor="@color/Black"
                 app:startIconDrawable="@drawable/user_icon"
-                app:startIconTint="@color/lightPurple">
+                app:startIconTint="@color/quantum_orange">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name"
@@ -97,7 +97,7 @@
                 app:endIconTint="@color/Black"
                 app:hintTextColor="@color/Black"
                 app:startIconDrawable="@drawable/mail"
-                app:startIconTint="@color/lightPurple">
+                app:startIconTint="@color/quantum_orange">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
@@ -126,7 +126,7 @@
                 app:endIconTint="@color/Black"
                 app:hintTextColor="@color/Black"
                 app:startIconDrawable="@drawable/phone"
-                app:startIconTint="@color/lightPurple">
+                app:startIconTint="@color/quantum_orange">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phone"
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_extrabold"
                 android:text="@string/description"
-                android:textColor="@color/Grey"
+                android:textColor="@color/Black"
                 android:textSize="18dp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -206,10 +206,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_corners_purple"
+                    android:background="@drawable/rounded_blue"
                     android:fontFamily="@font/montserrat_extrabold"
                     android:text="Confirm"
-                    android:textColor="@color/Black" />
+                    android:textColor="@color/White" />
 
                 <Button
                     android:id="@+id/back"

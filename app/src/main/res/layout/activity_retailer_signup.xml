@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightPurple"
+    android:background="@color/Blue"
     android:padding="30dp"
-    tools:context=".Entries.SignUp"
-    android:transitionName="transition_signup_btn">
+    android:transitionName="transition_signup_btn"
+    tools:context=".Entries.SignUp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,10 +18,11 @@
             android:id="@+id/signup_back_btn"
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:onClick="backToBefore"
             android:padding="5dp"
             android:src="@drawable/back_arrow"
             android:transitionName="transition_back_btn"
-            android:onClick="backToBefore"/>
+            app:tint="@color/White" />
 
         <TextView
             android:id="@+id/signup_title_text"
@@ -31,7 +32,7 @@
             android:fontFamily="@font/montserrat_extrabold"
             android:text="@string/create_acc"
             android:textAllCaps="true"
-            android:textColor="@color/Black"
+            android:textColor="@color/White"
             android:textSize="40sp"
             android:transitionName="transition_title_text" />
 
@@ -49,20 +50,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/fullname"
-                android:textColorHint="@color/Black"
-                app:boxStrokeColor="@color/Black"
+                android:textColorHint="@color/White"
+                app:boxStrokeColor="@color/White"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/Black"
-                app:hintTextColor="@color/Black"
+                app:endIconTint="@color/White"
+                app:hintTextColor="@color/White"
                 app:startIconDrawable="@drawable/pencil"
-                app:startIconTint="@color/Black">
+                app:startIconTint="@color/White">
 
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/White"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -70,25 +72,26 @@
             //Username TextLayout
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:id="@+id/username_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
-                android:textColorHint="@color/Black"
-                app:boxStrokeColor="@color/Black"
+                android:textColorHint="@color/White"
+                app:boxStrokeColor="@color/White"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/Black"
-                app:hintTextColor="@color/Black"
+                app:endIconTint="@color/White"
+                app:hintTextColor="@color/White"
                 app:startIconDrawable="@drawable/user_icon"
-                app:startIconTint="@color/Black">
+                app:startIconTint="@color/White">
 
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/White"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -101,20 +104,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:textColorHint="@color/Black"
-                app:boxStrokeColor="@color/Black"
+                android:textColorHint="@color/White"
+                app:boxStrokeColor="@color/White"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/Black"
-                app:hintTextColor="@color/Black"
+                app:endIconTint="@color/White"
+                app:hintTextColor="@color/White"
                 app:startIconDrawable="@drawable/mail"
-                app:startIconTint="@color/Black">
+                app:startIconTint="@color/White">
 
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/White"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -127,19 +131,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/passw"
-                android:textColorHint="@color/Black"
+                android:textColorHint="@color/White"
                 app:boxStrokeColor="@color/Black"
                 app:boxStrokeWidthFocused="2dp"
-                app:hintTextColor="@color/Black"
+                app:hintTextColor="@color/White"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/Black"
+                app:passwordToggleTint="@color/White"
                 app:startIconDrawable="@drawable/key"
-                app:startIconTint="@color/Black">
+                app:startIconTint="@color/White">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColor="@color/White" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -148,15 +153,16 @@
 
         <Button
             android:id="@+id/signup_next_btn"
-            style="@style/black_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_corners_black"
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_extrabold"
+            android:onClick="callNextSignUpScreen"
             android:text="@string/next"
-            android:transitionName="transition_next_btn"
-            android:onClick="callNextSignUpScreen"/>
+            android:textColor="@color/White"
+            android:transitionName="transition_next_btn" />
 
         <Button
             android:id="@+id/signup_signin_btn"
@@ -165,8 +171,9 @@
             android:layout_marginTop="20dp"
             android:background="#00000000"
             android:fontFamily="@font/montserrat_extrabold"
+            android:onClick="callLoginScreen"
             android:text="@string/SignIn"
-            android:onClick="callLoginScreen"/>
+            android:textColor="@color/White" />
 
 
     </LinearLayout>

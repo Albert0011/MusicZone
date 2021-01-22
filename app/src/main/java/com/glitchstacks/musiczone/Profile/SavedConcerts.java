@@ -137,13 +137,6 @@ public class SavedConcerts extends AppCompatActivity {
                     if(snapshot.exists()){
 
                         String imageUrl = null, concertTitle = null, concertDesc = null, concertDate = null, concertTime = null, concertKey=null, concertMainGenre;
-                        Integer viewer;
-
-                        // retreive currentDate
-                        Calendar calendar = Calendar.getInstance();
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                        String currentdate = dateFormat.format(calendar.getTime());
-
                         // Hook from database
                         imageUrl = snapshot.child("imageURL").getValue().toString();
                         concertTitle = snapshot.child("concert_name").getValue().toString();
@@ -152,22 +145,9 @@ public class SavedConcerts extends AppCompatActivity {
                         concertTime = snapshot.child("time").getValue().toString();
                         concertKey = snapshot.child("id").getValue().toString();
                         concertMainGenre = snapshot.child("main_genre").getValue().toString();
-                        String temp_date = concertDate + " " + concertTime;
-
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-
-                        Date temp_date1 = null;
-
-                        try {
-                            temp_date1 = simpleDateFormat.parse(temp_date);
-
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-
 
                         if(!imageUrl.isEmpty() && !concertTitle.isEmpty() && !concertDesc.isEmpty() && !concertDate.isEmpty()
-                                && temp_date1.after(calendar.getTime())){
+                               ){
 
                             String messages = imageUrl + " " + concertTitle + " " + concertDesc + " " + concertDate;
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#848be3">
+    android:background="@color/White">
 
 
     <ImageView
@@ -46,7 +46,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.543"
-        app:srcCompat="@drawable/slide1" />
+        app:srcCompat="@drawable/slide1"
+        app:tint="@color/Blue" />
 
     <ImageView
         android:layout_width="60dp"
@@ -57,7 +58,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.829"
-        app:srcCompat="@drawable/tab3" />
+        app:srcCompat="@drawable/tab3"
+        app:tint="@color/Black" />
 
     <Button
         android:id="@+id/btn_getstarted"
@@ -73,7 +75,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.673"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

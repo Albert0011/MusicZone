@@ -17,20 +17,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_blue">
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/back_arrow"
             android:layout_gravity="center"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            app:tint="@color/White" />
 
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/rounded_corners_purple"
+            android:background="@drawable/rounded_corners_white"
             app:queryHint="Search by Name, Genre, or Artist"/>
     </LinearLayout>
 
@@ -49,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Result by Name"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_extrabold"
                 android:textColor="@color/Black"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -66,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Result by Genre"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_extrabold"
                 android:textColor="@color/Black"/>
 
             <androidx.recyclerview.widget.RecyclerView

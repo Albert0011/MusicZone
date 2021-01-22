@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/signup_scrollview"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightPurple"
+    android:background="@color/Blue"
     android:padding="30dp"
     tools:context=".Entries.SignUpActivity3rdClass">
 
@@ -18,12 +18,14 @@
             android:id="@+id/signup_back_btn"
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:onClick="backToBefore"
             android:padding="5dp"
             android:src="@drawable/back_arrow"
             android:transitionName="transition_back_btn"
-            android:onClick="backToBefore"/>
+            app:tint="@color/White" />
 
         // Text Create Acc
+
         <TextView
             android:id="@+id/signup_title_text"
             android:layout_width="wrap_content"
@@ -32,7 +34,7 @@
             android:fontFamily="@font/montserrat_extrabold"
             android:text="@string/create_acc"
             android:textAllCaps="true"
-            android:textColor="@color/Black"
+            android:textColor="@color/White"
             android:textSize="40sp"
             android:transitionName="transition_title_text" />
 
@@ -43,15 +45,17 @@
             android:orientation="vertical">
 
             //Country Picker
+
             <com.hbb20.CountryCodePicker
                 android:id="@+id/signup_country_picker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/black_border"
                 app:ccp_autoDetectCountry="true"
+                app:ccp_contentColor="@color/White"
                 app:ccp_showFlag="true"
-                app:ccp_showNameCode="true"
                 app:ccp_showFullName="true"
-                android:background="@drawable/black_border"/>
+                app:ccp_showNameCode="true" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phoneNumberLayout"
@@ -59,21 +63,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/phone_number"
-                android:textColorHint="@color/Black"
+                android:textColorHint="@color/White"
                 app:boxStrokeColor="@color/Black"
                 app:boxStrokeWidthFocused="2dp"
                 app:endIconMode="clear_text"
-                app:endIconTint="@color/Black"
-                app:hintTextColor="@color/Black"
+                app:endIconTint="@color/White"
+                app:hintTextColor="@color/White"
                 app:startIconDrawable="@drawable/phone"
-                app:startIconTint="@color/Black">
+                app:startIconTint="@color/White">
 
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signup_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:textColor="@color/White" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,9 +92,9 @@
             android:layout_marginTop="20dp"
             android:elevation="5dp"
             android:fontFamily="@font/montserrat_extrabold"
+            android:onClick="callVerifyOTPScreen"
             android:text="@string/finish"
-            android:transitionName="transition_next_btn"
-            android:onClick="callVerifyOTPScreen"/>
+            android:transitionName="transition_next_btn" />
 
 
     </LinearLayout>

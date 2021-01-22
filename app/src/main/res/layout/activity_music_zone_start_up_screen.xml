@@ -4,64 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Entries.MusicZoneStartUpScreen"
-    android:background="@color/White"
+    android:background="@color/lite_blue"
     android:padding="0dp"
-    android:transitionName="transition_back_btn">
+    android:transitionName="transition_back_btn"
+    tools:context=".Entries.MusicZoneStartUpScreen">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_marginTop="97dp"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/music_zone_logo"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="97dp"
+            android:src="@drawable/music_zone_logo"
+            app:tint="@color/White" />
 
         <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
             android:layout_gravity="center"
             android:layout_marginTop="54dp"
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:src="@drawable/chill"/>
+            android:src="@drawable/listening_music" />
 
         <TextView
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:gravity="center"
             android:layout_height="wrap_content"
-            android:text="@string/wyd"
-            android:textSize="27sp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_extrabold"
-            android:textColor="@color/Black"/>
+            android:gravity="center"
+            android:text="@string/wyd"
+            android:textColor="@color/Black"
+            android:textSize="27sp" />
 
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/million"
-            android:gravity="center"
             android:layout_gravity="center"
-            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@string/million"
             android:textColor="@color/lightGrey"
-            />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btn_sign_up"
-            style="@style/purple_button"
-            android:layout_gravity="center"
             android:layout_width="317dp"
             android:layout_height="66dp"
+            android:layout_gravity="center"
             android:layout_marginTop="21dp"
+            android:background="@drawable/rounded_corners_white"
             android:fontFamily="@font/montserrat_extrabold"
+            android:onClick="callSignUpScreen"
             android:text="@string/signup"
             android:textAllCaps="false"
+            android:textColor="@color/Black"
             android:textSize="16sp"
-            android:transitionName="transition_signup_btn"
-            android:onClick="callSignUpScreen"/>
+            android:transitionName="transition_signup_btn" />
 
 
         <LinearLayout
@@ -71,32 +73,32 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_gravity="center_vertical"
-                android:gravity="right"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto"
+                android:gravity="right"
                 android:text="@string/already"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
 
             <Button
 
                 android:id="@+id/btn_sign_in"
-                android:background="#00000000"
                 android:layout_width="0dp"
+                android:layout_height="66dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="2"
-                android:layout_height="66dp"
-                android:gravity="left|center_vertical"
+                android:background="#00000000"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:text="@string/signin"
-                android:textColor="@color/Black"
-                android:textAllCaps="false"
-                android:textSize="16sp"
+                android:gravity="left|center_vertical"
                 android:onClick="callLoginScreen"
-                android:transitionName="transition_signin_btn"/>
+                android:text="@string/signin"
+                android:textAllCaps="false"
+                android:textColor="@color/Black"
+                android:textSize="16sp"
+                android:transitionName="transition_signin_btn" />
 
         </LinearLayout>
 

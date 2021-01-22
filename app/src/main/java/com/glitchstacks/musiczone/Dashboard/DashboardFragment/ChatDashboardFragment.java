@@ -114,7 +114,6 @@ public class ChatDashboardFragment extends Fragment {
     }
 
     private List<MatchesObject> getDataSetMatches() {
-
         getUserMatchId();
         return resultsMatches;
     }

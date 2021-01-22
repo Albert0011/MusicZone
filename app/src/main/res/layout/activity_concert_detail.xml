@@ -13,7 +13,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:background="@drawable/concert_purple"
+        android:background="@drawable/concert_bg"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme"
         >
@@ -135,7 +135,7 @@
                         android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/watch96" />
+                        android:src="@drawable/watch96"/>
 
                     <TextView
                         android:id="@+id/txtTime"

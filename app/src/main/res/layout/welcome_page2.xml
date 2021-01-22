@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff8fc1">
+    android:background="@color/quantum_orange">
 
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="236dp"
+        android:layout_width="300dp"
         android:layout_height="35dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.204"
-        app:srcCompat="@drawable/music_zone_logo" />
+        app:srcCompat="@drawable/music_zone_logo"
+        app:tint="@color/Black" />
 
     <TextView
         android:id="@+id/textView2"
@@ -46,7 +47,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.565"
-        app:srcCompat="@drawable/slide2" />
+        app:srcCompat="@drawable/slide2"
+        app:tint="@color/White"/>
 
     <ImageView
         android:layout_width="60dp"
@@ -57,7 +59,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.831"
-        app:srcCompat="@drawable/tab2" />
+        app:srcCompat="@drawable/tab2"
+        app:tint="@color/White" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

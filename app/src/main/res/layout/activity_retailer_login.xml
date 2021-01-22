@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightPurple"
+    android:background="@color/White"
     android:padding="30dp"
     tools:context=".Entries.Login">
 
@@ -126,10 +126,11 @@
 
             <Button
                 android:id="@+id/login_button"
-                style="@style/black_button"
+                android:background="@drawable/rounded_blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/White"
                 android:fontFamily="@font/montserrat_extrabold"
                 android:text="@string/signin"
                 android:transitionName="transition_signin_btn" />

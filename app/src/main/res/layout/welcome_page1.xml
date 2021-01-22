@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkBlue">
+    android:background="@color/Blue">
 
 
     <ImageView
@@ -46,7 +46,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.546"
-        app:srcCompat="@drawable/slide3" />
+        app:srcCompat="@drawable/slide3"
+        app:tint="@color/White" />
 
     <ImageView
         android:layout_width="60dp"
@@ -57,7 +58,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.84"
-        app:srcCompat="@drawable/tab1" />
+        app:srcCompat="@drawable/tab1"
+        app:tint="@color/White" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
