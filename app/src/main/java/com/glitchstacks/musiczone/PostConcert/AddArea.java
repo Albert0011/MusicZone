@@ -107,7 +107,16 @@ public class AddArea extends AppCompatActivity {
         }
 
         Area currentArea = new Area(areaPrice, areaName);
+
+        for (Area ar : areaList) {
+            if(ar.getAreaName().equals(areaName)){
+                Toast.makeText(this, "Area is already in the list!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
         areaList.add(currentArea);
+        Toast.makeText(this, areaName + " with the price of" + areaPrice + " is successfully added!", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -125,7 +134,7 @@ public class AddArea extends AppCompatActivity {
         if(areaName.isEmpty()){
             nameLayout.setError("field can't be empty");
             return false;
-        } else{
+        } else {
             nameLayout.setError(null);
             nameLayout.setErrorEnabled(false);
         }
