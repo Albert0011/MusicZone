@@ -188,6 +188,7 @@ public class ConcertDetailActivity extends AppCompatActivity {
     }
 
     private void goToTicketScreen() {
+
     }
 
     private void goToMatchesScreen() {
