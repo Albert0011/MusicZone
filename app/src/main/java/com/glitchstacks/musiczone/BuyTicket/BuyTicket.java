@@ -35,14 +35,14 @@ import java.util.Map;
 public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private DatabaseReference mDatabase;
-    private ArrayList<String> arrayList, arrayPrice;
+    private ArrayList<String> arrayList, arrayPrice, arrayAmount, arrayKey;
     private EditText amountInput;
     private TextInputLayout amountLayout;
-    private TextView txtArea, txtTotal;
-    private String phoneNumber, imageURL, amount, currentArea;
+    private TextView txtArea, txtTotal, ticketAmountTxt;
+    private String phoneNumber, imageURL, amount, currentArea, currentTicketAmount, currentKey;
     private Button btnNext, btnUpdate;
     private ImageView areaImage;
-    private Integer currentPrice, totalPurchase;
+    private Integer currentPrice, totalPurchase, currentAmount;
 
     private Spinner spinner;
 
@@ -68,6 +68,9 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
         // EditText
         amountInput = findViewById(R.id.amount_input);
 
+        ticketAmountTxt = findViewById(R.id.ticketAmountTxt);
+
+
         // Button
         btnNext = findViewById(R.id.btnNext);
         btnUpdate = findViewById(R.id.btnUpdate);
@@ -85,6 +88,8 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
         // ArrayList
         arrayList = new ArrayList<>();
         arrayPrice = new ArrayList<>();
+        arrayAmount = new ArrayList<>();
+        arrayKey = new ArrayList<>();
 
         arrayList.add("Select Item");
 
@@ -129,12 +134,19 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
 
         amount = amountInput.getText().toString();
 
-        if(amount.isEmpty()){
+        if(amount.equals("")){
             amountLayout.setError("field can't be empty");
             return false;
         }
 
         Integer amountInt = Integer.parseInt(amount);
+        currentTicketAmount = ticketAmountTxt.getText().toString();
+        currentAmount = Integer.parseInt(currentTicketAmount);
+
+        if(amountInt > currentAmount){
+            amountLayout.setError("ticket is not enough!");
+            return false;
+        }
 
         if(amountInt < 1){
             amountLayout.setError("amount can't go lower than 1");
@@ -152,21 +164,25 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
         return true;
     }
 
-    private void validate() {
+    private boolean validate() {
 
         Boolean a,b;
         a = isItemValid();
         b = isAmountValid();
 
         if(!a || !b){
-            return;
+            return false;
+        } else{
+            return true;
         }
 
     }
 
     private void updateData() {
 
-        validate();
+        if(!validate()){
+            return;
+        }
 
         totalPurchase = Integer.parseInt(amountInput.getText().toString()) * currentPrice;
 
@@ -182,6 +198,15 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
         updateData();
 
         final String concertKey = getIntent().getStringExtra("concertKey");
+
+        final DatabaseReference mAreas = mDatabase.child("Area").child(concertKey).child("area_detail").child(currentKey);
+
+        Log.d("currentTicketAmount", currentTicketAmount);
+        Log.d("currentAmount", currentAmount.toString());
+        Integer amountInt = Integer.parseInt(amount);
+        Integer ticketAmount = currentAmount;
+        ticketAmount = ticketAmount - amountInt;
+        mAreas.child("area_ticket_amount").setValue(ticketAmount.toString());
 
         totalPurchase = Integer.parseInt(amountInput.getText().toString()) * currentPrice;
         String totalPurch = totalPurchase.toString();
@@ -199,13 +224,20 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 
+
+        Log.d("cek","cek masuk "+position);
         txtArea.setText(arrayList.get(position));
         currentArea = arrayList.get(position);
 
         if(position==0){
             currentPrice = 0;
+            ticketAmountTxt.setText("0");
+            currentKey = "0";
         } else{
             currentPrice = Integer.parseInt(arrayPrice.get(position-1));
+            ticketAmountTxt.setText(arrayAmount.get(position-1));
+            Log.d("array amount", arrayAmount.get(position-1));
+            currentKey = arrayKey.get(position-1);
         }
 
 
@@ -220,17 +252,20 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
 
         final String key = getIntent().getStringExtra("concertKey");
 
-        DatabaseReference mAreas = mDatabase.child("Areas").child(key);
+        Log.d("ConcertKey", key);
+        DatabaseReference mAreas = mDatabase.child("Area").child(key);
+        DatabaseReference mAreaImage = mDatabase.child("Concerts").child(key);
 
-        mAreas.addListenerForSingleValueEvent(new ValueEventListener() {
+        mAreaImage.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
 
-                    Map<String, Object> map = (Map<String, Object>) snapshot.child("area_image").getValue();
-                    if (map.get("imageURL") != null) {
-                        imageURL = map.get("imageURL").toString();
+                    Map<String, Object> map = (Map<String, Object>) snapshot.getValue();
+                    if (map.get("areaImageUrl") != null) {
+                        imageURL = map.get("areaImageUrl").toString();
+                        Log.d("cek image", imageURL);
                         switch (imageURL) {
                             case "default":
                                 Glide.with(getApplication()).load(R.mipmap.ic_launcher).into(areaImage);
@@ -256,8 +291,15 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
         mAreas.child("area_detail").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                arrayList.add(snapshot.child("area_name").getValue().toString());
-                arrayPrice.add(snapshot.child("area_price").getValue().toString());
+
+                if(snapshot.exists()){
+                    Log.d("ceksnap",snapshot.child("area_name").getValue().toString());
+                    arrayList.add(snapshot.child("area_name").getValue().toString());
+                    arrayPrice.add(snapshot.child("area_price").getValue().toString());
+                    arrayAmount.add(snapshot.child("area_ticket_amount").getValue().toString());
+                    arrayKey.add(snapshot.getKey().toString());
+                    Log.d("cek key",snapshot.getKey().toString());
+                }
             }
 
             @Override

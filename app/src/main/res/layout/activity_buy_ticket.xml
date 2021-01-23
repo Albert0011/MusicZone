@@ -60,11 +60,12 @@
                 android:padding="12dp"
                 android:textColorHint="@color/Black" />
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/amount_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -89,6 +90,35 @@
                     android:textSize="15sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/ticketAmountTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:hint="0 "
+                    android:textColor="@color/White"
+                    android:textColorHint="@color/White" />
+
+                <TextView
+                    android:textSize="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:hint="Left"
+                    android:textColor="@color/White"
+                    android:textColorHint="@color/White" />
+
+            </LinearLayout>
+
 
             <Button
                 android:id="@+id/btnUpdate"

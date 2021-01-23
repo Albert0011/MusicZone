@@ -37,7 +37,6 @@
         <activity android:name=".Common.MakeSelection" />
         <activity android:name=".Profile.ForgetPassword" />
         <activity android:name=".Common.Chatroom" />
-        <activity android:name=".Chat.MainChat" />
         <activity android:name=".Entries.VerifyOTP" />
         <activity android:name=".Entries.SignUpActivity3rdClass" />
         <activity android:name=".Entries.SignUp2ndClass" />

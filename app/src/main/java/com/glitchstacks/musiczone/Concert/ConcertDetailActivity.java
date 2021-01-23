@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.glitchstacks.musiczone.BuyTicket.BuyTicket;
 import com.glitchstacks.musiczone.Matches.SwipeActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
@@ -188,7 +189,9 @@ public class ConcertDetailActivity extends AppCompatActivity {
     }
 
     private void goToTicketScreen() {
-
+        Intent intent = new Intent(ConcertDetailActivity.this, BuyTicket.class);
+        intent.putExtra("concertKey", concertKey);
+        startActivity(intent);
     }
 
     private void goToMatchesScreen() {

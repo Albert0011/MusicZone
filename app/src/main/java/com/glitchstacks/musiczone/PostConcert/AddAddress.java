@@ -254,8 +254,9 @@ public class AddAddress extends AppCompatActivity {
 
             areaInfo.put("area_name",area.getAreaName());
             areaInfo.put("area_price", area.getAreaPrice());
+            areaInfo.put("area_ticket_amount", area.getTicketAmount());
 
-            mArea.updateChildren(areaInfo);
+            mArea.child("area_detail").push().updateChildren(areaInfo);
         }
 
         if(areaImageUri!= null){
