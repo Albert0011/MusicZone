@@ -103,6 +103,34 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ticket_amount_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:hint="Add Available Amount"
+                android:textColorHint="@color/White"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/White"
+                app:hintTextAppearance="@style/MyHintStyle"
+                app:hintTextColor="@color/White"
+                app:startIconDrawable="@drawable/explore_icon"
+                app:startIconTint="@color/White">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ticket_amount_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat"
+                    android:inputType="number"
+                    android:textColor="@color/White"
+                    android:textSize="15sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/btnAddArea"
                 android:layout_marginTop="20dp"

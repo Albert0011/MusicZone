@@ -35,12 +35,12 @@ import java.util.Map;
 
 public class AddArea extends AppCompatActivity {
 
-    private EditText nameInput, priceInput;
+    private EditText nameInput, priceInput, ticketAmountInput;
     private DatabaseReference mDatabase;
     private ImageView areaImage;
     private Uri resultUri;
-    private String areaPrice, areaName;
-    private TextInputLayout priceLayout, nameLayout;
+    private String areaPrice, areaName, ticketAmount;
+    private TextInputLayout priceLayout, nameLayout, ticketAmountLayout;
     private ArrayList<Area> areaList;
 
     @Override
@@ -66,6 +66,9 @@ public class AddArea extends AppCompatActivity {
 
         nameInput = findViewById(R.id.name_input);
         priceInput = findViewById(R.id.price_input);
+
+        ticketAmountInput = findViewById(R.id.ticket_amount_input);
+        ticketAmountLayout = findViewById(R.id.ticket_amount_layout);
 
         areaImage = findViewById(R.id.imgArea);
 
@@ -98,15 +101,16 @@ public class AddArea extends AppCompatActivity {
 
     private void saveAreaInformation() {
 
-        Boolean a, b;
+        Boolean a, b, c;
         a = isPriceValid();
         b = isNameValid();
+        c = isTicketAmountValid();
 
-        if(!a || !b){
+        if(!a || !b || !c){
             return;
         }
 
-        Area currentArea = new Area(areaPrice, areaName);
+        Area currentArea = new Area(areaPrice, areaName, ticketAmount);
 
         for (Area ar : areaList) {
             if(ar.getAreaName().equals(areaName)){
@@ -116,7 +120,7 @@ public class AddArea extends AppCompatActivity {
         }
 
         areaList.add(currentArea);
-        Toast.makeText(this, areaName + " with the price of" + areaPrice + " is successfully added!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, areaName + " with the price of " + areaPrice + " is successfully added!", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -137,6 +141,20 @@ public class AddArea extends AppCompatActivity {
         } else {
             nameLayout.setError(null);
             nameLayout.setErrorEnabled(false);
+        }
+
+        return true;
+    }
+
+    private Boolean isTicketAmountValid() {
+
+        ticketAmount = ticketAmountInput.getText().toString();
+        if(ticketAmount.isEmpty()){
+            ticketAmountLayout.setError("field can't be empty");
+            return false;
+        } else {
+            ticketAmountLayout.setError(null);
+            ticketAmountLayout.setErrorEnabled(false);
         }
 
         return true;
