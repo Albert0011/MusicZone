@@ -5,15 +5,26 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.KeyListener;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.glitchstacks.musiczone.Chat.ChatObject;
+import com.glitchstacks.musiczone.Common.Chatroom;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.Matches.MatchesAdapter;
 import com.glitchstacks.musiczone.Matches.MatchesObject;
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.Search.SearchPageRecycler.ConcertAdapter;
+import com.glitchstacks.musiczone.Search.SearchPageRecycler.ConcertObject;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +39,7 @@ public class ChatDashboardFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mMatchesAdapter;
     private RecyclerView.LayoutManager mMatchesLayoutManager;
-
+    private TextInputEditText search_bar;
     private String currentUserID, phoneNumber;
 
     private ArrayList<MatchesObject> resultsMatches = new ArrayList<MatchesObject>();
@@ -45,6 +56,11 @@ public class ChatDashboardFragment extends Fragment {
 
         currentUserID = phoneNumber;
 
+        // Hook
+
+        search_bar = root.findViewById(R.id.search_input_edit);
+
+
         // Chat Recycle View
         mRecyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -60,7 +76,41 @@ public class ChatDashboardFragment extends Fragment {
         mMatchesAdapter = new MatchesAdapter(getDataSetMatches(), getContext());
         mRecyclerView.setAdapter(mMatchesAdapter);
 
+        search_bar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchByName(String.valueOf(s));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         return root;
+    }
+
+    private void searchByName(String s) {
+
+        Log.d("masukSearchChat","true");
+
+        ArrayList<MatchesObject> myList = new ArrayList<>();
+
+        for(MatchesObject chat : resultsMatches){
+            if(chat.getName().toLowerCase().contains(s.toLowerCase())){
+                myList.add(chat);
+            }
+        }
+
+        mMatchesAdapter = new MatchesAdapter(myList, getContext());
+        mRecyclerView.setAdapter(mMatchesAdapter);
+
     }
 
     private void getUserMatchId() {
@@ -80,6 +130,7 @@ public class ChatDashboardFragment extends Fragment {
 
             }
         });
+
     }
 
     private void FetchMatchInformation(String key) {

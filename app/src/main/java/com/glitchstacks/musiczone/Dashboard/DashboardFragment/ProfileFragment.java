@@ -109,6 +109,7 @@ public class ProfileFragment extends Fragment {
                 sessionManager.logoutUserSession();
                 Intent intent = new Intent(getContext(), MusicZoneStartUpScreen.class);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });

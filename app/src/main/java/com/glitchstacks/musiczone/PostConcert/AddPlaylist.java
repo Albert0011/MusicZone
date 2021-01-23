@@ -160,8 +160,6 @@ public class AddPlaylist extends AppCompatActivity {
             return;
         }
 
-        String key = getIntent().getStringExtra("key");
-
         artistName = artistNameInput.getText().toString();
         artistLink = artistLinkInput.getText().toString();
         songName = songNameInput.getText().toString();

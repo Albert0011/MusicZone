@@ -74,10 +74,11 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            style="@style/purple_button"
+            android:background="@drawable/rounded_blue"
             android:text="@string/verif_code"
             android:fontFamily="@font/montserrat_extrabold"
             android:textSize="22dp"
+            android:textColor="@color/White"
             android:layout_marginTop="30dp"
             android:onClick="callNextScreenFromOTP"/>
 
