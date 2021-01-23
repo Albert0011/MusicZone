@@ -38,12 +38,10 @@
         <activity android:name=".Matches.SwipeActivity" />
         <activity android:name=".Chat.ChatActivity" />
         <activity android:name=".Matches.MatchesActivity" />
-        <activity android:name=".Common.ChoosePeople" />
         <activity android:name=".Profile.ForgetPasswordSuccessMessage" />
         <activity android:name=".Profile.SetNewPassword" />
         <activity android:name=".Common.MakeSelection" />
         <activity android:name=".Profile.ForgetPassword" />
-        <activity android:name=".Common.Chatroom" />
         <activity android:name=".Entries.VerifyOTP" />
         <activity android:name=".Entries.SignUpActivity3rdClass" />
         <activity android:name=".Entries.SignUp2ndClass" />
