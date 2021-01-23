@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".PromoteUser.WaitEmail" />
-        <activity android:name=".AddPlaylist2">
+        <activity android:name=".Entries.MusicZoneStartUpScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,7 +47,7 @@
         <activity android:name=".Entries.SignUp2ndClass" />
         <activity android:name=".Entries.SignUp" />
         <activity android:name=".Entries.Login" />
-        <activity android:name=".Entries.MusicZoneStartUpScreen" />
+<!--        <activity android:name=".Entries.MusicZoneStartUpScreen" />-->
         <activity android:name=".Entries.LoginActivity" />
         <activity
             android:name=".Dashboard.RetailerDashboard"

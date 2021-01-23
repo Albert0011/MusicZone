@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
+import com.glitchstacks.musiczone.Profile.SetNewPassword;
 import com.glitchstacks.musiczone.Profile.UserHelperClass;
 import com.glitchstacks.musiczone.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class VerifyOTP extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    String codeBySystem;
+    String codeBySystem, whatToDo, phoneNo;
     PinView pinFromUser;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
@@ -38,7 +39,11 @@ public class VerifyOTP extends AppCompatActivity {
 
         try {
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeBySystem, code);
-            createNewUser();
+            if(whatToDo.equals("updateData")){
+                updateOldUserData();
+            } else {
+                createNewUser();
+            }
             //signInWithPhoneAuthCredential(credential);
         } catch (Exception e) {
             Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
@@ -46,6 +51,13 @@ public class VerifyOTP extends AppCompatActivity {
             toast.show();
         }
 
+    }
+
+    private void updateOldUserData() {
+        Intent intent = new Intent(getApplicationContext(), SetNewPassword.class);
+        intent.putExtra("phoneNo", phoneNo);
+        startActivity(intent);
+        finish();
     }
 
 
@@ -167,7 +179,8 @@ public class VerifyOTP extends AppCompatActivity {
 
         //hooks
         pinFromUser = findViewById(R.id.pin_view);
-        String phoneNo = getIntent().getStringExtra("phoneNo");
+        phoneNo = getIntent().getStringExtra("phoneNo");
+        whatToDo = getIntent().getStringExtra("whatToDo");
         sendVerificationCodeToUser(phoneNo);
 
     }
