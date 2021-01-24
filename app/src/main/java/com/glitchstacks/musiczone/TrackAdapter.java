@@ -5,20 +5,25 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.glitchstacks.musiczone.Concert.ConcertDetailActivity;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHolder> {
 
+    TrackListener trackListener;
     ArrayList<Track> trackArrayList;
     View view;
 
-    public TrackAdapter(ArrayList<Track> trackArrayList) {
+    public TrackAdapter(ArrayList<Track> trackArrayList, TrackListener trackListener) {
         this.trackArrayList = trackArrayList;
+        this.trackListener = trackListener;
     }
 
     @NonNull
@@ -35,7 +40,20 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
         Log.d("track masuk","track masuk");
 
         Track track = trackArrayList.get(position);
-        holder.name.setText(track.getName());
+        holder.bindTrack(track);
+    }
+
+    public List<Track> getSelectedTrack(){
+        List<Track> selectedTrack = new ArrayList<>();
+
+        for(Track track : trackArrayList){
+            if(track.isSelected){
+                selectedTrack.add(track);
+            }
+        }
+
+        return selectedTrack;
+
     }
 
     @Override
@@ -43,28 +61,59 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
         return trackArrayList.size();
     }
 
-    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class TrackViewHolder extends RecyclerView.ViewHolder{
 
         TextView name;
+        ImageView imageSelected;
+        LinearLayout track_layout;
 
         public TrackViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            itemView.setOnClickListener(this);
-
             // Hooks
             name = itemView.findViewById(R.id.track_name);
+            imageSelected = itemView.findViewById(R.id.imageSelected);
+            track_layout = itemView.findViewById(R.id.track_layout);
         }
 
-        @Override
-        public void onClick(View view) {
-            Log.d("clicked", "clicked");
-            Intent intent = new Intent(view.getContext(), ConcertDetailActivity.class);
+        void bindTrack(final Track track){
 
-            // Position of the adapter
-            Integer position = getAdapterPosition();
+            final String tracktitle = track.getName();
+
+            if(track.isSelected){
+                imageSelected.setVisibility(View.VISIBLE);
+            }
+            else{
+                imageSelected.setVisibility(View.GONE);
+            }
+
+            name.setText(tracktitle);
+
+            track_layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("trackClicked", tracktitle);
+
+                    if(track.isSelected) {
+                        imageSelected.setVisibility(View.GONE);
+                        track.isSelected = false;
+
+                        if(getSelectedTrack().size() == 0){
+                            trackListener.onTrackAction(false);
+                        }
+
+
+                    }else{
+                        imageSelected.setVisibility(View.VISIBLE);
+                        track.isSelected = true;
+                        trackListener.onTrackAction(true);
+                    }
+
+                }
+            });
+
 
         }
+
     }
 
 }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.Track;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
@@ -79,7 +80,6 @@ public class AddAddress extends AppCompatActivity {
     }
 
     private Boolean isProvinceValid() {
-
         province = provinceInput.getText().toString();
         if(province.isEmpty()){
             provinceLayout.setError("field can't be empty");
@@ -88,7 +88,6 @@ public class AddAddress extends AppCompatActivity {
             provinceLayout.setError(null);
             provinceLayout.setErrorEnabled(false);
         }
-
         return true;
     }
 
@@ -171,7 +170,7 @@ public class AddAddress extends AppCompatActivity {
         final String concertTime = getIntent().getStringExtra("concertTime");
         Uri concertImageUri = getIntent().getParcelableExtra("concertimageUri");
         Uri areaImageUri = getIntent().getParcelableExtra("areaUri");
-        ArrayList<Song> playlist = (ArrayList<Song>) getIntent().getSerializableExtra("playlist");
+        ArrayList<Performance> playlist = (ArrayList<Performance>) getIntent().getSerializableExtra("playlist");
         ArrayList<Area> areaList = (ArrayList<Area>) getIntent().getSerializableExtra("areaList");
 
         // save concertInformation
@@ -234,15 +233,26 @@ public class AddAddress extends AppCompatActivity {
 
         DatabaseReference mPlaylist = mDatabase.child("Playlists").child(concertKey);
 
-        for(Song s : playlist){
-            Map playlistInfo = new HashMap();
+        for(Performance p : playlist){
+            Map artistInfo = new HashMap();
 
-            playlistInfo.put("song_name",s.getSong_name());
-            playlistInfo.put("song_link",s.getSong_link());
-            playlistInfo.put("artist_name",s.getArtist_name());
-            playlistInfo.put("artist_link",s.getArtist_link());
+            String id = p.getArtist().getId();
+            artistInfo.put("artist_name",p.getArtist().getName());
+            artistInfo.put("artist_image_url",p.getArtist().getImageURL());
 
-            mPlaylist.updateChildren(playlistInfo);
+            mPlaylist.child(id).updateChildren(artistInfo);
+        }
+
+        for(Performance p : playlist){
+            String id = p.getArtist().getId();
+            for(Track currentTrackList : p.getTrackList()){
+                Map trackInfo = new HashMap();
+                String musicId = currentTrackList.getId();
+                trackInfo.put("music_title",currentTrackList.getName());
+                trackInfo.put("music_url",currentTrackList.getSpotifyLink());
+
+                mPlaylist.child(id).child(musicId).updateChildren(trackInfo);
+            }
         }
 
         // Save Concert Area

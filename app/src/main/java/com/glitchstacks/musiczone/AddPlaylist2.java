@@ -5,18 +5,36 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.glitchstacks.musiczone.PostConcert.AddArea;
+import com.glitchstacks.musiczone.PostConcert.AddPlaylist;
+import com.glitchstacks.musiczone.PostConcert.Performance;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,18 +44,27 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class AddPlaylist2 extends AppCompatActivity {
+public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, TrackListener {
 
     private Button buttonNext, buttonAdd;
     private RecyclerView recyclerViewTrack, recyclerViewArtist;
     private DatabaseReference mDatabase;
     private TextView textViewSeePlaylist;
     private SearchView searchViewArtist, searchViewTrack;
+    private Dialog dialog;
+    private String concertName, concertKey, concertMainGenre, concertDescription, concertDuration, concertDate, concertTime;
+    private Uri concertImageUrl;
+    ArtistAdapter artistAdapter;
+    TrackAdapter trackAdapter;
 
     private ArrayList<Track> tracklist = new ArrayList<>();
     private ArrayList<Artist> artistlist = new ArrayList<>();
+    private ArrayList<Performance> performanceList = new ArrayList<>();
+
+    final String authorization = "Bearer BQC2bE51qzIB1b76Ee_YAYYiHbryZq46e4IkCebJpJUK-WxrSDIgUBbNU3Kiqev5HW_sitOEli0euC3SRvDzqADFULqYtSxrnStCrJw5nYTHhljDhOsUC2v3SYeUR20SPNLEbZwgUkIKJEtsr1FSENMXD7erHpbFCA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +83,21 @@ public class AddPlaylist2 extends AppCompatActivity {
         // Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        if(searchViewArtist!=null){
+        // getExtra
+        concertName = getIntent().getStringExtra("concertName");
+        concertKey = getIntent().getStringExtra("concertKey");
+        concertMainGenre = getIntent().getStringExtra("concertMainGenre");
+        concertDescription = getIntent().getStringExtra("concertDescription");
+        concertDuration = getIntent().getStringExtra("concertDuration");
+        concertDate = getIntent().getStringExtra("concertDate");
+        concertTime = getIntent().getStringExtra("concertTime");
+        concertImageUrl = getIntent().getParcelableExtra("concertimageUri");
+
+        Log.d("IniAddPlaylist", "something is missing" + concertName + concertKey + concertMainGenre + concertDescription + concertDuration + concertDate + concertTime + (concertImageUrl == null));
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        if (searchViewArtist != null) {
 
             searchViewArtist.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -66,13 +107,14 @@ public class AddPlaylist2 extends AppCompatActivity {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
+                    if (newText.isEmpty()) return false;
                     SearchArtist(AddPlaylist2.this, newText);
                     return true;
                 }
             });
         }
 
-        if(searchViewTrack != null){
+        if (searchViewTrack != null) {
             searchViewTrack.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -81,13 +123,155 @@ public class AddPlaylist2 extends AppCompatActivity {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
+                    if (newText.isEmpty()) return false;
                     SearchTrack(AddPlaylist2.this, newText);
                     return true;
                 }
             });
         }
 
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddCurrentPerformance();
+            }
+        });
+
+        textViewSeePlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowDialog();
+            }
+        });
+
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callNextScreen();
+            }
+        });
+
     }
+
+    private void ShowDialog() {
+
+        ArrayList dialogTrackList = new ArrayList<>();
+
+        for (Performance p : performanceList) {
+            List<Track> currentTrack = p.getTrackList();
+            for (Track t : currentTrack) {
+                dialogTrackList.add(t.getName());
+            }
+        }
+
+        // inisialisasi dialog
+        dialog = new Dialog(AddPlaylist2.this);
+
+        // set dialog milik customer
+        dialog.setContentView(R.layout.dialog_searchable_spinner);
+        dialog.getWindow().setLayout(1000, 1500);
+
+        // transparant
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialog.show();
+
+        EditText editText = dialog.findViewById(R.id.editText);
+        ListView listView = dialog.findViewById(R.id.listView);
+
+        // Initialize array adapter
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (AddPlaylist2.this, android.R.layout.simple_list_item_1, dialogTrackList) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // Get the Item from ListView
+                View view = super.getView(position, convertView, parent);
+
+                // Initialize a TextView for ListView each Item
+                TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                // Set the text color of TextView (ListView Item)
+                tv.setTextColor(Color.BLACK);
+
+                // Generate ListView Item using TextView
+                return view;
+            }
+        };
+
+        listView.setAdapter(adapter);
+
+
+    }
+
+    private void AddCurrentPerformance() {
+        if (artistAdapter == null && trackAdapter == null) {
+            Toast.makeText(AddPlaylist2.this, "Search for artist and track first!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (artistAdapter == null) {
+            Toast.makeText(AddPlaylist2.this, "Search artist first!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (trackAdapter == null) {
+            Toast.makeText(AddPlaylist2.this, "Search track first!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        List<Artist> selectedArtist = artistAdapter.getSelectedArtist();
+        Integer selectedArtistCount = selectedArtist.size();
+
+        Toast.makeText(AddPlaylist2.this, "Found " + selectedArtistCount.toString() + " Artist", Toast.LENGTH_SHORT).show();
+
+        if (selectedArtistCount == 0) {
+            Toast.makeText(AddPlaylist2.this, "Please select Artist first", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (selectedArtistCount > 1) {
+            Toast.makeText(AddPlaylist2.this, "Please match artist and track one by one!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String artistName, trackTitle;
+        Artist currentArtist = selectedArtist.get(0);
+
+        List<Track> selectedTrack = trackAdapter.getSelectedTrack();
+
+        Integer selectedTrackSize = selectedTrack.size();
+
+        if (selectedTrackSize == 0) {
+            Toast.makeText(AddPlaylist2.this, "Please select Track first", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (selectedTrackSize > 1) {
+            Toast.makeText(AddPlaylist2.this, "Please match track and artist one by one!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Track currentTrack = selectedTrack.get(0);
+
+        // kalau blm ada playlist, lsg masukkin saja
+        if (performanceList.size() == 0) {
+
+            List<Track> currentTrackList = new ArrayList<>();
+            currentTrackList.add(currentTrack);
+            performanceList.add(new Performance(currentArtist, currentTrackList));
+
+        } else {
+            // kalau sudah ada
+            for (Performance p : performanceList) {
+                if (p.getArtist().getId().equals(currentArtist.getId())) {
+                    p.getTrackList().add(currentTrack);
+                }
+            }
+        }
+
+        Toast.makeText(AddPlaylist2.this, currentTrack.getName() + " - " + currentArtist.getName() + " added to playlist!", Toast.LENGTH_SHORT).show();
+    }
+
+    ;
 
 
     private void SearchTrack(Context context, String s) {
@@ -95,9 +279,7 @@ public class AddPlaylist2 extends AppCompatActivity {
         String baseUrl2 = "https://api.spotify.com/v1/";
         String baseUrl = "https://api.spotify.com/v1/me";
         String query = s.replaceAll(" ", "%20");
-        String qParam = "search?q="+query+"&type=track";
-
-        final String authorization = "Bearer BQAWtvXL-nmH7ANOWQXYFPw7bkOxFxUpqj39kNdTmDyMIrGT4bcoo36sOZmqllPNxevrjDN1SEdtgtmXnLc6MOp9GUJfsY5tT19aQbBMV0kJ7PerSiBz8twOBlOZH8_XG8txW01wX7INczKK_AuMcf3zj0sGjl6grQ";
+        String qParam = "search?q=" + query + "&type=track";
 
         String url = baseUrl2 + qParam;
 
@@ -143,10 +325,7 @@ public class AddPlaylist2 extends AppCompatActivity {
         String baseUrl = "https://api.spotify.com/v1/me";
 
         //String qParam = "search?q=Raissa&type=artist";
-        String qParam = "search?q="+query+"&type=artist";
-
-
-        final String authorization = "Bearer BQAWtvXL-nmH7ANOWQXYFPw7bkOxFxUpqj39kNdTmDyMIrGT4bcoo36sOZmqllPNxevrjDN1SEdtgtmXnLc6MOp9GUJfsY5tT19aQbBMV0kJ7PerSiBz8twOBlOZH8_XG8txW01wX7INczKK_AuMcf3zj0sGjl6grQ";
+        String qParam = "search?q=" + query + "&type=artist";
 
         String url = baseUrl2 + qParam;
 
@@ -203,13 +382,14 @@ public class AddPlaylist2 extends AppCompatActivity {
                 Log.d("linktrack", currentTrackLink);
 
                 String currentTrackName = items.getJSONObject(i).getString("name");
+                String currentTrackId = items.getJSONObject(i).getString("id");
 
-                Track currentTrack = new Track(currentTrackLink,currentTrackName);
+                Track currentTrack = new Track(currentTrackLink, currentTrackName, currentTrackId);
                 tracklist.add(currentTrack);
 
             }
 
-            TrackAdapter trackAdapter = new TrackAdapter(tracklist);
+            trackAdapter = new TrackAdapter(tracklist, this);
             recyclerViewTrack.setHasFixedSize(true);
             recyclerViewTrack.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
             recyclerViewTrack.setAdapter(trackAdapter);
@@ -219,7 +399,6 @@ public class AddPlaylist2 extends AppCompatActivity {
         }
 
         Log.d("RESTAPI WORKED", String.valueOf(items));
-
 
 
     }
@@ -242,15 +421,20 @@ public class AddPlaylist2 extends AppCompatActivity {
 
             for (int i = 0; i < itemlength; i++) {
                 String currentArtistLink = items.getJSONObject(i).getJSONObject("external_urls").getString("spotify");
-                String currentArtistImage = items.getJSONObject(i).getJSONArray("images").getJSONObject(0).getString("url");
-                String currentArtistName = items.getJSONObject(i).getString("name");
-
-                Artist currentArtist = new Artist(currentArtistName,currentArtistImage,currentArtistLink);
-                artistlist.add(currentArtist);
+                String currentArtistImage = null;
+                    try {
+                        currentArtistImage = items.getJSONObject(i).getJSONArray("images").getJSONObject(0).getString("url");
+                    }catch(JSONException e){
+                        Log.d("ErrorImage", "Image not exist");
+                    }
+                    String currentArtistID = items.getJSONObject(i).getString("id");
+                    String currentArtistName = items.getJSONObject(i).getString("name");
+                    Artist currentArtist = new Artist(currentArtistName, currentArtistImage, currentArtistLink, currentArtistID);
+                    artistlist.add(currentArtist);
 
             }
 
-            ArtistAdapter artistAdapter = new ArtistAdapter(artistlist);
+            artistAdapter = new ArtistAdapter(artistlist, this);
             recyclerViewArtist.setHasFixedSize(true);
             recyclerViewArtist.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
             recyclerViewArtist.setAdapter(artistAdapter);
@@ -261,6 +445,42 @@ public class AddPlaylist2 extends AppCompatActivity {
 
         Log.d("RESTAPI WORKED", String.valueOf(items));
 
+
+    }
+
+    @Override
+    public void onArtistAction(Boolean isSelected) {
+        if (isSelected) {
+            Toast.makeText(AddPlaylist2.this, "Something Selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onTrackAction(Boolean isSelected) {
+        if (isSelected) {
+            Toast.makeText(AddPlaylist2.this, "Something selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void callNextScreen() {
+
+        Intent intent = new Intent(getApplicationContext(), AddArea.class);
+
+        if(concertName.isEmpty() || concertKey.isEmpty() || concertMainGenre.isEmpty() || concertDate.isEmpty() || concertDuration.isEmpty() || concertImageUrl == null || concertTime.isEmpty() ){
+            Log.d("AddArea", "something is missing" + concertName + concertKey + concertMainGenre + concertDescription + concertDuration + concertDate + concertTime + (concertImageUrl == null));
+            return;
+        }
+
+        intent.putExtra("concertName", concertName);
+        intent.putExtra("concertKey", concertKey);
+        intent.putExtra("concertMainGenre", concertMainGenre);
+        intent.putExtra("concertDescription", concertDescription);
+        intent.putExtra("concertDuration", concertDuration);
+        intent.putExtra("concertDate", concertDate);
+        intent.putExtra("concertTime", concertTime);
+        intent.putExtra("concertimageUri", concertImageUrl);
+        intent.putExtra("playlist", performanceList);
+        startActivity(intent);
 
     }
 }

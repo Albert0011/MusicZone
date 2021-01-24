@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.glitchstacks.musiczone.AddPlaylist2;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -425,12 +426,10 @@ public class AddConcert extends Fragment {
     private void saveConcertInformation() {
 
         // membuat intent untuk aktivitas selanjutnya
-        final Intent intent = new Intent(getActivity().getApplicationContext(), AddPlaylist.class);
+        final Intent intent = new Intent(getActivity().getApplicationContext(), AddPlaylist2.class);
 
         final String key = mDatabase.child("Concerts").push().getKey();
         DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);
-
-        final Map concertInfo = new HashMap();
 
         if(resultUri != null){
 
@@ -458,7 +457,7 @@ public class AddConcert extends Fragment {
     private void saveConcertInformation2() {
 
         // membuat intent untuk aktivitas selanjutnya
-        final Intent intent = new Intent(getActivity().getApplicationContext(), AddPlaylist.class);
+        final Intent intent = new Intent(getActivity().getApplicationContext(), AddPlaylist2.class);
 
         final String key = mDatabase.child("Concerts").push().getKey();
         DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);

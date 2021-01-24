@@ -11,10 +11,11 @@
     >
 
     <LinearLayout
+        android:id="@+id/track_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="15dp">
 
         <TextView
@@ -26,7 +27,17 @@
             android:fontFamily="@font/montserrat_extrabold"
             android:text="Raissa Concert"
             android:textColor="@color/Black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/imageSelected"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/check"
+            android:layout_weight="1"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

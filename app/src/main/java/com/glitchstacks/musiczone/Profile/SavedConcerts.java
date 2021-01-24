@@ -128,11 +128,13 @@ public class SavedConcerts extends AppCompatActivity {
                 Log.d("getConcertInformation", "there is a reference");
             }
 
+            concertListByName.clear();
+
             mConcerts.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    concertListByName.clear();
+
 
                     if(snapshot.exists()){
 

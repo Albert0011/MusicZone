@@ -1,15 +1,21 @@
 package com.glitchstacks.musiczone;
 
-public class Artist {
+import java.io.Serializable;
+
+public class Artist implements Serializable {
 
     private String name;
     private String imageURL;
     private String spotifyLink;
+    private String id;
+    Boolean isSelected;
 
-    public Artist(String name, String imageURL, String spotifyLink) {
+    public Artist(String name, String imageURL, String spotifyLink, String id) {
         this.name = name;
         this.imageURL = imageURL;
         this.spotifyLink = spotifyLink;
+        this.isSelected = false;
+        this.id = id;
     }
 
     public String getName() {
@@ -34,5 +40,13 @@ public class Artist {
 
     public void setSpotifyLink(String spotifyLink) {
         this.spotifyLink = spotifyLink;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
