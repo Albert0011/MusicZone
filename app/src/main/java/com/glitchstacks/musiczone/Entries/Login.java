@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
 import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.Profile.ForgetPassword;
 import com.glitchstacks.musiczone.R;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,7 +43,7 @@ public class Login extends AppCompatActivity {
 
     TextInputLayout phoneNo, password;
     EditText phoneNumberEditText, passwordEditText;
-    Button mLoginBtn;
+    Button mLoginBtn, forgetPasswordBtn;
     FirebaseAuth mAuth;
     ProgressDialog mProgress;
     //    DatabaseReference mDatabaseUsers;
@@ -64,6 +65,7 @@ public class Login extends AppCompatActivity {
         rememberMe = findViewById(R.id.remember_me);
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+        forgetPasswordBtn = findViewById(R.id.forgetPasswordBtn);
 
         SessionManager sessionManager = new SessionManager(Login.this, SessionManager.SESSION_REMEMBERME);
         if(sessionManager.checkRememberMe()){
@@ -85,7 +87,12 @@ public class Login extends AppCompatActivity {
                 checkLogin();
             }
         });
-
+        forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callForgetPassword();
+            }
+        });
     }
 
     private void checkLogin() {
@@ -327,6 +334,10 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MusicZoneStartUpScreen.class);
         startActivity(intent);
 
+    }
+
+    public void callForgetPassword(){
+        startActivity(new Intent(getApplicationContext(), ForgetPassword.class));
     }
 
     public SessionManager getSession(){

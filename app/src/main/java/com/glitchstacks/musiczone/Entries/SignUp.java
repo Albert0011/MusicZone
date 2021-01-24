@@ -15,6 +15,9 @@ import android.widget.TextView;
 import com.glitchstacks.musiczone.R;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUp extends AppCompatActivity {
 
     //Variables
@@ -131,30 +134,34 @@ public class SignUp extends AppCompatActivity {
 
     }
 
+    public static boolean isValidPassword(String password,String regex)
+    {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+
     private boolean validatePassword() {
+
         String val = password.getEditText().getText().toString().trim();
-        String checkPassword = "^" +
-                //"(?=.*[0-9])" +         //at least 1 digit
-                //"(?=.*[a-z])" +         //at least 1 lower case letter
-                //"(?=.*[A-Z])" +         //at least 1 upper case letter
-                //"(?=.*[a-zA-Z])" +      //any letter
-                //"(?=.*[@#$%^&+=])" +    //at least 1 special character
-                "(?=S+$)" +           //no white spaces
-                ".{4,}" +               //at least 4 characters
-                "$";
+
+        String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$";
 
         if (val.isEmpty()) {
             password.setError("Field can not be empty");
             return false;
-        } else if (!val.matches(checkPassword)) {
-            password.setError("Password should contain 4 characters!");
+        } else if (!isValidPassword(val, regex)) {
+            password.setError("Password is too weak!");
             return false;
         } else {
             password.setError(null);
             password.setErrorEnabled(false);
             return true;
         }
+
     }
+
 
     public void backToBefore(View view) {
 

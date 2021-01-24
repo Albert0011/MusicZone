@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.glitchstacks.musiczone.Chat.ChatObject;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.Matches.MatchesAdapter;
 import com.glitchstacks.musiczone.Matches.MatchesObject;
