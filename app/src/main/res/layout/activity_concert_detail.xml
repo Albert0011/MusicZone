@@ -244,6 +244,10 @@
                 android:textColor="@color/White"
                 android:textSize="12sp"/>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylcerViewArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

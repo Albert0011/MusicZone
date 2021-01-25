@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/Blue"
+    android:background="@drawable/tsunami_like"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".PostConcert.AddConcert">
@@ -24,14 +24,15 @@
             android:textColor="@color/White"
             android:textSize="18sp" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imgConcert"
             android:layout_width="350dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:elevation="7dp"
-            android:src="@drawable/raissaposter2" />
+            android:src="@drawable/raissaposter2"
+            app:riv_corner_radius="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,11 +40,11 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/rounded_corners_black"
+            android:alpha="0.8"
+            android:background="@drawable/rounded_blue"
             android:elevation="15dp"
             android:orientation="vertical"
-            android:padding="25dp"
-            android:alpha="0.8">
+            android:padding="25dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/title_layout"
@@ -174,9 +175,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/rounded_corners_white"
                     android:fontFamily="@font/montserrat_extrabold"
-                    android:textColor="@color/Black"
                     android:text="@string/Time"
-                    />
+                    android:textColor="@color/Black" />
 
                 <TextView
                     android:id="@+id/txtChosenTime"
@@ -206,7 +206,7 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:background="#00000000"
+                    android:background="@drawable/rounded_corners_black"
                     android:fontFamily="@font/montserrat_extrabold"
                     android:text="@string/next"
                     android:textColor="@color/White" />

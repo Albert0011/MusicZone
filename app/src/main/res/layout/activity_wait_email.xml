@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color"
+    android:background="@color/Blue"
     tools:context=".PromoteUser.WaitEmail">
 
     <LinearLayout
@@ -61,7 +61,7 @@
             android:elevation="10dp"
             android:fontFamily="@font/montserrat"
             android:gravity="center_horizontal"
-            android:text="This usually takes 4 - 5 days"
+            android:text="This usually takes 1 days"
             android:textColor="@color/White"
             android:textSize="15sp" />
 

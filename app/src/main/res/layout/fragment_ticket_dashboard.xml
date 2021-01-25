@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard.DashboardFragment.TicketDashboardFragment"
     android:orientation="vertical"
-    android:background="@drawable/ticket_bg">
+    android:background="@drawable/ticket_bg_blue">
 
     <TextView
         android:layout_marginBottom="50dp"
@@ -28,8 +28,9 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_gravity="center"
         android:id="@+id/ticket_recycler"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_toRightOf="@+id/featured_desc" />

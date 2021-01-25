@@ -239,6 +239,7 @@ public class AddAddress extends AppCompatActivity {
             String id = p.getArtist().getId();
             artistInfo.put("artist_name",p.getArtist().getName());
             artistInfo.put("artist_image_url",p.getArtist().getImageURL());
+            artistInfo.put("artist_spotify_link",p.getArtist().getSpotifyLink());
 
             mPlaylist.child(id).updateChildren(artistInfo);
         }
@@ -251,7 +252,7 @@ public class AddAddress extends AppCompatActivity {
                 trackInfo.put("music_title",currentTrackList.getName());
                 trackInfo.put("music_url",currentTrackList.getSpotifyLink());
 
-                mPlaylist.child(id).child(musicId).updateChildren(trackInfo);
+                mPlaylist.child(id).child("tracklist").child(musicId).updateChildren(trackInfo);
             }
         }
 

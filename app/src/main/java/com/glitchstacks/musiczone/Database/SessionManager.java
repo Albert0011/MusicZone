@@ -15,9 +15,8 @@ public class SessionManager {
     //SessionNames
     public static final String SESSION_USERSESSION = "userLoginSession";
     public static final String SESSION_REMEMBERME = "rememberMe";
-
+    public static final String SESSION_SPOTIFY = "spotifyKey";
     private static final String IS_LOGIN = "IsLoggedIn";
-
     // user session variables
     public static final String KEY_FULLNAME = "fullname";
     public static final String KEY_USERNAME = "username";
@@ -31,6 +30,12 @@ public class SessionManager {
     private static final String IS_REMEMBERME = "IsRememberMe";
     public static final String KEY_SESSIONPHONENUMBER = "phoneNo";
     public static final String KEY_SESSIONPASSWORD = "password";
+
+    // spotify
+    private static final String IS_THEREISKEY = "isThereisKey";
+    private static final String KEY_SPOTIFY = "spotifyKey";
+    private static final String KEY_AUTH = "keyAuth";
+    private static final String KEY_REFRESH = "keyRefresh";
 
     // Constructor
     public SessionManager(Context _context, String sessionName) {
@@ -79,6 +84,14 @@ public class SessionManager {
         }
     }
 
+    public boolean checkSpotify(){
+        if(usersSession.getBoolean(IS_THEREISKEY, false)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public void logoutUserSession() {
         editor.clear();
         editor.commit();
@@ -89,6 +102,22 @@ public class SessionManager {
         editor.putString(KEY_SESSIONPHONENUMBER, phoneNo);
         editor.putString(KEY_SESSIONPASSWORD, password);
         editor.commit();
+    }
+
+    public void createSpotifySession(String authorizationKey, String auth){
+
+        editor = this.editor.putBoolean(IS_THEREISKEY, true);
+        editor.putString(KEY_SPOTIFY, authorizationKey);
+        editor.putString(KEY_AUTH, auth);
+        editor.commit();
+    }
+
+    public void generateNewKey(String authorizationKey){
+        editor.putString(KEY_SPOTIFY, authorizationKey);
+    }
+
+    public String getKeySpotify(){
+        return usersSession.getString(KEY_SPOTIFY, null);
     }
 
     public HashMap<String, String> getRememberMeDetailFromSession() {

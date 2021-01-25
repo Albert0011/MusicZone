@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -64,7 +65,8 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     private ArrayList<Artist> artistlist = new ArrayList<>();
     private ArrayList<Performance> performanceList = new ArrayList<>();
 
-    final String authorization = "Bearer BQC2bE51qzIB1b76Ee_YAYYiHbryZq46e4IkCebJpJUK-WxrSDIgUBbNU3Kiqev5HW_sitOEli0euC3SRvDzqADFULqYtSxrnStCrJw5nYTHhljDhOsUC2v3SYeUR20SPNLEbZwgUkIKJEtsr1FSENMXD7erHpbFCA";
+    final String authorization = "Bearer BQCojwPfkV5wmVV0qPmaS0FhcBHS-G_4emCkRG4nZj9ClNuuFySEerOfqtbB4mx7xs6gamN1CrrsMvd9kQlFZaE29G2p65krjFfzZb9iUp5W66TiYAvV-x9x_KrBDsHqhOgzm4nX2SFcknsiI6NvSnmHYGkGoQfo4A";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,10 +199,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
                 return view;
             }
         };
-
         listView.setAdapter(adapter);
-
-
     }
 
     private void AddCurrentPerformance() {
@@ -264,15 +263,16 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
             for (Performance p : performanceList) {
                 if (p.getArtist().getId().equals(currentArtist.getId())) {
                     p.getTrackList().add(currentTrack);
+                }else{
+                    List<Track> currentTrackList = new ArrayList<>();
+                    currentTrackList.add(currentTrack);
+                    performanceList.add(new Performance(currentArtist,currentTrackList));
                 }
             }
         }
 
         Toast.makeText(AddPlaylist2.this, currentTrack.getName() + " - " + currentArtist.getName() + " added to playlist!", Toast.LENGTH_SHORT).show();
     }
-
-    ;
-
 
     private void SearchTrack(Context context, String s) {
 
@@ -310,6 +310,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
                 headers.put("Authorization", authorization);
                 return headers;
             }
+
         };
 
         // Access the RequestQueue through your requestMaker
@@ -337,16 +338,19 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
                 try {
                     getValueArtist(response);
                 } catch (JSONException e) {
+                    Log.d("masuk exception e", "true");
                     e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                if(error instanceof NetworkError){
+                    Log.d("masuk volley exception", "false");
+                }
+                Log.d("masuk volley exception", "true");
             }
         }) {
-
             /**
              * Passing some request headers
              */
@@ -359,6 +363,8 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
         };
 
         // Access the RequestQueue through your requestMaker
+
+        Log.d("makeRequest", "true");
         requestMaker.getInstance(context).addToRequestQueue(req);
     }
 
@@ -399,8 +405,6 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
         }
 
         Log.d("RESTAPI WORKED", String.valueOf(items));
-
-
     }
 
 

@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.Concert;
 
 import android.content.Intent;
 import android.util.Log;
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.glitchstacks.musiczone.Artist;
+import com.glitchstacks.musiczone.ArtistListener;
 import com.glitchstacks.musiczone.Concert.ConcertDetailActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
@@ -24,59 +25,42 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder> {
+public class ConcertDetailArtistAdapter extends RecyclerView.Adapter<ConcertDetailArtistAdapter.ConcertDetailArtistViewHolder> {
 
     ArrayList<Artist> artistArrayList;
-    ArtistListener artistListener;
     View view;
 
-    public ArtistAdapter(ArrayList<Artist> artistArrayList, ArtistListener artistListener) {
+    public ConcertDetailArtistAdapter(ArrayList<Artist> artistArrayList) {
         this.artistArrayList = artistArrayList;
-        this.artistListener = artistListener;
     }
 
     @NonNull
     @Override
-    public ArtistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_artist_adapter, parent,false);
-        ArtistViewHolder artistViewHolder = new ArtistViewHolder(view);
-        return artistViewHolder;
+    public ConcertDetailArtistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_artist_adapter_black, parent,false);
+        ConcertDetailArtistViewHolder concertDetailArtistViewHolder = new ConcertDetailArtistViewHolder(view);
+        return concertDetailArtistViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ArtistViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ConcertDetailArtistViewHolder holder, int position) {
         Artist artist = artistArrayList.get(position);
-
         holder.bindArtist(artist);
 
     }
-
-    public List<Artist> getSelectedArtist(){
-        List<Artist> selectedArtist = new ArrayList<>();
-
-        for(Artist artist : artistArrayList){
-
-            if(artist.isSelected){
-                selectedArtist.add(artist);
-            }
-
-        }
-        return selectedArtist;
-    }
-
 
     @Override
     public int getItemCount() {
         return artistArrayList.size();
     }
 
-    public class ArtistViewHolder extends RecyclerView.ViewHolder {
+    public class ConcertDetailArtistViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout artist_layout;
         ImageView image, imageSelected;
         TextView name;
 
-        public ArtistViewHolder(@NonNull View itemView) {
+        public ConcertDetailArtistViewHolder(@NonNull View itemView) {
             super(itemView);
 
             // Hooks
@@ -91,13 +75,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
 
             String profileUrl = artist.getImageURL();
 
-            if(artist.isSelected){
-                imageSelected.setVisibility(View.VISIBLE);
-            }else{
-                imageSelected.setVisibility(View.GONE);
-            }
-
-            if(!(profileUrl == null)){
+            if(!profileUrl.isEmpty()){
                 switch(profileUrl){
                     case "default":
                         Glide.with(view.getContext()).load(R.mipmap.ic_launcher).into(image);
@@ -109,26 +87,18 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
                 }
             }
             name.setText(artist.getName());
-
             artist_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Log.d("artistClickedBind", artist.getName());
 
-                    if(artist.isSelected){
-                        imageSelected.setVisibility(View.GONE);
-                        artist.isSelected = false;
+                    String concertKey = ConcertDetailActivity.getConcertKey();
 
-                        if(getSelectedArtist().size() == 0){
-                            artistListener.onArtistAction(false);
-                        }
+                    Intent intent = new Intent(artist_layout.getContext(), DetailPlaylist.class);
+                    intent.putExtra("artistID", artist.getId());
+                    intent.putExtra("concertKey", concertKey);
+                    artist_layout.getContext().startActivity(intent);
 
-                    }else{
-                        imageSelected.setVisibility(View.VISIBLE);
-                        artist.isSelected = true;
-                        artistListener.onArtistAction(true);
-                    }
                 }
             });
         }

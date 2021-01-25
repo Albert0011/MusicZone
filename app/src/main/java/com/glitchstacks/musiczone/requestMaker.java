@@ -1,9 +1,12 @@
 package com.glitchstacks.musiczone;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.android.volley.NetworkError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
 public class requestMaker {
@@ -33,6 +36,12 @@ public class requestMaker {
     }
 
     public <T> void addToRequestQueue(Request<T> req) {
-        getRequestQueue().add(req);
+
+        Log.d("addTOrequest", "true");
+        try{
+            getRequestQueue().add(req);
+        }catch (Exception e){
+            e.getMessage();
+        }
     }
 }

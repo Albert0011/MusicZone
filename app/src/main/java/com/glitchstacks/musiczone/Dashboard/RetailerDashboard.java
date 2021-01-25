@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.Entries.IntroductoryActivity;
 import com.glitchstacks.musiczone.Entries.Login;
 import com.glitchstacks.musiczone.PostConcert.AddConcert;
 import com.glitchstacks.musiczone.Dashboard.DashboardFragment.ChatDashboardFragment;
@@ -72,9 +73,6 @@ public class RetailerDashboard extends AppCompatActivity {
                     }
                 }
             });
-
-         
-
 
         Toast.makeText(RetailerDashboard.this, username, Toast.LENGTH_LONG).show();
 

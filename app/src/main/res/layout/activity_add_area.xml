@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/concert_purple"
+    android:background="@drawable/tsunami_like"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".PostConcert.AddPlaylist">
@@ -24,7 +24,8 @@
             android:textColor="@color/White"
             android:textSize="18sp" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
+            app:riv_corner_radius="20dp"
             android:id="@+id/imgArea"
             android:layout_width="350dp"
             android:layout_height="200dp"
@@ -39,7 +40,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="0dp"
             android:layout_marginRight="25dp"
-            android:background="@drawable/rounded_corners_black"
+            android:background="@drawable/rounded_blue"
             android:elevation="15dp"
             android:orientation="vertical"
             android:alpha="0.8"
@@ -146,15 +147,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
                 <Button
                     android:id="@+id/btnNext"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_marginTop="200dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:background="#00000000"
+                    android:background="@drawable/rounded_corners_black"
                     android:fontFamily="@font/montserrat_extrabold"
                     android:text="@string/next"
                     android:textColor="@color/White" />

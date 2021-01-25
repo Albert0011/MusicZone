@@ -15,9 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Concert.DetailPlaylist"></activity>
         <activity android:name=".PromoteUser.WaitEmail" />
-        <activity android:name=".AddPlaylist2">
-        </activity>
+        <activity android:name=".AddPlaylist2"></activity>
         <activity android:name=".PromoteUser.PromoteActivity" />
         <activity android:name=".Profile.SavedConcerts" />
         <activity android:name=".Search.SearchActivity" />

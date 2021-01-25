@@ -1,7 +1,11 @@
 package com.glitchstacks.musiczone.Concert;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.glitchstacks.musiczone.Artist;
 import com.glitchstacks.musiczone.BuyTicket.BuyTicket;
 import com.glitchstacks.musiczone.Matches.SwipeActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
@@ -24,18 +29,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ConcertDetailActivity extends AppCompatActivity {
 
+    private static String concertKey;
     private ImageView concertImage;
     private TextView concertNameText, concertTimeText, concertDateText, concertDurationText, concertDetailText;
     private DatabaseReference mDatabase;
-    private String concertName, concertTime, concertDate, concertDuration, concertDetail, concertKey, imageURL;
+    private String concertName, concertTime, concertDate, concertDuration, concertDetail,imageURL;
     private FloatingActionButton btnLove;
     private LinearLayout findFriendsLayout, buyTicketLayout;
-    private Integer loveButtonClicked;
+    private RecyclerView artistRecylcerView;
+
+    public static String getConcertKey(){
+        return concertKey;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +59,6 @@ public class ConcertDetailActivity extends AppCompatActivity {
 
         Log.d("ConcertDetailMasuk", "ConcertDetailMasuk");
 
-        loveButtonClicked = 0;
 
         // for Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -69,6 +79,9 @@ public class ConcertDetailActivity extends AppCompatActivity {
         // for Layout
         findFriendsLayout = findViewById(R.id.layoutFriends);
         buyTicketLayout = findViewById(R.id.layoutTicket);
+
+        // for RecyclerView
+        artistRecylcerView = findViewById(R.id.recylcerViewArtist);
 
         // Getting from the Intent
         concertKey = getIntent().getStringExtra("concertKey");
@@ -241,6 +254,50 @@ public class ConcertDetailActivity extends AppCompatActivity {
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        getConcertPlaylist();
+
+    }
+
+    private void getConcertPlaylist() {
+
+        DatabaseReference mPlaylist = FirebaseDatabase.getInstance().getReference().child("Playlists").child(concertKey);
+
+        mPlaylist.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+                    ArrayList<Artist> currentArtistList = new ArrayList<>();
+
+                    for(DataSnapshot s : snapshot.getChildren()){
+
+                        Map<String, Object> map = (Map<String, Object>) s.getValue();
+
+                        String artistID = s.getKey();
+                        String artistName = map.get("artist_name").toString();
+                        String artistImageUrl = map.get("artist_image_url").toString();
+                        String artistSpotifyLink = map.get("artist_spotify_link").toString();
+
+                        Artist currentArtist = new Artist(artistName, artistImageUrl, artistSpotifyLink, artistID);
+
+                        currentArtistList.add(currentArtist);
+
+                    }
+
+                    ConcertDetailArtistAdapter concertDetailArtistAdapter = new ConcertDetailArtistAdapter(currentArtistList);
+                    artistRecylcerView.setHasFixedSize(true);
+                    artistRecylcerView.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
+                    artistRecylcerView.setAdapter(concertDetailArtistAdapter);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

@@ -130,10 +130,7 @@ public class ExploreDashboardFragment extends Fragment {
 
                         featuredList.add(featuredHelperClass);
                         featuredAdapter.notifyDataSetChanged();
-
                     }
-
-
                 }
             }
 

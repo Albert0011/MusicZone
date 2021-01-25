@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/concert"
+    android:background="@drawable/tsunami_like"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".PostConcert.AddPlaylist">
@@ -30,7 +30,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="25dp"
-            android:background="@drawable/rounded_corners_black"
+            android:background="@drawable/rounded_blue"
             android:elevation="15dp"
             android:orientation="vertical"
             android:alpha="0.8"
@@ -196,7 +196,7 @@
                     android:layout_height="60dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:background="#00000000"
+                    android:background="@drawable/rounded_corners_black"
                     android:fontFamily="@font/montserrat_extrabold"
                     android:text="Finish"
                     android:textColor="@color/White" />
