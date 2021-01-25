@@ -47,9 +47,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
+        final ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
 
         // Hook
         logout_layout = root.findViewById(R.id.logout_layout);
@@ -77,7 +75,6 @@ public class ProfileFragment extends Fragment {
         Toast.makeText(getContext(), map.get(SessionManager.KEY_SESSIONPASSWORD), Toast.LENGTH_SHORT).show();
         // User from Database
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-
 
         mProgress.setMessage("Fetching Data");
         mProgress.show();

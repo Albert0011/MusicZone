@@ -179,7 +179,7 @@ public class AddAddress extends AppCompatActivity {
 
         Log.d("concert Added", sementara);
 
-        if(concertImageUri != null){
+        if(!(concertImageUri==null)){
             Log.d("concertImageNotNull", "in");
             final StorageReference filepath = FirebaseStorage.getInstance().getReference().child("concertImages").child(concertKey);
 
