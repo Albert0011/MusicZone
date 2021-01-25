@@ -117,6 +117,7 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
                     intent.putExtra("date", _date);
                     intent.putExtra("gender", _gender);
                     intent.putExtra("phoneNo", phoneNo);
+                    intent.putExtra("whatToDo","nonono");
                     //intent.putExtra("whatToDO", "createNewUser"); // This is to identify that which action should OTP perform after verification.
 
                     //Add Transition
@@ -128,6 +129,7 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
                     } else {
                         startActivity(intent);
                     }
+                    finish();
 
                 }
             }

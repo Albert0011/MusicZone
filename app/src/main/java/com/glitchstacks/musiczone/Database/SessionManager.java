@@ -25,6 +25,7 @@ public class SessionManager {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_DATE = "date";
     public static final String KEY_GENDER = "gender";
+    public static final String KEY_PROMOTOR = "promotor";
 
     // remmeber me variables
     private static final String IS_REMEMBERME = "IsRememberMe";
@@ -46,7 +47,7 @@ public class SessionManager {
 
     }
 
-    public void createLoginSession(String fullname, String username, String email, String phoneNo, String password, String gender, String date) {
+    public void createLoginSession(String fullname, String username, String email, String phoneNo, String password, String gender, String date, String promotor) {
 
         editor = this.editor.putBoolean(IS_LOGIN, true);
 
@@ -57,6 +58,7 @@ public class SessionManager {
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_PASSWORD, password);
         editor.putString(KEY_GENDER, gender);
+        editor.putString(KEY_PROMOTOR, promotor);
 
         editor.commit();
 
@@ -71,6 +73,7 @@ public class SessionManager {
         userData.put(KEY_EMAIL, usersSession.getString(KEY_EMAIL, null));
         userData.put(KEY_GENDER, usersSession.getString(KEY_GENDER, null));
         userData.put(KEY_PASSWORD, usersSession.getString(KEY_PASSWORD, null));
+        userData.put(KEY_PROMOTOR, usersSession.getString(KEY_PROMOTOR, null));
 
         return userData;
 
