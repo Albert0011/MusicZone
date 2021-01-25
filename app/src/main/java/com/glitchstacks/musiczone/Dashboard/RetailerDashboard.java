@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,6 +28,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.HashMap;
@@ -35,7 +38,8 @@ public class RetailerDashboard extends AppCompatActivity {
 
     ChipNavigationBar chipNavigationBar;
     FirebaseAuth mAuth;
-
+    String phoneNumber, promotor;
+    DatabaseReference mDatabase;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,15 +51,19 @@ public class RetailerDashboard extends AppCompatActivity {
         HashMap<String, String> userDetails = sessionManager.getUsersDetailFromSession();
 
         String fullName = userDetails.get(SessionManager.KEY_FULLNAME);
-        String phoneNumber = userDetails.get(SessionManager.KEY_PHONENUMBER);
+        phoneNumber = userDetails.get(SessionManager.KEY_PHONENUMBER);
         String gender = userDetails.get(SessionManager.KEY_GENDER);
         String email = userDetails.get(SessionManager.KEY_EMAIL);
         String password = userDetails.get(SessionManager.KEY_PASSWORD);
         String date = userDetails.get(SessionManager.KEY_DATE);
         String username = userDetails.get(SessionManager.KEY_USERNAME);
+        promotor = userDetails.get(SessionManager.KEY_PROMOTOR);
+        Log.d("cekPromotor",promotor);
 //
         Toast.makeText(RetailerDashboard.this, email, Toast.LENGTH_SHORT).show();
         Toast.makeText(RetailerDashboard.this, password, Toast.LENGTH_SHORT).show();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -78,6 +86,9 @@ public class RetailerDashboard extends AppCompatActivity {
 
         chipNavigationBar = findViewById(R.id.bottom_nav_menu);
         chipNavigationBar.setItemSelected(R.id.bottom_nav_explore, true);
+        if(promotor.equals("false")){
+            chipNavigationBar.setItemEnabled(R.id.bottom_nav_post, false);
+        }
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ExploreDashboardFragment()).commit();
         bottomMenu();
 
@@ -102,7 +113,6 @@ public class RetailerDashboard extends AppCompatActivity {
                         break;
                     case R.id.bottom_nav_explore:
                         fragment = new ExploreDashboardFragment();
-
                         break;
                     case R.id.bottom_nav_ticket:
                         fragment = new TicketDashboardFragment();

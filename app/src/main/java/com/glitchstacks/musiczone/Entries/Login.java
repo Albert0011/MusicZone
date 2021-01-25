@@ -273,6 +273,7 @@ public class Login extends AppCompatActivity {
                     String _fullname = snapshot.child(_phoneNo).child("fullname").getValue(String.class);
                     String _gender = snapshot.child(_phoneNo).child("gender").getValue(String.class);
                     String _date = snapshot.child(_phoneNo).child("date").getValue(String.class);
+                    String _promotor = snapshot.child(_phoneNo).child("promotor").getValue(String.class);
 
                     if(_password.equals(password.getEditText().getText().toString())){
                         password.setError(null);
@@ -281,7 +282,7 @@ public class Login extends AppCompatActivity {
 
 
                         sessionManagerLogin = new SessionManager(Login.this, SessionManager.SESSION_USERSESSION);
-                        sessionManagerLogin.createLoginSession(_fullname,_username,_email, _phoneNo, _password, _gender, _date);
+                        sessionManagerLogin.createLoginSession(_fullname,_username,_email, _phoneNo, _password, _gender, _date, _promotor);
                         HashMap<String, String> userDetails = sessionManagerLogin.getUsersDetailFromSession();
 
                         Toast.makeText(Login.this, _email, Toast.LENGTH_LONG).show();

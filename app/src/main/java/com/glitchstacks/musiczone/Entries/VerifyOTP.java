@@ -46,7 +46,7 @@ public class VerifyOTP extends AppCompatActivity {
             }
             //signInWithPhoneAuthCredential(credential);
         } catch (Exception e) {
-            Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Verification Code is wrong SALAH BRO", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
@@ -138,7 +138,6 @@ public class VerifyOTP extends AppCompatActivity {
         startActivity(new Intent(VerifyOTP.this, Login.class));
         finish();
 
-
     }
 
 
@@ -167,7 +166,7 @@ public class VerifyOTP extends AppCompatActivity {
 
                         if (code != null) {
                             pinFromUser.setText(code);
-                            verifyCode(code);
+//                            verifyCode(code);
                         }
                     }
 

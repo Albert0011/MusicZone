@@ -2,7 +2,7 @@ package com.glitchstacks.musiczone.Profile;
 
 public class UserHelperClass {
 
-    String fullname, username, email, phoneNo, password, date, gender;
+    String fullname, username, email, phoneNo, password, date, gender, promotor;
 
     public UserHelperClass(){}
 
@@ -14,6 +14,7 @@ public class UserHelperClass {
         this.password = password;
         this.date = date;
         this.gender = gender;
+        this.promotor = "false";
     }
 
     public String getFullname() {
@@ -70,5 +71,13 @@ public class UserHelperClass {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getPromotor() {
+        return promotor;
+    }
+
+    public void setPromotor(String promotor) {
+        this.promotor = promotor;
     }
 }
