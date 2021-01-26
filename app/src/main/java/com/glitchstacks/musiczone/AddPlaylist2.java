@@ -65,7 +65,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     private ArrayList<Artist> artistlist = new ArrayList<>();
     private ArrayList<Performance> performanceList = new ArrayList<>();
 
-    final String authorization = "Bearer BQCojwPfkV5wmVV0qPmaS0FhcBHS-G_4emCkRG4nZj9ClNuuFySEerOfqtbB4mx7xs6gamN1CrrsMvd9kQlFZaE29G2p65krjFfzZb9iUp5W66TiYAvV-x9x_KrBDsHqhOgzm4nX2SFcknsiI6NvSnmHYGkGoQfo4A";
+    final String authorization = "Bearer BQDy6wvzMWovaCVYh3PdebvPFgOyFH9Q9LiqMLAdUmZTuVqCQoeivREAOEP5_Bwk3XPIAvdgcOxWV0d7Z58x9FfDDKW7NYGPKZYVfcNAM58SIAqTEpTYIV7YjZbJNX_msnOhBKS0UDNPTyd_EItYbtxKo_jRcBu4iQ";
 
 
     @Override
@@ -221,8 +221,6 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
         List<Artist> selectedArtist = artistAdapter.getSelectedArtist();
         Integer selectedArtistCount = selectedArtist.size();
 
-        Toast.makeText(AddPlaylist2.this, "Found " + selectedArtistCount.toString() + " Artist", Toast.LENGTH_SHORT).show();
-
         if (selectedArtistCount == 0) {
             Toast.makeText(AddPlaylist2.this, "Please select Artist first", Toast.LENGTH_SHORT).show();
             return;
@@ -312,7 +310,6 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
             }
 
         };
-
         // Access the RequestQueue through your requestMaker
         requestMaker.getInstance(context).addToRequestQueue(req);
     }
@@ -467,6 +464,11 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     }
 
     public void callNextScreen() {
+
+        if(performanceList.isEmpty()){
+            Toast.makeText(AddPlaylist2.this, "Add playlist first!", Toast.LENGTH_SHORT);
+            return;
+        }
 
         Intent intent = new Intent(getApplicationContext(), AddArea.class);
 

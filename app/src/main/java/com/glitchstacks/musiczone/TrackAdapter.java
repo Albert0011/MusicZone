@@ -1,6 +1,7 @@
 package com.glitchstacks.musiczone;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -108,6 +109,17 @@ public class TrackAdapter extends RecyclerView.Adapter<TrackAdapter.TrackViewHol
                         trackListener.onTrackAction(true);
                     }
 
+                }
+            });
+
+            track_layout.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    Uri uri = Uri.parse(track.getSpotifyLink());
+                    v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, uri));
+
+                    return true;
                 }
             });
 

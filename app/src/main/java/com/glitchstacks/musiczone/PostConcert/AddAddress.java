@@ -101,7 +101,6 @@ public class AddAddress extends AppCompatActivity {
             cityLayout.setError(null);
             cityLayout.setErrorEnabled(false);
         }
-
         return true;
     }
 

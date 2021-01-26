@@ -20,7 +20,8 @@
         android:clickable="false"
         android:orientation="horizontal"
         android:padding="15dp"
-        android:background="@drawable/rounded_blue">
+        android:background="@drawable/rounded_blue"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/track_name"

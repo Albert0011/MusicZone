@@ -285,8 +285,6 @@ public class Login extends AppCompatActivity {
                         sessionManagerLogin.createLoginSession(_fullname,_username,_email, _phoneNo, _password, _gender, _date, _promotor);
                         HashMap<String, String> userDetails = sessionManagerLogin.getUsersDetailFromSession();
 
-                        Toast.makeText(Login.this, _email, Toast.LENGTH_LONG).show();
-
                         Intent intent = new Intent(getApplicationContext(), RetailerDashboard.class);
                         startActivity(intent);
                         finish();
@@ -294,6 +292,7 @@ public class Login extends AppCompatActivity {
 
                     }else{
                         mProgress.dismiss();
+                        password.setError("Wrong password.");
                         //.makeText(Login.this, "Your password is wrong!", Toast.LENGTH_LONG).show();
                     }
                 }else{

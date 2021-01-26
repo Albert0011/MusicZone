@@ -58,10 +58,7 @@ public class RetailerDashboard extends AppCompatActivity {
         String date = userDetails.get(SessionManager.KEY_DATE);
         String username = userDetails.get(SessionManager.KEY_USERNAME);
         promotor = userDetails.get(SessionManager.KEY_PROMOTOR);
-        Log.d("cekPromotor",promotor);
-//
-        Toast.makeText(RetailerDashboard.this, email, Toast.LENGTH_SHORT).show();
-        Toast.makeText(RetailerDashboard.this, password, Toast.LENGTH_SHORT).show();
+        Log.d("cekPromotor",promotor.toString());
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -72,17 +69,15 @@ public class RetailerDashboard extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()){ // Email and password match
-                        Toast.makeText(RetailerDashboard.this, "Logged in!", Toast.LENGTH_SHORT).show();
+                        Log.d("retailerDashboard", "loginaccepted");
 
                     } else {
                         // Set the error message
-                        Toast.makeText(RetailerDashboard.this, "Login Fail!", Toast.LENGTH_SHORT).show();
+                        Log.d("retailerDashboard", "logindenied");
 
                     }
                 }
             });
-
-        Toast.makeText(RetailerDashboard.this, username, Toast.LENGTH_LONG).show();
 
         chipNavigationBar = findViewById(R.id.bottom_nav_menu);
         chipNavigationBar.setItemSelected(R.id.bottom_nav_explore, true);
@@ -91,8 +86,6 @@ public class RetailerDashboard extends AppCompatActivity {
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ExploreDashboardFragment()).commit();
         bottomMenu();
-
-
     }
 
     private void bottomMenu() {

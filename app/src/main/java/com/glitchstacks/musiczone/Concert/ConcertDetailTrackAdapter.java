@@ -1,6 +1,7 @@
 package com.glitchstacks.musiczone.Concert;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +76,17 @@ public class ConcertDetailTrackAdapter extends RecyclerView.Adapter<ConcertDetai
                 public void onClick(View v) {
                     Log.d("trackClicked", tracktitle);
 
+                }
+            });
+
+            track_layout.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    Uri uri = Uri.parse(track.getSpotifyLink());
+                    v.getContext().startActivity(new Intent(Intent.ACTION_VIEW, uri));
+
+                    return true;
                 }
             });
 

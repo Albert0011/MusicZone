@@ -24,7 +24,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -64,7 +68,7 @@ public class SwipeActivity extends AppCompatActivity {
 
         rowItems = new ArrayList<cards>();
 
-        arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems );
+        arrayAdapter = new arrayAdapter(this, R.layout.item,rowItems);
 
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
@@ -225,7 +229,11 @@ public class SwipeActivity extends AppCompatActivity {
                         if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
                             profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                         }
-                        cards item = new cards(dataSnapshot.getKey(), dataSnapshot.child("fullname").getValue().toString(), profileImageUrl);
+
+                        String date = dataSnapshot.child("date").getValue().toString();
+
+                        cards item = new cards(dataSnapshot.getKey(), dataSnapshot.child("fullname").getValue().toString(), profileImageUrl,
+                                dataSnapshot.child("description").getValue().toString(), date);
                         rowItems.add(item);
                         arrayAdapter.notifyDataSetChanged();
                     }

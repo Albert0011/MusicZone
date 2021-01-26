@@ -50,7 +50,7 @@ public class SignUp2ndClass extends AppCompatActivity {
 
     public void callNextSignUpScreen(View view) {
 
-        if(!validateGender() || !validateAge()){
+        if (!validateGender() || !validateAge()) {
             return;
         }
 
@@ -59,14 +59,14 @@ public class SignUp2ndClass extends AppCompatActivity {
         String _username = getIntent().getStringExtra("username");
         String _password = getIntent().getStringExtra("password");
 
-        selectedGender =  findViewById(radioGroup.getCheckedRadioButtonId());
+        selectedGender = findViewById(radioGroup.getCheckedRadioButtonId());
         gender = selectedGender.getText().toString();
 
         int day = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth();
+        int month = datePicker.getMonth()+1;
         int year = datePicker.getYear();
 
-        date = day+"/"+month+"/"+year;
+        date = day + "/" + month + "/" + year;
 
         String _date = date;
         String _gender = gender;
@@ -89,10 +89,10 @@ public class SignUp2ndClass extends AppCompatActivity {
         pairs[3] = new Pair<View, String>(signin, "transition_signin_btn");
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            try{
+            try {
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp2ndClass.this, pairs);
                 startActivity(intent, options.toBundle());
-            }catch (Exception e){
+            } catch (Exception e) {
                 Toast.makeText(this, "There is an error", Toast.LENGTH_SHORT).show();
             }
 
@@ -125,24 +125,23 @@ public class SignUp2ndClass extends AppCompatActivity {
     }
 
 
-    public void backToBefore(View view){
+    public void backToBefore(View view) {
 
         Intent intent = new Intent(getApplicationContext(), SignUp.class);
 
         Pair[] pairs = new Pair[1];
 
-        pairs[0] = new Pair<View, String>(findViewById(R.id.signup_back_btn),"transition_back_btn");
+        pairs[0] = new Pair<View, String>(findViewById(R.id.signup_back_btn), "transition_back_btn");
 
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SignUp2ndClass.this, pairs);
-            startActivity(intent,options.toBundle());
-        }
-        else{
+            startActivity(intent, options.toBundle());
+        } else {
             startActivity(intent);
         }
     }
 
-    public void callLoginScreen(View view){
+    public void callLoginScreen(View view) {
 
         Intent intent = new Intent(getApplicationContext(), Login.class);
 

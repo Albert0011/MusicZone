@@ -4,23 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Matches.SwipeActivity"
     android:orientation="vertical"
-    >
+    tools:context=".Matches.SwipeActivity"
+    android:background="@drawable/find_friends_bg">
 
-    <TextView
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find Your Matches!"
-        android:layout_gravity="center"/>
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back_button_circle"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="80dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="Find\nFriends\nHere!"
+            android:textColor="@color/Black"
+            android:textSize="20dp" />
+
+
+    </LinearLayout>
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/frame"
-        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#00000000"
         app:rotation_degrees="15.5"
-        tools:context=".MyActivity"/>
+        tools:context=".MyActivity" />
 
 </LinearLayout>
