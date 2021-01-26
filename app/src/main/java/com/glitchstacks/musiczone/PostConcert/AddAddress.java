@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
 import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.PromotorRequest;
 import com.glitchstacks.musiczone.R;
 import com.glitchstacks.musiczone.Track;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -335,6 +336,13 @@ public class AddAddress extends AppCompatActivity {
 
         // Database Reference
         addressDatabase.updateChildren(placeInfo);
+
+        SessionManager sessionManager = new SessionManager(AddAddress.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
+        String phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
+
+        mDatabase.child("Promotors").child(phoneNumber).child(concertKey).setValue("true");
+
         Toast.makeText(this, "Concert is successfully added!", Toast.LENGTH_SHORT).show();
 
     }

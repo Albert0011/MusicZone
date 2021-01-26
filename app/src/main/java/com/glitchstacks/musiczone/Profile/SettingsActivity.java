@@ -227,7 +227,7 @@ public class SettingsActivity extends Fragment {
             mProfileImage.setImageURI(resultUri);
         }
         else{
-            Toast.makeText(getActivity(), "in", Toast.LENGTH_LONG).show();
+            Log.d("profileChanged", "cancelled");
         }
     }
 }

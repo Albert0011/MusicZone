@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ import com.glitchstacks.musiczone.Entries.MusicZoneStartUpScreen;
 import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
 import com.glitchstacks.musiczone.Profile.SettingsActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.PromotorPage;
+import com.glitchstacks.musiczone.PromotorRequest;
 import com.glitchstacks.musiczone.R;
 import com.glitchstacks.musiczone.Profile.SavedConcerts;
 import com.google.firebase.database.DataSnapshot;
@@ -72,7 +75,6 @@ public class ProfileFragment extends Fragment {
         phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
         userId = phoneNumber;
 
-        Toast.makeText(getContext(), map.get(SessionManager.KEY_SESSIONPASSWORD), Toast.LENGTH_SHORT).show();
         // User from Database
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
@@ -86,8 +88,9 @@ public class ProfileFragment extends Fragment {
         layout_promotor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SavedConcerts.class);
-                startActivity(intent);
+
+                checkPromotor();
+
             }
         });
 
@@ -119,6 +122,74 @@ public class ProfileFragment extends Fragment {
         });
 
         return root;
+    }
+
+    private void checkPromotor() {
+
+        mUserDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if(snapshot.exists()){
+
+                    String accepted = snapshot.child("promotor").getValue().toString();
+
+                    if(accepted.equals("false")){
+                        checkRequest();
+                    }else{
+                        Intent intent = new Intent(getContext(), PromotorPage.class);
+                        startActivity(intent);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+    private void checkRequest() {
+
+        DatabaseReference mRequest = FirebaseDatabase.getInstance().getReference().child("Request").child(userId);
+
+        if(mRequest == null){
+            Intent intent = new Intent(getContext(), PromotorRequest.class);
+            startActivity(intent);
+        }
+
+        mRequest.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String isAccepted = snapshot.child("accepted").getValue().toString();
+                    if(isAccepted.equals("pending")){
+                        Toast.makeText(getContext(),"Wait for the authentication", Toast.LENGTH_SHORT).show();
+                        return;
+                    }else{
+                        Toast.makeText(getContext(), "You're not egligible to Apply", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                else{
+                    Intent intent = new Intent(getContext(), PromotorRequest.class);
+                    startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     private void getUserInfo() {

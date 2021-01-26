@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UploadRequest"></activity>
+        <activity android:name=".PromotorPage"></activity>
+        <activity android:name=".PromotorRequest" />
         <activity android:name=".Concert.DetailPlaylist" />
         <activity android:name=".PromoteUser.WaitEmail" />
         <activity android:name=".AddPlaylist2" />

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:padding="30dp"
+    tools:context=".Entries.Login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:onClick="backToBefore"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="become promotor"
+            android:textAllCaps="true"
+            android:textColor="@color/Black"
+            android:textSize="40sp"
+            android:transitionName="transition_signin_btn" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Input your Identity Card Photos" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imageIdentity"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/raissa_poster"
+                app:riv_corner_radius="10dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAccountNumber"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Bank Account Number"
+                app:boxStrokeColor="@color/Black"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/Black"
+                app:hintTextColor="@color/Black"
+                app:startIconTint="@color/Black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/accountNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/montserrat"
+                    android:inputType="textPassword"
+                    android:textColor="@color/Black"/>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textReadTerm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="Read Term and Conditions"
+                android:textColor="@color/Blue" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkbox_agree"
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:buttonTint="@color/Black"
+                    android:text="Agree to Term and Conditions"
+                    android:textColor="@color/Black" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_blue"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="SUBMIT"
+                android:textColor="@color/White"
+                android:transitionName="transition_signin_btn" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

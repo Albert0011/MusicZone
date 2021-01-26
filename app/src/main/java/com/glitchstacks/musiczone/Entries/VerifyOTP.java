@@ -113,6 +113,7 @@ public class VerifyOTP extends AppCompatActivity {
         UserHelperClass addNewUser = new UserHelperClass(fullname, username, email, phoneNo, password, date, gender);
 
         reference.child(phoneNo).setValue(addNewUser);
+        reference.child(phoneNo).child("promotor").setValue("false");
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

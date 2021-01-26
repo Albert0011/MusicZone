@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="30dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="TERM AND CONDITIONS"
+        android:textAllCaps="true"
+        android:textColor="@color/Black"
+        android:textSize="40sp"
+        android:transitionName="transition_signin_btn" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:justificationMode="inter_word"
+        android:text="1. If you are caught lying with a photo of your identity,
+        you can be subject to criminal sanctions for identity forgery and will not be allowed to use this application again."/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:justificationMode="inter_word"
+        android:text="2. There will be a deduction of 1% for every concert income you make."/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:justificationMode="inter_word"
+        android:text="3. The request to become a promoter will be processed within a maximum of 2 days, data and everything related to registration will be maintained properly."/>
+
+    <ImageView
+        android:layout_marginTop="100dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/music_zone_logo"/>
+
+</LinearLayout>

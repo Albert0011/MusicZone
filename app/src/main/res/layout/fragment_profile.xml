@@ -255,7 +255,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/promotor_layout"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:text="@string/promotor"
+                android:text="Promotor Page"
                 android:textColor="@color/White" />
 
         </RelativeLayout>

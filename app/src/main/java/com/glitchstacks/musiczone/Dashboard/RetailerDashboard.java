@@ -58,11 +58,9 @@ public class RetailerDashboard extends AppCompatActivity {
         String date = userDetails.get(SessionManager.KEY_DATE);
         String username = userDetails.get(SessionManager.KEY_USERNAME);
         promotor = userDetails.get(SessionManager.KEY_PROMOTOR);
+
         Log.d("cekPromotor",promotor.toString());
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-
         mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
