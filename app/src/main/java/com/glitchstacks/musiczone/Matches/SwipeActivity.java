@@ -164,7 +164,7 @@ public class SwipeActivity extends AppCompatActivity {
         phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
 
         DatabaseReference userDb = usersDb.child(phoneNumber);
-        Toast.makeText(SwipeActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SwipeActivity.this, phoneNumber, Toast.LENGTH_SHORT).show();
 
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
