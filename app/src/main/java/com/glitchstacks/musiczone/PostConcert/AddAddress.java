@@ -229,6 +229,7 @@ public class AddAddress extends AppCompatActivity {
             });
         } else {
             Log.d("resultUri", "out");
+            return false;
         }
 
         // Save Concert Playlist
@@ -315,6 +316,7 @@ public class AddAddress extends AppCompatActivity {
             });
         } else {
             Log.d("resultUri", "out");
+            return false;
         }
 
         // Save address Detail
