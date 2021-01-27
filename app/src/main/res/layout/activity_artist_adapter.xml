@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/raissa_poster2"
+            android:src="@drawable/blank"
             app:riv_border_width="0dp"
             app:riv_corner_radius="10dip"/>
 

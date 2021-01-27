@@ -119,6 +119,9 @@ public class ExploreDashboardFragment extends Fragment {
                     String currentdate = dateFormat.format(calendar.getTime());
 
                     // Hook from database
+
+                    if(!(snapshot.child("imageURL").exists())) return;
+
                     imageUrl = snapshot.child("imageURL").getValue().toString();
                     concertTitle = snapshot.child("concert_name").getValue().toString();
                     concertDesc = snapshot.child("description").getValue().toString();

@@ -47,7 +47,8 @@
                 android:id="@+id/imageIdentity"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/raissa_poster"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/blank"
                 app:riv_corner_radius="10dp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -55,6 +56,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:hint="Enter your Bank Account Number"
                 app:boxStrokeColor="@color/Black"
                 app:boxStrokeWidthFocused="2dp"
@@ -69,7 +71,7 @@
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat"
                     android:inputType="textPassword"
-                    android:textColor="@color/Black"/>
+                    android:textColor="@color/Black" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
