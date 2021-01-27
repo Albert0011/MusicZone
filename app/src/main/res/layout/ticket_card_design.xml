@@ -10,6 +10,8 @@
     app:cardPreventCornerOverlap="false">
 
     <LinearLayout
+
+        android:id="@+id/ticketDesign"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -213,6 +215,17 @@
 <!--            android:textSize="15sp" />-->
 
 
+        <ImageView
+            android:id="@+id/imageSelected"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/check"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_marginTop="-135dp"/>
+
     </LinearLayout>
+
+
 
 </androidx.cardview.widget.CardView>

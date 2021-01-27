@@ -1,10 +1,12 @@
 package com.glitchstacks.musiczone.Dashboard.DashboardFragment;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,10 +14,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.glitchstacks.musiczone.BuyTicket.TicketListener;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.BuyTicket.TicketAdapter;
 import com.glitchstacks.musiczone.BuyTicket.TicketHelperClass;
+import com.glitchstacks.musiczone.PostConcert.AddPlaylist2;
+import com.glitchstacks.musiczone.PostConcert.Artist;
 import com.glitchstacks.musiczone.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -26,18 +33,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
-public class TicketDashboardFragment extends Fragment {
+public class TicketDashboardFragment extends Fragment implements TicketListener {
 
     private RecyclerView ticketRecycler;
-    private RecyclerView.Adapter ticketAdapter;
+    private TicketAdapter ticketAdapter;
 
     private DatabaseReference mDatabase;
 
     private ArrayList<TicketHelperClass> ticketList = new ArrayList<TicketHelperClass>();
 
     private String phoneNumber, promotorPhone;
+    private Button finishButton;
+
 
 
 
@@ -58,15 +68,52 @@ public class TicketDashboardFragment extends Fragment {
         // UserID
         phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
 
+        finishButton = root.findViewById(R.id.finishConcert);
+
         // List of Tickets
         ticketRecycler = root.findViewById(R.id.ticket_recycler);
         ticketRecycler();
 
-        ticketAdapter = new TicketAdapter(getTicket());
+        ticketAdapter = new TicketAdapter(getTicket(), this);
         ticketRecycler.setAdapter(ticketAdapter);
+
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Log.d("CekButton", "masuk bro");
+                finishConcert();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TicketDashboardFragment()).commit();
+                Toast.makeText(getContext(), "Ticket is now finished!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return root;
     }
+
+    private void finishConcert() {
+
+        if (ticketAdapter == null) {
+            Toast.makeText(getContext(), "No ticket!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        List<TicketHelperClass> selectedTicket = ticketAdapter.getSelectedTicket();
+        Integer selectedTicketCount = selectedTicket.size();
+
+        if (selectedTicketCount == 0) {
+            Toast.makeText(getContext(), "Please select a Ticket first", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        for (TicketHelperClass ticket : selectedTicket) {
+            Log.d("CekButton2", "masuk brok");
+            String key = ticket.getConcertKey();
+            mDatabase.child("Users").child(phoneNumber).child("tickets").child(key).child("status").setValue("finished");
+        }
+
+    }
+
 
     private void ticketRecycler(){
 
@@ -102,6 +149,8 @@ public class TicketDashboardFragment extends Fragment {
 
                         final String finalAmountTicket = amountTicket;
                         final String finalArea = area;
+                        final String finalConcertKey = snapshot.getKey().toString();
+
                         mDatabase.child("Concerts").child(concertKey).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -131,7 +180,7 @@ public class TicketDashboardFragment extends Fragment {
                                 if(!imageUrl[0].isEmpty() && !concertTitle[0].isEmpty() && !concertDesc[0].isEmpty() && !concertDate[0].isEmpty()
                                         && !finalArea.isEmpty() && !finalAmountTicket.isEmpty() && !concertTime[0].isEmpty() && !finalAmountTicket.isEmpty()){
 
-                                    TicketHelperClass ticketHelperClass = new TicketHelperClass(imageUrl[0], concertTitle[0], concertDesc[0], concertDate[0], concertTime[0], finalArea, finalAmountTicket, promotorPhone);
+                                    TicketHelperClass ticketHelperClass = new TicketHelperClass(imageUrl[0], concertTitle[0], concertDesc[0], concertDate[0], concertTime[0], finalArea, finalAmountTicket, promotorPhone, finalConcertKey);
 
                                     ticketList.add(ticketHelperClass);
                                     ticketAdapter.notifyDataSetChanged();
@@ -173,9 +222,12 @@ public class TicketDashboardFragment extends Fragment {
 
     }
 
-
     private ArrayList<TicketHelperClass> getTicket(){
         return ticketList;
     }
 
+    @Override
+    public void onTicketAction(Boolean isSelected) {
+//        Toast.makeText(getContext(), "Something Selected", Toast.LENGTH_SHORT).show();
+    }
 }
