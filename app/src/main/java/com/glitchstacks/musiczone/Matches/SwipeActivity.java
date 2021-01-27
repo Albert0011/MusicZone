@@ -5,9 +5,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ public class SwipeActivity extends AppCompatActivity {
     private String currentUId, concertKey;
     private String phoneNumber;
     private DatabaseReference usersDb, mDatabase;
+    private ImageView back_btn;
 
     private ArrayList<String> userLikeList;
 
@@ -61,6 +65,15 @@ public class SwipeActivity extends AppCompatActivity {
         currentUId = phoneNumber;
         concertKey = getIntent().getStringExtra("concertKey");
         userLikeList = new ArrayList<String>();
+
+        back_btn = findViewById(R.id.back_btn);
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         Toast.makeText(SwipeActivity.this, "MASUKSBLMSEX", Toast.LENGTH_SHORT).show();
         checkUserSex();

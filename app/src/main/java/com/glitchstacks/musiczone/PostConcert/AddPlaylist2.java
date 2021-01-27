@@ -60,7 +60,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     private ArrayList<Artist> artistlist = new ArrayList<>();
     private ArrayList<Performance> performanceList = new ArrayList<>();
 
-    final String authorization = "Bearer BQAx04QEuRFgjrxKbTvqd_A_JuWZguNkFmIcYBX-PFnT8Dn-GjS8wXmpXIg8BLuOPKmShb9h7svm03jqSBMwazols5hbgTwYvBPzHPVYtsmpvYmfC81-37jr5MMaHR6J3HWaqgEqGEsm8oNZjdyM69-x8HWj8EztSw";
+    final String authorization = "Bearer BQDUxPKWSTl8c5EACsw2j728E6mHArGhMKtR_maTJlX7RpW7Pd0xzCLr7Nv-FIuY8hNYEgYpCcsBOFIu1h_M-TazMYgx8M3acl2oYVTJDiKoY4VSSOzO9DS4E7WtaVLk6y3yc7Fl-z2bUdj_mYc0I61aykShydVekg";
 
 
     @Override

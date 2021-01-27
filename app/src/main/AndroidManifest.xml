@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminPage.RequestDetail"></activity>
+        <activity android:name=".Concert.PlacesDetail"></activity>
+        <activity android:name=".AdminPage.RequestDetail" />
         <activity android:name=".AdminPage.Admin" />
         <activity android:name=".PromotorPage" />
         <activity android:name=".Profile.PromotorRequest" />
@@ -53,6 +54,7 @@
         <activity android:name=".Entries.IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

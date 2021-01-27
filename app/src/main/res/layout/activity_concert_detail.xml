@@ -15,8 +15,7 @@
         android:layout_height="280dp"
         android:background="@drawable/concert_bg"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme"
-        >
+        android:theme="@style/AppTheme">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -135,7 +134,7 @@
                         android:layout_height="64dp"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/watch96"/>
+                        android:src="@drawable/watch96" />
 
                     <TextView
                         android:id="@+id/txtTime"
@@ -223,39 +222,51 @@
             </LinearLayout>
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_extrabold"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
                 android:gravity="center"
                 android:text="@string/playlist"
                 android:textColor="@color/White"
-                android:textSize="28sp"/>
+                android:textSize="28sp" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
                 android:gravity="center"
                 android:text="@string/playlistDesc"
                 android:textColor="@color/White"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recylcerViewArtist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/see_playlist"
+                android:id="@+id/see_places"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:gravity="center"
+                android:text="See Places"
                 android:textColor="@color/White"
-                android:text="See Places"/>
+                android:textSize="28sp" />
 
+            <TextView
+                android:id="@+id/places_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="Click on the text above to see places of your concert"
+                android:textColor="@color/White"
+                android:textSize="12sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -271,30 +282,30 @@
                     android:layout_width="80dp"
                     android:layout_height="200dp"
                     android:layout_weight="1"
+                    android:background="@drawable/rounded_corners_white"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="20dp"
-                    android:background="@drawable/rounded_corners_white">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="0dp"
                         android:fontFamily="@font/montserrat_extrabold"
                         android:text="@string/nofriends"
                         android:textColor="@color/Black"
-                        android:textSize="20dp"
-                        android:layout_marginBottom="0dp"/>
+                        android:textSize="20dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="-30dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/clicktofindfriend"
                         android:textColor="@color/Black"
-                        android:textSize="10dp"
-                        android:layout_marginBottom="-30dp"/>
+                        android:textSize="10dp" />
 
 
                     <ImageView
@@ -304,37 +315,38 @@
                         android:src="@drawable/people_choose" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/layoutTicket"
                     android:layout_width="60dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_height="200dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="1"
+                    android:background="@drawable/rounded_corners_white"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="20dp"
-                    android:background="@drawable/rounded_corners_white">
+                    android:padding="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="0dp"
                         android:fontFamily="@font/montserrat_extrabold"
                         android:text="@string/buyticket"
                         android:textColor="@color/Black"
-                        android:textSize="20dp"
-                        android:layout_marginBottom="0dp"/>
+                        android:textSize="20dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="-40dp"
+                        android:elevation="3dp"
                         android:fontFamily="@font/montserrat"
                         android:text="@string/clicktobuyticket"
                         android:textColor="@color/Black"
-                        android:textSize="10dp"
-                        android:layout_marginBottom="-40dp"
-                        android:elevation="3dp"/>
+                        android:textSize="10dp" />
 
 
                     <ImageView
@@ -346,7 +358,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -367,7 +378,6 @@
         app:fabSize="normal"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="end|bottom" />
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
