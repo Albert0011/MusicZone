@@ -61,7 +61,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 @Override
                 public void onClick(View v) {
 
-                Log.d("ClickedRerquest", request.getUserID());
+                Log.d("ClickedRequest", request.getUserID());
 
                 Intent intent = new Intent(request_layout.getContext(), RequestDetail.class);
 
