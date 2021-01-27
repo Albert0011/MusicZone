@@ -69,6 +69,8 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void saveData(){
 
+        DatabaseReference mPayment = mDatabase.child("Payments");
+
         DatabaseReference ticketDatabase = mDatabase.child("Users").child(phoneNumber).child("tickets");
         final String concertKey = getIntent().getStringExtra("concertKey");
         String amountTicket = getIntent().getStringExtra("amountTicket");
@@ -79,6 +81,8 @@ public class PaymentActivity extends AppCompatActivity {
         ticketInfo.put("amountTicket", amountTicket);
         ticketInfo.put("area", area);
         ticketInfo.put("status", false);
+
+
 
         // Database Reference
         ticketDatabase.push().updateChildren(ticketInfo);

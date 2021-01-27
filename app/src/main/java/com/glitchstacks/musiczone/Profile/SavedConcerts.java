@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import com.glitchstacks.musiczone.Database.SessionManager;
@@ -31,7 +33,7 @@ public class SavedConcerts extends AppCompatActivity {
 
     private Integer currentChoosen;
     private SearchView searchView;
-
+    private ImageView backButton;
     private RecyclerView concertRecyclerByName;
 
     private ArrayList<ConcertObject> concertListByName;
@@ -52,6 +54,15 @@ public class SavedConcerts extends AppCompatActivity {
 
         concertRecyclerByName = findViewById(R.id.recyclerViewName);
         concertRecyclerByGenre = findViewById(R.id.recyclerViewGenre);
+        backButton = findViewById(R.id.back_btn);
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 

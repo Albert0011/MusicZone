@@ -12,13 +12,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.glitchstacks.musiczone.Concert.ConcertDetailActivity;
+
 import com.glitchstacks.musiczone.R;
-import com.glitchstacks.musiczone.Track;
-import com.glitchstacks.musiczone.TrackListener;
+import com.glitchstacks.musiczone.PostConcert.Track;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ConcertDetailTrackAdapter extends RecyclerView.Adapter<ConcertDetailTrackAdapter.ConcertDetailTrackViewHolder> {
 

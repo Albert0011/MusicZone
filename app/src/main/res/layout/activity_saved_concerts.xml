@@ -6,26 +6,27 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context=".Search.SearchActivity"
-    android:padding="20dp">
+    android:padding="20dp"
+    tools:context=".Search.SearchActivity">
 
     <LinearLayout
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginLeft="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
         android:layout_gravity="center"
-        android:background="@drawable/rounded_blue">
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/rounded_blue"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <ImageView
+            android:id="@+id/back_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/back_arrow"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
+            android:src="@drawable/back_arrow"
             app:tint="@color/White" />
 
         <SearchView
@@ -33,13 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/rounded_corners_white"
-            app:queryHint="Search by Name, Genre, or Artist"/>
+            app:queryHint="Search by Name, Genre, or Artist" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,12 +47,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Result by Name"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:textColor="@color/Black"/>
+                android:text="Result by Name"
+                android:textColor="@color/Black" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewName"
@@ -61,37 +61,37 @@
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="0dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Result by Genre"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:textColor="@color/Black"/>
+                android:text="Result by Genre"
+                android:textColor="@color/Black" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewGenre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp" />
 
             <TextView
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Result by Artist"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat"
-                android:textColor="@color/Black"/>
+                android:text="Result by Artist"
+                android:textColor="@color/Black" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recylcerViewArtist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp" />
 
 
         </LinearLayout>
@@ -99,15 +99,14 @@
     </ScrollView>
 
     <Button
-        android:layout_marginTop="-100dp"
         android:layout_width="300dp"
         android:layout_height="80dp"
-        android:background="@drawable/rounded_corners_purple"
-        android:text="Add to wishlist"
-        android:fontFamily="@font/montserrat_extrabold"
         android:layout_gravity="center"
-        android:visibility="gone"
-        />
+        android:layout_marginTop="-100dp"
+        android:background="@drawable/rounded_corners_purple"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="Add to wishlist"
+        android:visibility="gone" />
 
 
 </LinearLayout>

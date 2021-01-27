@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.PostConcert;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,13 +12,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +29,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.glitchstacks.musiczone.PostConcert.AddArea;
-import com.glitchstacks.musiczone.PostConcert.AddPlaylist;
-import com.glitchstacks.musiczone.PostConcert.Performance;
+import com.glitchstacks.musiczone.R;
+import com.glitchstacks.musiczone.requestMaker;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -65,7 +60,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     private ArrayList<Artist> artistlist = new ArrayList<>();
     private ArrayList<Performance> performanceList = new ArrayList<>();
 
-    final String authorization = "Bearer BQDNJZpUi0XVoCzUkQcUlqfgxGuEDt-2whmWG7ll9Qir_LcTP02zIxZEs_v5nWWr5fw3eic3JGzx0fM56NoTU2ajUVF75X9iLJPnJKkKJBXEzXiFvxLVLfJIsfnmxNZ64fSJ115Q4Mvb5zyOPPJxZOwfB-re9OqzKQ";
+    final String authorization = "Bearer BQAx04QEuRFgjrxKbTvqd_A_JuWZguNkFmIcYBX-PFnT8Dn-GjS8wXmpXIg8BLuOPKmShb9h7svm03jqSBMwazols5hbgTwYvBPzHPVYtsmpvYmfC81-37jr5MMaHR6J3HWaqgEqGEsm8oNZjdyM69-x8HWj8EztSw";
 
 
     @Override
@@ -258,14 +253,20 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
 
         } else {
             // kalau sudah ada
+            int i = -1;
             for (Performance p : performanceList) {
                 if (p.getArtist().getId().equals(currentArtist.getId())) {
-                    p.getTrackList().add(currentTrack);
-                }else{
-                    List<Track> currentTrackList = new ArrayList<>();
-                    currentTrackList.add(currentTrack);
-                    performanceList.add(new Performance(currentArtist,currentTrackList));
+                    i = performanceList.indexOf(p);
+                    break;
                 }
+            }
+
+            if(i == -1){
+                List<Track> currentTrackList = new ArrayList<>();
+                currentTrackList.add(currentTrack);
+                performanceList.add(new Performance(currentArtist,currentTrackList));
+            }else{
+                performanceList.get(i).getTrackList().add(currentTrack);
             }
         }
 
@@ -459,14 +460,14 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     @Override
     public void onTrackAction(Boolean isSelected) {
         if (isSelected) {
-            Toast.makeText(AddPlaylist2.this, "Something selected", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(AddPlaylist2.this, "Something selected", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void callNextScreen() {
 
         if(performanceList.isEmpty()){
-            Toast.makeText(AddPlaylist2.this, "Add playlist first!", Toast.LENGTH_SHORT);
+            //Toast.makeText(AddPlaylist2.this, "Add playlist first!", Toast.LENGTH_SHORT);
             return;
         }
 

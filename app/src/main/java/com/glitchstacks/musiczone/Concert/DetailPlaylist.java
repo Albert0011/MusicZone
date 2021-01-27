@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.glitchstacks.musiczone.R;
-import com.glitchstacks.musiczone.Track;
+import com.glitchstacks.musiczone.PostConcert.Track;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,8 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Map;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DetailPlaylist extends AppCompatActivity {
 

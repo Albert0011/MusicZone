@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
+    android:background="@drawable/concert_bg6"
     android:orientation="vertical"
     tools:context=".Dashboard.DashboardFragment.ExploreDashboardFragment">
 
@@ -12,14 +12,10 @@
 
         android:layout_width="200dp"
         android:layout_height="100dp"
-
-        android:orientation="horizontal"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@color/White"
-
+        android:orientation="vertical"
         >
-
         // COmmit
         // Music Zone Logo
 
@@ -27,26 +23,29 @@
 
         <ImageView
             android:id="@+id/app_name"
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:src="@drawable/music_zone_logo"
             android:layout_gravity="center"
-            />
+            android:layout_marginTop="40dp"
+            android:src="@drawable/music_zone_logo" />
 
     </LinearLayout>
 
     // ScrollBar
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         // Scrollable Body
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             // Layout Top Places
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,8 +53,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_corners_white"
-                android:elevation="8dp"
-                >
+                android:elevation="8dp">
 
                 <LinearLayout
                     android:id="@+id/featured_desc"
@@ -107,6 +105,7 @@
             </RelativeLayout>
 
             // Most Viewed
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,57 +123,51 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/most_viewed"
                         android:fontFamily="@font/montserrat_extrabold"
-                        android:textSize="15sp"
+                        android:text="@string/most_viewed"
                         android:textAllCaps="true"
-                        android:textColor="@color/Black"/>
+                        android:textColor="@color/White"
+                        android:textSize="15sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/view_all"
                         android:layout_alignParentRight="true"
-                        android:fontFamily="@font/montserrat"/>
-
-
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/view_all"
+                        android:textColor="@color/White"/>
 
                 </RelativeLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/most_viewed_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/rounded_blue"
-                    android:elevation="8dp"
-                    android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:elevation="8dp" />
 
 
             </LinearLayout>
 
             <TextView
                 android:id="@+id/search_input"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Click here to discover more!"
-                android:textColor="@color/Grey"
-                android:gravity="center"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/montserrat"
-                />
-
+                android:gravity="center"
+                android:text="Click here to discover more!"
+                android:textColor="@color/White" />
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
-                android:background="@color/White"/>
-
-
+                android:background="#00000000" />
 
 
         </LinearLayout>

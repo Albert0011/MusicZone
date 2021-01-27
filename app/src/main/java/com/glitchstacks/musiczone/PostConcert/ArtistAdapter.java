@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.PostConcert;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,15 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.glitchstacks.musiczone.Artist;
-import com.glitchstacks.musiczone.Concert.ConcertDetailActivity;
-import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder> {
@@ -60,7 +54,6 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             if(artist.isSelected){
                 selectedArtist.add(artist);
             }
-
         }
         return selectedArtist;
     }

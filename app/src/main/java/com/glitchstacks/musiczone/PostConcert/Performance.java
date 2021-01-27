@@ -1,8 +1,5 @@
 package com.glitchstacks.musiczone.PostConcert;
 
-import com.glitchstacks.musiczone.Artist;
-import com.glitchstacks.musiczone.Track;
-
 import java.io.Serializable;
 import java.util.List;
 

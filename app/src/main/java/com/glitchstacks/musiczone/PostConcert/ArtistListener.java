@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.PostConcert;
 
 public interface ArtistListener {
 

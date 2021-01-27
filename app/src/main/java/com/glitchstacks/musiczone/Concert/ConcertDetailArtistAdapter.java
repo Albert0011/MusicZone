@@ -14,17 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.glitchstacks.musiczone.Artist;
-import com.glitchstacks.musiczone.ArtistListener;
-import com.glitchstacks.musiczone.Concert.ConcertDetailActivity;
-import com.glitchstacks.musiczone.Database.SessionManager;
+import com.glitchstacks.musiczone.PostConcert.Artist;
 import com.glitchstacks.musiczone.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class ConcertDetailArtistAdapter extends RecyclerView.Adapter<ConcertDetailArtistAdapter.ConcertDetailArtistViewHolder> {
 

@@ -22,7 +22,7 @@ import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
 import com.glitchstacks.musiczone.Profile.SettingsActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.PromotorPage;
-import com.glitchstacks.musiczone.PromotorRequest;
+import com.glitchstacks.musiczone.Profile.PromotorRequest;
 import com.glitchstacks.musiczone.R;
 import com.glitchstacks.musiczone.Profile.SavedConcerts;
 import com.google.firebase.database.DataSnapshot;
@@ -126,7 +126,7 @@ public class ProfileFragment extends Fragment {
 
     private void checkPromotor() {
 
-        mUserDatabase.addValueEventListener(new ValueEventListener() {
+        mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -150,8 +150,6 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
-
     }
 
     private void checkRequest() {
