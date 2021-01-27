@@ -239,8 +239,10 @@ public class SwipeActivity extends AppCompatActivity {
 
 //                        Toast.makeText(SwipeActivity.this, dataSnapshot.child("fullname").getValue().toString(), Toast.LENGTH_SHORT).show();
                         String profileImageUrl = "default";
-                        if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
+                        if (dataSnapshot.child("profileImageUrl").exists()) {
                             profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
+                        } else {
+                            profileImageUrl = "https://firebasestorage.googleapis.com/v0/b/musiczone-90ae7.appspot.com/o/profileImages%2Fblank-profile-picture-973460_960_720.png?alt=media&token=51b5959f-f91c-4148-8b0b-52603c42effd";
                         }
 
                         String date = dataSnapshot.child("date").getValue().toString();
