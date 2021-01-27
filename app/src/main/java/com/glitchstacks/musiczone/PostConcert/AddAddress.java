@@ -319,6 +319,7 @@ public class AddAddress extends AppCompatActivity {
             return false;
         }
 
+        // commit
         // Save address Detail
 
         String place = placeInput.getText().toString();
