@@ -2,11 +2,11 @@ package com.glitchstacks.musiczone.BuyTicket;
 
 public class TicketHelperClass {
 
-    private String image,title, desc, date, time, area, amount, phoneNumber, concertKey;
+    private String image,title, desc, date, time, area, amount, phoneNumber, price, ticketKey, concertKey;
 
     Boolean isSelected;
 
-    public TicketHelperClass(String image, String title, String desc, String date, String time, String area, String amount, String phoneNumber, String concertKey) {
+    public TicketHelperClass(String image, String title, String desc, String date, String time, String area, String amount, String phoneNumber,String ticketKey, String price) {
         this.image = image;
         this.title = title;
         this.desc = desc;
@@ -16,7 +16,8 @@ public class TicketHelperClass {
         this.amount = amount;
         this.isSelected = false;
         this.phoneNumber = phoneNumber;
-        this.concertKey = concertKey;
+        this.price = price;
+        this.ticketKey = ticketKey;
     }
 
     public String getAmount() { return amount; }
@@ -51,12 +52,20 @@ public class TicketHelperClass {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getConcertKey() {
-        return concertKey;
+    public String getPrice() {
+        return price;
     }
 
-    public void setConcertKey(String concertKey) {
-        this.concertKey = concertKey;
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getTicketKey() {
+        return ticketKey;
+    }
+
+    public void setTicketKey(String ticketKey) {
+        this.ticketKey = ticketKey;
     }
 
 }

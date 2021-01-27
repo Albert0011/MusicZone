@@ -75,11 +75,13 @@ public class PaymentActivity extends AppCompatActivity {
         final String concertKey = getIntent().getStringExtra("concertKey");
         String amountTicket = getIntent().getStringExtra("amountTicket");
         String area = getIntent().getStringExtra("area");
+        String price = getIntent().getStringExtra("price");
 
         final Map ticketInfo = new HashMap();
         ticketInfo.put("concert_key", concertKey);
         ticketInfo.put("amountTicket", amountTicket);
         ticketInfo.put("area", area);
+        ticketInfo.put("price",price);
         ticketInfo.put("status", false);
 
 

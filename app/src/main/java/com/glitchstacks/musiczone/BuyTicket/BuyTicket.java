@@ -216,6 +216,7 @@ public class BuyTicket extends AppCompatActivity implements AdapterView.OnItemSe
         intent.putExtra("totalPurchase", totalPurch);
         intent.putExtra("amountTicket", amountInput.getText().toString());
         intent.putExtra("area", txtArea.getText().toString());
+        intent.putExtra("price", currentPrice.toString());
 
         startActivity(intent);
 

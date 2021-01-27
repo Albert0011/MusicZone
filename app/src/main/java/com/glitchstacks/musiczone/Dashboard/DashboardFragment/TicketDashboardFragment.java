@@ -108,8 +108,18 @@ public class TicketDashboardFragment extends Fragment implements TicketListener 
 
         for (TicketHelperClass ticket : selectedTicket) {
             Log.d("CekButton2", "masuk brok");
-            String key = ticket.getConcertKey();
+            String key = ticket.getTicketKey();
+            String price = ticket.getPrice();
+            String amount = ticket.getAmount();
+            Integer priceInt = Integer.parseInt(price);
+            Integer amountInt = Integer.parseInt(amount);
+            Integer totalPurch = (priceInt * amountInt);
+            totalPurch = totalPurch - (totalPurch/100);
+            String phoneNum = ticket.getPhoneNumber();
+            String total = totalPurch.toString();
+
             mDatabase.child("Users").child(phoneNumber).child("tickets").child(key).child("status").setValue("finished");
+            mDatabase.child("Users").child(phoneNum).child("balance").setValue(total);
         }
 
     }
@@ -146,10 +156,13 @@ public class TicketDashboardFragment extends Fragment implements TicketListener 
                         concertKey = snapshot.child("concert_key").getValue().toString();
                         amountTicket = snapshot.child("amountTicket").getValue().toString();
                         area = snapshot.child("area").getValue().toString();
+                        String price = null;
+                        price = snapshot.child("price").getValue().toString();
 
                         final String finalAmountTicket = amountTicket;
                         final String finalArea = area;
-                        final String finalConcertKey = snapshot.getKey().toString();
+                        final String finalTicketKey = snapshot.getKey().toString();
+                        final String finalPrice = price;
 
                         mDatabase.child("Concerts").child(concertKey).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -180,7 +193,7 @@ public class TicketDashboardFragment extends Fragment implements TicketListener 
                                 if(!imageUrl[0].isEmpty() && !concertTitle[0].isEmpty() && !concertDesc[0].isEmpty() && !concertDate[0].isEmpty()
                                         && !finalArea.isEmpty() && !finalAmountTicket.isEmpty() && !concertTime[0].isEmpty() && !finalAmountTicket.isEmpty()){
 
-                                    TicketHelperClass ticketHelperClass = new TicketHelperClass(imageUrl[0], concertTitle[0], concertDesc[0], concertDate[0], concertTime[0], finalArea, finalAmountTicket, promotorPhone, finalConcertKey);
+                                    TicketHelperClass ticketHelperClass = new TicketHelperClass(imageUrl[0], concertTitle[0], concertDesc[0], concertDate[0], concertTime[0], finalArea, finalAmountTicket, promotorPhone, finalTicketKey, finalPrice);
 
                                     ticketList.add(ticketHelperClass);
                                     ticketAdapter.notifyDataSetChanged();
