@@ -453,7 +453,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     @Override
     public void onArtistAction(Boolean isSelected) {
         if (isSelected) {
-            Toast.makeText(AddPlaylist2.this, "Something Selected", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(AddPlaylist2.this, "Something Selected", Toast.LENGTH_SHORT).show();
         }
     }
 
