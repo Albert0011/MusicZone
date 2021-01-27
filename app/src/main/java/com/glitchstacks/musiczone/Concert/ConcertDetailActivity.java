@@ -37,7 +37,7 @@ public class ConcertDetailActivity extends AppCompatActivity {
 
     private static String concertKey;
     private ImageView concertImage;
-    private TextView concertNameText, concertTimeText, concertDateText, concertDurationText, concertDetailText;
+    private TextView concertNameText, concertTimeText, concertDateText, concertDurationText, concertDetailText, seePlaces;
     private DatabaseReference mDatabase;
     private String concertName, concertTime, concertDate, concertDuration, concertDetail,imageURL;
     private FloatingActionButton btnLove;
@@ -69,6 +69,7 @@ public class ConcertDetailActivity extends AppCompatActivity {
         concertDurationText = findViewById(R.id.txtDuration);
         concertTimeText = findViewById(R.id.txtTime);
         concertDetailText = findViewById(R.id.txtConcertDetail);
+        seePlaces = findViewById(R.id.see_places);
 
         // for Image
         concertImage = findViewById(R.id.imgConcertImage);
@@ -85,6 +86,13 @@ public class ConcertDetailActivity extends AppCompatActivity {
 
         // Getting from the Intent
         concertKey = getIntent().getStringExtra("concertKey");
+
+        seePlaces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPlacesDetail();
+            }
+        });
 
         // set Button Listener
         findFriendsLayout.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +153,8 @@ public class ConcertDetailActivity extends AppCompatActivity {
 
         // Mengisi Informasi
         loadConcertInformation();
+
+
 
     }
 
@@ -210,6 +220,12 @@ public class ConcertDetailActivity extends AppCompatActivity {
     private void goToMatchesScreen() {
         Intent intent = new Intent(ConcertDetailActivity.this, SwipeActivity.class);
         intent.putExtra("concertKey", concertKey);
+        startActivity(intent);
+    }
+
+    private void goToPlacesDetail(){
+        Intent intent = new Intent(ConcertDetailActivity.this, PlacesDetail.class);
+        intent.putExtra("concertKey",concertKey);
         startActivity(intent);
     }
 

@@ -95,7 +95,11 @@ public class RequestDetail extends AppCompatActivity {
     }
 
     private void permitRequest() {
+
         mDatabase.child("Users").child(userID).child("promotor").setValue("true");
+        mDatabase.child("Users").child(userID).child("balance").setValue("0");
+        mDatabase.child("Users").child(userID).child("bank_acc").setValue(bank_acc.getText().toString());
+
         mDatabase.child("Request").child(userID).removeValue();
     }
 }

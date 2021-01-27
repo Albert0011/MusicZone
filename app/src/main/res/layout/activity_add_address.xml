@@ -37,7 +37,7 @@
             android:padding="25dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/place_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"

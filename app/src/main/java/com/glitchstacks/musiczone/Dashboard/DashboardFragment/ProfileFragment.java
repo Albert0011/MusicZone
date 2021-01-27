@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -161,7 +162,7 @@ public class ProfileFragment extends Fragment {
             startActivity(intent);
         }
 
-        mRequest.addValueEventListener(new ValueEventListener() {
+        mRequest.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -248,6 +249,38 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+
+        mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if(snapshot.exists()){
+
+                    Log.d("ConcertCountExists", "true");
+
+                    Integer count = 0;
+
+                    for(DataSnapshot s : snapshot.child("tickets").getChildren()){
+
+                        Log.d("in concert ini", s.getKey());
+
+                        if((s.child("status").getValue().toString().equals("true")) || (s.child("status").getValue().toString().equals("finished"))){
+                            count = count+1;
+                        }
+                    }
+
+                    txtConcerts.setText(count.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
     }
 
 
