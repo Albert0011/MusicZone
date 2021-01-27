@@ -187,6 +187,9 @@ public class ExploreDashboardFragment extends Fragment {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     String currentdate = dateFormat.format(calendar.getTime());
 
+                    if(!(snapshot.child("imageURL").exists())){
+                        return;
+                    }
 
                     // Hook from database
                     imageUrl = snapshot.child("imageURL").getValue().toString();
