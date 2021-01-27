@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textColor="@color/Black" />
 
 
@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textColor="@color/Black" />
 
             </com.google.android.material.textfield.TextInputLayout>
