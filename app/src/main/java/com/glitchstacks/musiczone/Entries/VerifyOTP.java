@@ -114,6 +114,7 @@ public class VerifyOTP extends AppCompatActivity {
 
         reference.child(phoneNo).setValue(addNewUser);
         reference.child(phoneNo).child("promotor").setValue("false");
+        reference.child(phoneNo).child("description").setValue("Hi it is me!");
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

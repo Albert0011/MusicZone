@@ -9,7 +9,7 @@ public class cards {
     private String date;
     public cards (String userId, String name, String profileImageUrl, String description, String date){
         this.userId = userId;
-        this.name = name;
+        this.name = name +", "+date;
         this.profileImageUrl = profileImageUrl;
         this.description = description;
         this.date = date;

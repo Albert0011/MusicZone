@@ -231,9 +231,14 @@ public class SwipeActivity extends AppCompatActivity {
                         }
 
                         String date = dataSnapshot.child("date").getValue().toString();
+                        Integer year = Calendar.getInstance().get(Calendar.YEAR);
+                        date = date.substring(date.length() - 4);
+                        Integer birthDate = Integer.parseInt(date);
+                        Integer currentDate = year - birthDate;
+                        String dateStr = currentDate.toString();
 
                         cards item = new cards(dataSnapshot.getKey(), dataSnapshot.child("fullname").getValue().toString(), profileImageUrl,
-                                dataSnapshot.child("description").getValue().toString(), date);
+                                dataSnapshot.child("description").getValue().toString(), dateStr);
                         rowItems.add(item);
                         arrayAdapter.notifyDataSetChanged();
                     }
