@@ -4,15 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/promotor_bg"
+    android:orientation="vertical"
     tools:context=".PromotorPage">
 
     <ImageView
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
         android:src="@drawable/music_zone_logo"
-        android:layout_gravity="center"/>
+        app:tint="@color/White" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="promotor page"
+        android:textAllCaps="true"
+        android:textColor="@color/White"
+        android:textSize="40sp"
+        android:transitionName="transition_signin_btn" />
 
+    <TextView
+        android:id="@+id/balance_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="Balance : "
+        android:textColor="@color/White" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_gravity="center"
+        android:id="@+id/recylcerViewConcert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp" />
+
+    <Button
+        android:id="@+id/remove_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rounded_corners_black"
+        android:elevation="20dp"
+        android:text="REMOVE"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:visibility="gone"
+        android:textColor="@color/White" />
 
 
 </LinearLayout>

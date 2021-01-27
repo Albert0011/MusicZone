@@ -15,11 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PromotorPage"></activity>
-        <activity android:name=".PromotorRequest" />
+        <activity android:name=".AdminPage.RequestDetail"></activity>
+        <activity android:name=".AdminPage.Admin" />
+        <activity android:name=".PromotorPage" />
+        <activity android:name=".Profile.PromotorRequest" />
         <activity android:name=".Concert.DetailPlaylist" />
         <activity android:name=".PromoteUser.WaitEmail" />
-        <activity android:name=".AddPlaylist2" />
+        <activity android:name=".PostConcert.AddPlaylist2" />
         <activity android:name=".PromoteUser.PromoteActivity" />
         <activity android:name=".Profile.SavedConcerts" />
         <activity android:name=".Search.SearchActivity" />
@@ -51,7 +53,6 @@
         <activity android:name=".Entries.IntroductoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

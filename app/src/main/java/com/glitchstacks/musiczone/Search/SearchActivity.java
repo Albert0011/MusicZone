@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import com.glitchstacks.musiczone.R;
@@ -25,6 +27,7 @@ import java.util.Date;
 
 public class SearchActivity extends AppCompatActivity {
 
+    private ImageView backButton;
     private SearchView searchView;
     private RecyclerView concertRecyclerByName;
     private ArrayList<ConcertObject> concertListByName;
@@ -38,12 +41,20 @@ public class SearchActivity extends AppCompatActivity {
 
         // Hook
 
+        backButton = findViewById(R.id.back_btn);
         searchView = findViewById(R.id.searchView);
 
         concertListByName = new ArrayList<ConcertObject>();
 
         concertRecyclerByName = findViewById(R.id.recyclerViewName);
         concertRecyclerByGenre = findViewById(R.id.recyclerViewGenre);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Concerts");
     }

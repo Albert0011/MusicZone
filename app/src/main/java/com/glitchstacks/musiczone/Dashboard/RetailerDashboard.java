@@ -28,8 +28,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import java.util.HashMap;
@@ -59,8 +62,23 @@ public class RetailerDashboard extends AppCompatActivity {
         String username = userDetails.get(SessionManager.KEY_USERNAME);
         promotor = userDetails.get(SessionManager.KEY_PROMOTOR);
 
-        Log.d("cekPromotor",promotor.toString());
         mDatabase = FirebaseDatabase.getInstance().getReference();
+//        mDatabase.child("Users").child(phoneNumber).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                Log.d("snapshotIn", "true");
+//                if(snapshot.exists()){
+//                    Log.d("retailerUserExist", "true");
+//                    promotor = snapshot.child("promotor").getValue().toString();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
         mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -77,11 +95,17 @@ public class RetailerDashboard extends AppCompatActivity {
                 }
             });
 
+        Log.d("phoneNumber", phoneNumber);
+
         chipNavigationBar = findViewById(R.id.bottom_nav_menu);
         chipNavigationBar.setItemSelected(R.id.bottom_nav_explore, true);
+
+        Log.d("promotor", promotor);
+
         if(promotor.equals("false")){
             chipNavigationBar.setItemEnabled(R.id.bottom_nav_post, false);
         }
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ExploreDashboardFragment()).commit();
         bottomMenu();
     }
@@ -91,11 +115,8 @@ public class RetailerDashboard extends AppCompatActivity {
         chipNavigationBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
-
                 Fragment fragment = null;
-
                 switch (i){
-
                     case R.id.bottom_nav_me:
                         fragment = new ProfileFragment();
                         break;

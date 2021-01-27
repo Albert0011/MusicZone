@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:padding="30dp"
+    tools:context=".Entries.Login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="Request Detail"
+            android:textAllCaps="true"
+            android:textColor="@color/Black"
+            android:textSize="40sp"
+            android:transitionName="transition_signin_btn" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is his/her ID CARD" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imageIdentity"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/raissa_poster"
+                app:riv_corner_radius="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bank Account" />
+
+            <TextView
+                android:id="@+id/bank_acc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="Bank Account"
+                android:textColor="@color/Black" />
+
+            <Button
+                android:id="@+id/permitButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_blue"
+                android:elevation="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="PERMIT"
+                android:textColor="@color/White" />
+
+
+            <Button
+                android:id="@+id/notPermitButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_corners_black"
+                android:elevation="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="NOT PERMIT"
+                android:textColor="@color/White" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

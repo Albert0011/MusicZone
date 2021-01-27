@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.glitchstacks.musiczone.Artist;
+import com.glitchstacks.musiczone.PostConcert.Artist;
 import com.glitchstacks.musiczone.BuyTicket.BuyTicket;
 import com.glitchstacks.musiczone.Matches.SwipeActivity;
 import com.glitchstacks.musiczone.Database.SessionManager;

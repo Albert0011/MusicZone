@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="350dp"
+    android:layout_height="350dp"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:background="@color/White"
+    app:cardCornerRadius="175dp"
+    app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:id="@+id/concert_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:clickable="false">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/concert_image"
+            android:layout_width="400dp"
+            android:layout_height="230dp"
+            android:elevation="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/raissa_poster2"
+            app:riv_border_width="0dp"
+            app:riv_corner_radius="10dip"
+            app:riv_corner_radius_bottom_right="0dp" />
+
+        <ImageView
+            android:id="@+id/imageSelected"
+            android:layout_width="76dp"
+            android:layout_height="61dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="137dp"
+            android:layout_marginTop="108dp"
+            android:layout_marginEnd="137dp"
+            android:layout_marginBottom="181dp"
+            android:elevation="30dp"
+            android:src="@drawable/check" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@+id/most_viewed_image"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="220dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/concert_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:gravity="center"
+                android:text="Raissa Concert"
+                android:textColor="@color/Black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/concert_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="Raissa concert has always been the best over the years"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/concert_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="tanggal"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

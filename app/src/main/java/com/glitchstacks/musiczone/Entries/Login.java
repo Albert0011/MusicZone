@@ -16,6 +16,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.glitchstacks.musiczone.AdminPage.Admin;
 import com.glitchstacks.musiczone.Dashboard.RetailerDashboard;
 import com.glitchstacks.musiczone.Database.SessionManager;
 import com.glitchstacks.musiczone.Profile.ForgetPassword;
@@ -98,6 +100,12 @@ public class Login extends AppCompatActivity {
     private void checkLogin() {
 
         //Toast.makeText(Login.this, "masuk1", Toast.LENGTH_LONG).show();
+
+        if(phoneNo.getEditText().getText().toString().equals("0") && password.getEditText().getText().toString().equals("admin")){
+            Log.d("admin In", "true");
+            Intent intent = new Intent(Login.this, Admin.class);
+            startActivity(intent);
+        }
 
         if(!isConnected(this)){
             showCustomDialog();
@@ -310,7 +318,6 @@ public class Login extends AppCompatActivity {
 
 
     }
-
 
     public void callSignUpScreen(View view){
 

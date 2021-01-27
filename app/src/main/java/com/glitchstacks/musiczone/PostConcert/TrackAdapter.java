@@ -1,4 +1,4 @@
-package com.glitchstacks.musiczone;
+package com.glitchstacks.musiczone.PostConcert;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.glitchstacks.musiczone.Concert.ConcertDetailActivity;
+
+import com.glitchstacks.musiczone.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
