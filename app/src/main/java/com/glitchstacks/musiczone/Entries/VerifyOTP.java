@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
@@ -33,6 +34,7 @@ public class VerifyOTP extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String codeBySystem, whatToDo, phoneNo;
     PinView pinFromUser;
+    TextView phoneLayout;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     private void verifyCode(String code) {
@@ -46,7 +48,7 @@ public class VerifyOTP extends AppCompatActivity {
             }
             //signInWithPhoneAuthCredential(credential);
         } catch (Exception e) {
-            Toast toast = Toast.makeText(this, "Verification Code is wrong SALAH BRO", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Verification Code is wrong", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
@@ -155,7 +157,7 @@ public class VerifyOTP extends AppCompatActivity {
                     @Override
                     public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         Toast.makeText(VerifyOTP.this, "Code is sent!", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(VerifyOTP.this, s+" is in message", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(VerifyOTP.this, s+" is in message", Toast.LENGTH_SHORT).show();
                         codeBySystem = s;
                     }
 
@@ -179,9 +181,13 @@ public class VerifyOTP extends AppCompatActivity {
                 };
 
         //hooks
+        phoneLayout = findViewById(R.id.phone_layout);
         pinFromUser = findViewById(R.id.pin_view);
         phoneNo = getIntent().getStringExtra("phoneNo");
         whatToDo = getIntent().getStringExtra("whatToDo");
+
+        phoneLayout.setText("Enter one time password sent on " + phoneNo);
+
         sendVerificationCodeToUser(phoneNo);
 
     }

@@ -75,9 +75,9 @@ public class SwipeActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(SwipeActivity.this, "MASUKSBLMSEX", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SwipeActivity.this, "MASUKSBLMSEX", Toast.LENGTH_SHORT).show();
         checkUserSex();
-        Toast.makeText(SwipeActivity.this, "AFTERSEX", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SwipeActivity.this, "AFTERSEX", Toast.LENGTH_SHORT).show();
 
         rowItems = new ArrayList<cards>();
 
@@ -89,7 +89,7 @@ public class SwipeActivity extends AppCompatActivity {
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                Log.d("LIST", "removed object!");
+//                Log.d("LIST", "removed object!");
                 rowItems.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
@@ -100,7 +100,7 @@ public class SwipeActivity extends AppCompatActivity {
                 cards obj = (cards) dataObject;
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("connections").child("nope").child(currentUId).setValue(true);
-                Toast.makeText(SwipeActivity.this, "Left", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(SwipeActivity.this, "Left", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -110,7 +110,7 @@ public class SwipeActivity extends AppCompatActivity {
                 usersDb.child(userId).child("connections").child("yeps").child(currentUId).setValue(true);
 
                 isConnectionMatch(userId);
-                Toast.makeText(SwipeActivity.this, "Right", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(SwipeActivity.this, "Right", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -128,7 +128,7 @@ public class SwipeActivity extends AppCompatActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
-                Toast.makeText(SwipeActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(SwipeActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -140,7 +140,7 @@ public class SwipeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    Toast.makeText(SwipeActivity.this, "new Connection", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SwipeActivity.this, "New connection made!", Toast.LENGTH_LONG).show();
 
                     String key = FirebaseDatabase.getInstance().getReference().child("Chat").push().getKey();
 
@@ -237,7 +237,7 @@ public class SwipeActivity extends AppCompatActivity {
 
                         Log.d("UserIniMasukKarena", "currentUserID = " + snapshotID + ", " + currentUId);
 
-                        Toast.makeText(SwipeActivity.this, dataSnapshot.child("fullname").getValue().toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SwipeActivity.this, dataSnapshot.child("fullname").getValue().toString(), Toast.LENGTH_SHORT).show();
                         String profileImageUrl = "default";
                         if (!dataSnapshot.child("profileImageUrl").getValue().equals("default")) {
                             profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();

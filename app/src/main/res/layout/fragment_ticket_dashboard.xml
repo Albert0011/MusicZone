@@ -27,13 +27,31 @@
 <!--        android:layout_height="600dp"/>-->
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_gravity="center"
-        android:id="@+id/ticket_recycler"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_toRightOf="@+id/featured_desc" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_gravity="center"
+            android:id="@+id/ticket_recycler"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@+id/featured_desc" />
+
+        <Button
+            android:id="@+id/finishConcert"
+            android:layout_marginTop="-100dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Finish Concert"
+            android:background="@drawable/rounded_corners_black"
+            android:textColor="@color/White"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

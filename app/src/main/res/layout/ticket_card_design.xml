@@ -10,6 +10,8 @@
     app:cardPreventCornerOverlap="false">
 
     <LinearLayout
+
+        android:id="@+id/ticketDesign"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -179,10 +181,51 @@
 
             </LinearLayout>
 
-
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/contactPerson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="Concert Contact:"
+            android:textColor="@color/Grey"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/contactNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="+6281216131101"
+            android:textColor="@color/Black"
+            android:textSize="15sp" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/contactEmail"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="45dp"-->
+<!--            android:fontFamily="@font/montserrat_extrabold"-->
+<!--            android:text="albertc.halim@gmail.com"-->
+<!--            android:textColor="@color/Black"-->
+<!--            android:textSize="15sp" />-->
+
+
+        <ImageView
+            android:id="@+id/imageSelected"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/check"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_marginTop="-135dp"/>
 
     </LinearLayout>
+
+
 
 </androidx.cardview.widget.CardView>

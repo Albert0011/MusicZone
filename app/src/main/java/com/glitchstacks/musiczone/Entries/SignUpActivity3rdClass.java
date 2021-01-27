@@ -83,14 +83,14 @@ public class SignUpActivity3rdClass extends AppCompatActivity {
 
     private void checkUserExist(final String phoneNo) {
 
-        Toast.makeText(SignUpActivity3rdClass.this, phoneNo, Toast.LENGTH_LONG).show();
+//        Toast.makeText(SignUpActivity3rdClass.this, phoneNo, Toast.LENGTH_LONG).show();
 
         Query checkUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("phoneNo").equalTo(phoneNo);
 
         checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Toast.makeText(SignUpActivity3rdClass.this, "masuk2", Toast.LENGTH_LONG).show();
+//                Toast.makeText(SignUpActivity3rdClass.this, "masuk2", Toast.LENGTH_LONG).show();
                 if(snapshot.exists()) {
                     phoneNumberLayout.setError("This number is already exists.");
                     phoneNumberLayout.setErrorEnabled(true);
