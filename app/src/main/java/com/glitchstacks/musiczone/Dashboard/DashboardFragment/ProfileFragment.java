@@ -126,7 +126,7 @@ public class ProfileFragment extends Fragment {
 
     private void checkPromotor() {
 
-        mUserDatabase.addValueEventListener(new ValueEventListener() {
+        mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

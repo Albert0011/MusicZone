@@ -146,20 +146,22 @@ public class PromotorPage extends AppCompatActivity implements PromotorConcertLi
             mAddress.child(concertKey).removeValue();
             mPlaylists.child(concertKey).removeValue();
 
+            concertList.remove(concertList.get(concertList.indexOf(c)));
+
             concertAdapter.notifyDataSetChanged();
 
             final DatabaseReference mUser = FirebaseDatabase.getInstance().getReference().child("Users");
 
-            mUser.addValueEventListener(new ValueEventListener() {
+            mUser.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){
                         for(DataSnapshot s : snapshot.getChildren()){
-                            if((s.child("concertView").child(concertKey)).exists()){
-                                mUser.child("concertView").child(concertKey).removeValue();
-                            }
+
+                            Log.d(s.getKey(), "in");
+
                             if((s.child("concertLikes").child(concertKey)).exists()){
-                                mUser.child("concertLikes").child(concertKey).removeValue();
+                                mUser.child(s.getKey()).child("concertLikes").child(concertKey).removeValue();
                             }
                         }
                     }
