@@ -54,7 +54,6 @@ public class SettingsActivity extends Fragment {
 
         // Hook
         mNameField = (EditText) root.findViewById(R.id.name);
-        mPhoneField = (EditText) root.findViewById(R.id.phone);
         mEmailField = (EditText) root.findViewById(R.id.email);
         mDescField = (EditText) root.findViewById(R.id.desc);
         mProfileImage = (ImageView) root.findViewById(R.id.profileImage);
@@ -111,10 +110,6 @@ public class SettingsActivity extends Fragment {
                         name = map.get("fullname").toString();
                         mNameField.setText(name);
                     }
-                    if (map.get("phoneNo") != null) {
-                        phone = map.get("phoneNo").toString();
-                        mPhoneField.setText(phone);
-                    }
                     if (map.get("gender") != null) {
                         userSex = map.get("gender").toString();
                     }
@@ -152,14 +147,12 @@ public class SettingsActivity extends Fragment {
 
     private void saveUserInformation() {
         name = mNameField.getText().toString();
-        phone = mPhoneField.getText().toString();
         email = mEmailField.getText().toString();
         desc = mDescField.getText().toString();
 
         // HashMap
         Map userInfo = new HashMap();
         userInfo.put("fullname", name);
-        userInfo.put("phoneNo", phone);
         userInfo.put("email",email);
         userInfo.put("description",desc);
 
