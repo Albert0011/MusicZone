@@ -37,7 +37,7 @@ public class TicketDashboardFragment extends Fragment {
 
     private ArrayList<TicketHelperClass> ticketList = new ArrayList<TicketHelperClass>();
 
-    private String phoneNumber;
+    private String phoneNumber, promotorPhone;
 
 
 
@@ -70,6 +70,8 @@ public class TicketDashboardFragment extends Fragment {
 
     private void ticketRecycler(){
 
+
+
         ticketRecycler.setHasFixedSize(true);
         ticketRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
@@ -87,6 +89,7 @@ public class TicketDashboardFragment extends Fragment {
                         final String[] concertDesc = { null };
                         final String[] concertDate = { null };
                         final String[] concertTime = { null };
+
                         String concertKey = null;
                         String amountTicket = null;
                         String area = null;
@@ -108,12 +111,27 @@ public class TicketDashboardFragment extends Fragment {
                                 concertDesc[0] = snapshot.child("description").getValue().toString();
                                 concertDate[0] = snapshot.child("date").getValue().toString();
                                 concertTime[0] = snapshot.child("time").getValue().toString();
+                                promotorPhone = snapshot.child("promotor").getValue().toString();
+
+//                                mDatabase.child("Users").child(promotorPhone[0]).addListenerForSingleValueEvent(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(@NonNull DataSnapshot snapshot2) {
+//                                        Log.d("CEKEMAIL","masuk");
+//                                        email = snapshot2.child("email").getValue().toString();
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                    }
+//                                });
+//                                Log.d("CEKEMAIL",email);
 
 
                                 if(!imageUrl[0].isEmpty() && !concertTitle[0].isEmpty() && !concertDesc[0].isEmpty() && !concertDate[0].isEmpty()
                                         && !finalArea.isEmpty() && !finalAmountTicket.isEmpty() && !concertTime[0].isEmpty() && !finalAmountTicket.isEmpty()){
 
-                                    TicketHelperClass ticketHelperClass = new TicketHelperClass(imageUrl[0], concertTitle[0], concertDesc[0], concertDate[0], concertTime[0], finalArea, finalAmountTicket);
+                                    TicketHelperClass ticketHelperClass = new TicketHelperClass(imageUrl[0], concertTitle[0], concertDesc[0], concertDate[0], concertTime[0], finalArea, finalAmountTicket, promotorPhone);
 
                                     ticketList.add(ticketHelperClass);
                                     ticketAdapter.notifyDataSetChanged();

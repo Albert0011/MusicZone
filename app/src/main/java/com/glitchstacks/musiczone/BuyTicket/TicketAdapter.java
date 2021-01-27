@@ -58,6 +58,8 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketHold
         holder.date.setText(ticketHelperClass.getDate());
         holder.time.setText(ticketHelperClass.getTime());
         holder.area.setText(ticketHelperClass.getArea());
+        holder.phoneNumber.setText(ticketHelperClass.getPhoneNumber());
+
 
 
     }
@@ -70,7 +72,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketHold
     public class TicketHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public ImageView image;
-        public TextView title, desc, date, time, area, amount;
+        public TextView title, desc, date, time, area, amount, phoneNumber;
         public TicketHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -83,6 +85,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketHold
             time = itemView.findViewById(R.id.txtTime);
             area = itemView.findViewById(R.id.txtArea);
             amount = itemView.findViewById(R.id.amount);
+            phoneNumber = itemView.findViewById(R.id.contactNumber);
 
         }
 
