@@ -145,7 +145,7 @@ public class AddAddress extends AppCompatActivity {
         return true;
     }
 
-    private void savePlaceInformation() {
+    private boolean savePlaceInformation() {
 
         Boolean a,b,c,d,e;
 
@@ -156,7 +156,7 @@ public class AddAddress extends AppCompatActivity {
         e = isProvinceValid();
 
         if(!a || !b || !c || !d || !e){
-            return;
+            return false;
         }
 
         final String concertName = getIntent().getStringExtra("concertName");
@@ -341,11 +341,14 @@ public class AddAddress extends AppCompatActivity {
 
         Toast.makeText(this, "Concert is successfully added!", Toast.LENGTH_SHORT).show();
 
+        return true;
     }
 
     public void callNextScreen() {
 
-        savePlaceInformation();
+        if(!savePlaceInformation()){
+            return;
+        }
 
         Intent intent = new Intent(getApplicationContext(), RetailerDashboard.class);
 
