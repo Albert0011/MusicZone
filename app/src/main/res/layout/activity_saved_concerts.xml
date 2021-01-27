@@ -82,12 +82,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat"
+                android:fontFamily="@font/montserrat_extrabold"
                 android:text="Result by Artist"
                 android:textColor="@color/Black" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recylcerViewArtist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="Result by City"
+                android:textColor="@color/Black" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylcerViewCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

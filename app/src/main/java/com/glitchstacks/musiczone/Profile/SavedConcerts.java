@@ -34,12 +34,8 @@ public class SavedConcerts extends AppCompatActivity {
     private Integer currentChoosen;
     private SearchView searchView;
     private ImageView backButton;
-    private RecyclerView concertRecyclerByName;
-
+    private RecyclerView concertRecyclerByName, concertRecyclerByGenre, concertRecyclerByArtist, concertRecyclerByCity;
     private ArrayList<ConcertObject> concertListByName;
-
-    private RecyclerView concertRecyclerByGenre;
-
     private DatabaseReference mDatabase;
     private String phoneNumber;
 
@@ -54,8 +50,9 @@ public class SavedConcerts extends AppCompatActivity {
 
         concertRecyclerByName = findViewById(R.id.recyclerViewName);
         concertRecyclerByGenre = findViewById(R.id.recyclerViewGenre);
+        concertRecyclerByArtist = findViewById(R.id.recyclerViewArtist);
+        concertRecyclerByCity = findViewById(R.id.recyclerViewCity);
         backButton = findViewById(R.id.back_btn);
-
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,6 +227,73 @@ public class SavedConcerts extends AppCompatActivity {
         concertRecyclerByGenre.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
         concertRecyclerByGenre.setAdapter(concertAdapter);
     }
+
+    private void searchByCity(final String newText) {
+
+        final ArrayList<ConcertObject> myList = new ArrayList<>();
+
+        DatabaseReference mAddress = FirebaseDatabase.getInstance().getReference().child("Address");
+
+        for(final ConcertObject object : concertListByName){
+
+            mAddress.child(object.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    if(snapshot.child("city").getValue().toString().toLowerCase().contains(newText.toLowerCase())){
+                        myList.add(object);
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+        ConcertAdapter concertAdapter = new ConcertAdapter(myList);
+        concertRecyclerByCity.setHasFixedSize(true);
+        concertRecyclerByCity.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
+        concertRecyclerByCity.setAdapter(concertAdapter);
+
+    }
+
+    private void searchByArtist(final String newText) {
+
+        final ArrayList<ConcertObject> myList = new ArrayList<>();
+
+        DatabaseReference mPlaylist = FirebaseDatabase.getInstance().getReference().child("Playlists");
+
+        for(final ConcertObject object : concertListByName){
+
+            mPlaylist.child(object.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    for(DataSnapshot s : snapshot.getChildren()){
+                        if(s.child("artist_name").getValue().toString().toLowerCase().contains(newText.toLowerCase())){
+                            myList.add(object);
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+        ConcertAdapter concertAdapter = new ConcertAdapter(myList);
+        concertRecyclerByArtist.setHasFixedSize(true);
+        concertRecyclerByArtist.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
+        concertRecyclerByArtist.setAdapter(concertAdapter);
+
+    }
+
 
 
 

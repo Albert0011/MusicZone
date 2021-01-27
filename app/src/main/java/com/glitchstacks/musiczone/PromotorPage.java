@@ -45,6 +45,7 @@ public class PromotorPage extends AppCompatActivity implements PromotorConcertLi
         balance_textview = findViewById(R.id.balance_textview);
         concert_recyclerView = findViewById(R.id.recylcerViewConcert);
         remove_btn = findViewById(R.id.remove_btn);
+        balance_textview = findViewById(R.id.balance_textview);
 
         concert_recyclerView.setHasFixedSize(true);
         concert_recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL));
@@ -58,6 +59,23 @@ public class PromotorPage extends AppCompatActivity implements PromotorConcertLi
             }
         });
 
+        SessionManager sessionManager = new SessionManager(PromotorPage.this, SessionManager.SESSION_USERSESSION);
+        HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
+        String phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
+
+        DatabaseReference mUser = FirebaseDatabase.getInstance().getReference().child("Users").child(phoneNumber);
+
+        mUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    balance_textview.setText("Balance : " + snapshot.child("balance").getValue().toString() + " IDR");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     private ArrayList<PromotorConcert> getDataSet() {

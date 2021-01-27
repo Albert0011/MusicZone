@@ -67,7 +67,7 @@
                 app:endIconTint="@color/Black"
                 app:hintTextColor="@color/Black"
                 app:startIconDrawable="@drawable/user_icon"
-                app:startIconTint="@color/quantum_orange">
+                app:startIconTint="@color/Black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name"
@@ -97,7 +97,7 @@
                 app:endIconTint="@color/Black"
                 app:hintTextColor="@color/Black"
                 app:startIconDrawable="@drawable/mail"
-                app:startIconTint="@color/quantum_orange">
+                app:startIconTint="@color/Black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
@@ -126,7 +126,7 @@
                 app:endIconTint="@color/Black"
                 app:hintTextColor="@color/Black"
                 app:startIconDrawable="@drawable/phone"
-                app:startIconTint="@color/quantum_orange">
+                app:startIconTint="@color/Black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phone"

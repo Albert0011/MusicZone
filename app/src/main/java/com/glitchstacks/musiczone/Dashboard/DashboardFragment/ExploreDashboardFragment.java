@@ -19,6 +19,7 @@ import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedAdapt
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.FeaturedHelperClass;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedAdapter;
 import com.glitchstacks.musiczone.HelperClasses.ExplorePageAdapter.MostViewedHelperClass;
+import com.glitchstacks.musiczone.MostViewedPage;
 import com.glitchstacks.musiczone.R;
 import com.glitchstacks.musiczone.Search.SearchActivity;
 import com.google.firebase.database.ChildEventListener;
@@ -43,7 +44,7 @@ public class ExploreDashboardFragment extends Fragment {
 
     private DatabaseReference mDatabase;
 
-    private TextView searchLayout;
+    private TextView searchLayout, view_all;
 
     private ArrayList<FeaturedHelperClass> featuredList = new ArrayList<FeaturedHelperClass>();
     private ArrayList<MostViewedHelperClass> mostViewedList = new ArrayList<MostViewedHelperClass>();
@@ -56,6 +57,15 @@ public class ExploreDashboardFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_explore_dashboard, container, false);
 
         searchLayout = root.findViewById(R.id.search_input);
+        view_all = root.findViewById(R.id.view_all);
+
+        view_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MostViewedPage.class);
+                startActivity(intent);
+            }
+        });
 
         searchLayout.setOnClickListener(new View.OnClickListener() {
             @Override
