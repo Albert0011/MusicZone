@@ -263,16 +263,11 @@ public class AddArea extends AppCompatActivity {
         String concertDuration = getIntent().getStringExtra("concertDuration");
         String concertDate = getIntent().getStringExtra("concertDate");
         String concertTime = getIntent().getStringExtra("concertTime");
-        Uri concertImageUri = getIntent().getParcelableExtra("concertimageUri");
+        String concertImageUri = getIntent().getStringExtra("concertimageUrl");
         ArrayList<Song> concertList = (ArrayList<Song>) getIntent().getSerializableExtra("playlist");
 
         Log.d("IniAddArea", "something is missing" + concertName + concertKey + concertMainGenre + concertDescription + concertDuration + concertDate + concertTime + (concertImageUri == null));
-
-
-        if(concertName.isEmpty() || concertKey.isEmpty() || concertMainGenre.isEmpty() || concertDate.isEmpty() || concertDuration.isEmpty() || concertImageUri == null || concertList.size() == 0 || concertTime.isEmpty() ){
-            Log.d("AddArea", "something is missing" + concertName + concertKey + concertMainGenre + concertDescription + concertDuration + concertDate + concertTime + (concertImageUri == null));
-            return;
-        }
+        Log.d("addArea", concertImageUri);
 
         intent.putExtra("concertName",concertName);
         intent.putExtra("concertKey",concertKey);
@@ -281,7 +276,7 @@ public class AddArea extends AppCompatActivity {
         intent.putExtra("concertDuration",concertDuration);
         intent.putExtra("concertDate",concertDate);
         intent.putExtra("concertTime",concertTime);
-        intent.putExtra("concertimageUri",concertImageUri);
+        intent.putExtra("concertimageUrl",concertImageUri);
         intent.putExtra("playlist",concertList);
         intent.putExtra("areaList",areaList);
         intent.putExtra("areaUri", resultUri);

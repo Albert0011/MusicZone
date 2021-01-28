@@ -38,7 +38,8 @@ public class AddAddress extends AppCompatActivity {
     private EditText provinceInput, cityInput, addressInput, placeInput, descInput;
     private DatabaseReference mDatabase;
     private TextInputLayout provinceLayout, cityLayout, addressLayout, placeLayout, descLayout;
-    private String province, city, address, place, desc;
+    private String province, city, address, place, desc, concertImageURL;
+    private Integer isOK1 = 0, isOk2 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +146,7 @@ public class AddAddress extends AppCompatActivity {
         return true;
     }
 
-    private boolean savePlaceInformation() {
+    private void savePlaceInformation() {
 
         Boolean a,b,c,d,e;
 
@@ -156,7 +157,7 @@ public class AddAddress extends AppCompatActivity {
         e = isProvinceValid();
 
         if(!a || !b || !c || !d || !e){
-            return false;
+            return;
         }
 
         final String concertName = getIntent().getStringExtra("concertName");
@@ -166,71 +167,16 @@ public class AddAddress extends AppCompatActivity {
         final String concertDuration = getIntent().getStringExtra("concertDuration");
         final String concertDate = getIntent().getStringExtra("concertDate");
         final String concertTime = getIntent().getStringExtra("concertTime");
-        Uri concertImageUri = getIntent().getParcelableExtra("concertimageUri");
+        final String concertimageUrl = getIntent().getStringExtra("concertimageUrl");
+
         Uri areaImageUri = getIntent().getParcelableExtra("areaUri");
         ArrayList<Performance> playlist = (ArrayList<Performance>) getIntent().getSerializableExtra("playlist");
         ArrayList<Area> areaList = (ArrayList<Area>) getIntent().getSerializableExtra("areaList");
 
         // save concertInformation
-
-        String sementara = concertName + concertKey +  concertMainGenre + concertDescription +  concertDate + concertTime + concertDuration;
+        String sementara = concertName + concertKey +  concertMainGenre + concertDescription +  concertDate + concertTime + concertDuration + concertimageUrl;
 
         Log.d("concert Added", sementara);
-
-        if(!(concertImageUri==null)){
-            Log.d("concertImageNotNull", "in");
-            final StorageReference filepath = FirebaseStorage.getInstance().getReference().child("concertImages").child(concertKey);
-
-            Bitmap bitmap = null;
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(),concertImageUri);
-            } catch (IOException s) {
-                s.printStackTrace();
-            }
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-            byte[] data = baos.toByteArray();
-
-            UploadTask uploadTask = filepath.putBytes(data);
-
-            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri downloadUrl) {
-                            Log.d("concertImageUpdateSuccessfull","uploadSuccess");
-                            Map userInfo = new HashMap();
-                            userInfo.put("concert_name", concertName);
-                            userInfo.put("id", concertKey);
-                            userInfo.put("main_genre", concertMainGenre);
-                            userInfo.put("description", concertDescription);
-                            userInfo.put("duration", concertDuration);
-                            userInfo.put("date", concertDate);
-                            userInfo.put("time", concertTime);
-                            userInfo.put("imageURL", downloadUrl.toString());
-
-                            SessionManager sessionManager = new SessionManager(AddAddress.this, SessionManager.SESSION_USERSESSION);
-                            HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
-                            String phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
-
-                            userInfo.put("promotor", phoneNumber);
-                            mDatabase.child("Concerts").child(concertKey).updateChildren(userInfo);
-                            mDatabase.child("Promotors").child(phoneNumber).child(concertKey).setValue("true");
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.d("uploadFail",e.getMessage().toString());
-                        }
-                    });
-                }
-            });
-        } else {
-            Log.d("resultUri", "out");
-            return false;
-        }
 
         // Save Concert Playlist
 
@@ -265,11 +211,9 @@ public class AddAddress extends AppCompatActivity {
 
         for(Area area : areaList){
             Map areaInfo = new HashMap();
-
             areaInfo.put("area_name",area.getAreaName());
             areaInfo.put("area_price", area.getAreaPrice());
             areaInfo.put("area_ticket_amount", area.getTicketAmount());
-
             mArea.child("area_detail").push().updateChildren(areaInfo);
         }
 
@@ -300,10 +244,55 @@ public class AddAddress extends AppCompatActivity {
                             Map userInfo = new HashMap();
 
                             userInfo.put("areaImageUrl", downloadUrl.toString());
+                            userInfo.put("concert_name", concertName);
+                            userInfo.put("imageURL", concertimageUrl);
+                            userInfo.put("date",concertDate);
+                            userInfo.put("description", concertDescription);
+                            userInfo.put("duration", concertDuration);
+                            userInfo.put("id", concertKey);
+                            userInfo.put("main_genre", concertMainGenre);
+                            userInfo.put("time", concertTime);
+
+                            SessionManager sessionManager = new SessionManager(AddAddress.this, SessionManager.SESSION_USERSESSION);
+                            HashMap<String, String> map = sessionManager.getUsersDetailFromSession();
+                            String phoneNumber = map.get(SessionManager.KEY_PHONENUMBER);
+
+                            userInfo.put("promotor", phoneNumber);
 
                             Log.d("areaImageUploaded", "in");
 
                             mDatabase.child("Concerts").child(concertKey).updateChildren(userInfo);
+                            mDatabase.child("Promotors").child(phoneNumber).child(concertKey).setValue("true");
+
+                            isOk2 = 1;
+
+                            String place = placeInput.getText().toString();
+                            String province = provinceInput.getText().toString();
+                            String city = cityInput.getText().toString();
+                            String desc = descInput.getText().toString();
+                            String address = addressInput.getText().toString();
+
+                            Log.d("cek Key", concertKey);
+
+                            DatabaseReference addressDatabase = mDatabase.child("Address").child(concertKey);
+
+                            final Map placeInfo = new HashMap();
+                            placeInfo.put("place", place);
+                            placeInfo.put("province", province);
+                            placeInfo.put("city",city);
+                            placeInfo.put("address",address);
+                            placeInfo.put("desc",desc);
+
+                            // Database Reference
+                            addressDatabase.updateChildren(placeInfo);
+
+                            Toast.makeText(AddAddress.this, "Concert is successfully added!", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(getApplicationContext(), RetailerDashboard.class);
+
+                            startActivity(intent);
+
+                            finish();
 
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -316,47 +305,15 @@ public class AddAddress extends AppCompatActivity {
             });
         } else {
             Log.d("resultUri", "out");
-            return false;
         }
 
-        // commit
         // Save address Detail
 
-        String place = placeInput.getText().toString();
-        String province = provinceInput.getText().toString();
-        String city = cityInput.getText().toString();
-        String desc = descInput.getText().toString();
-        String address = addressInput.getText().toString();
 
-        Log.d("cek Key", concertKey);
-
-        DatabaseReference addressDatabase = mDatabase.child("Address").child(concertKey);
-
-        final Map placeInfo = new HashMap();
-        placeInfo.put("place", place);
-        placeInfo.put("province", province);
-        placeInfo.put("city",city);
-        placeInfo.put("address",address);
-        placeInfo.put("desc",desc);
-
-        // Database Reference
-        addressDatabase.updateChildren(placeInfo);
-
-        Toast.makeText(this, "Concert is successfully added!", Toast.LENGTH_SHORT).show();
-
-        return true;
     }
 
     public void callNextScreen() {
-
-        if(!savePlaceInformation()){
-            return;
-        }
-
-        Intent intent = new Intent(getApplicationContext(), RetailerDashboard.class);
-
-        startActivity(intent);
-
+        savePlaceInformation();
     }
 
 

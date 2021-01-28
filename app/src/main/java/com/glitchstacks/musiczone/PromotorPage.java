@@ -177,7 +177,6 @@ public class PromotorPage extends AppCompatActivity implements PromotorConcertLi
                         for(DataSnapshot s : snapshot.getChildren()){
 
                             Log.d(s.getKey(), "in");
-
                             if((s.child("concertLikes").child(concertKey)).exists()){
                                 mUser.child(s.getKey()).child("concertLikes").child(concertKey).removeValue();
                             }
@@ -189,6 +188,10 @@ public class PromotorPage extends AppCompatActivity implements PromotorConcertLi
 
                 }
             });
+
+            final DatabaseReference mPromotor = FirebaseDatabase.getInstance().getReference().child("Promotors").child(phoneNumber).child(concertKey);
+            mPromotor.removeValue();
+
         }
     }
 

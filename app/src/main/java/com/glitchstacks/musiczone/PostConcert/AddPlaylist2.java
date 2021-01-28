@@ -51,8 +51,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     private TextView textViewSeePlaylist;
     private SearchView searchViewArtist, searchViewTrack;
     private Dialog dialog;
-    private String concertName, concertKey, concertMainGenre, concertDescription, concertDuration, concertDate, concertTime;
-    private Uri concertImageUrl;
+    private String concertName, concertKey, concertMainGenre, concertDescription, concertDuration, concertDate, concertTime, concertImageUrl;
     ArtistAdapter artistAdapter;
     TrackAdapter trackAdapter;
 
@@ -60,7 +59,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
     private ArrayList<Artist> artistlist = new ArrayList<>();
     private ArrayList<Performance> performanceList = new ArrayList<>();
 
-    final String authorization = "Bearer BQDHNGjMvYjHJm0Riicg-Wsm497ywJ8KRuRbGvRqUFXr3SC52SomxqreKW1WCEWRjOyW0fpUHUXPrV7PZXiW4xcPPTQbSG3jBzhzkKfjLZWO3-ZVTA3YDFr4lylHpy9JspHi60w_TzFfemWm4MiNx17wXwwuFTx9PQ";
+    final String authorization = "Bearer BQCKuiP8n43RqSKGC2WFeeZHjQqoSGPbDHKQwTSACWw1WK-Grpvyy9h-D1BxlhxSSC9-4OtVHWnNXjNWul53KyMHcMYXH7MUGPhHbU32SYqlVZwbJFSjoNciB_Apux40mHVw6TBgVfKly9lwGviGEuTso_2gK69qSw";
 
 
     @Override
@@ -88,7 +87,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
         concertDuration = getIntent().getStringExtra("concertDuration");
         concertDate = getIntent().getStringExtra("concertDate");
         concertTime = getIntent().getStringExtra("concertTime");
-        concertImageUrl = getIntent().getParcelableExtra("concertimageUri");
+        concertImageUrl = getIntent().getStringExtra("concertimageURL");
 
         Log.d("IniAddPlaylist", "something is missing" + concertName + concertKey + concertMainGenre + concertDescription + concertDuration + concertDate + concertTime + (concertImageUrl == null));
 
@@ -473,10 +472,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
 
         Intent intent = new Intent(getApplicationContext(), AddArea.class);
 
-        if(concertName.isEmpty() || concertKey.isEmpty() || concertMainGenre.isEmpty() || concertDate.isEmpty() || concertDuration.isEmpty() || concertImageUrl == null || concertTime.isEmpty() ){
-            Log.d("AddArea", "something is missing" + concertName + concertKey + concertMainGenre + concertDescription + concertDuration + concertDate + concertTime + (concertImageUrl == null));
-            return;
-        }
+        Log.d("AddArea", "something is missing" + concertName + concertKey + concertMainGenre + concertDescription + concertDuration + concertDate + concertTime + (concertImageUrl == null));
 
         intent.putExtra("concertName", concertName);
         intent.putExtra("concertKey", concertKey);
@@ -485,7 +481,7 @@ public class AddPlaylist2 extends AppCompatActivity implements ArtistListener, T
         intent.putExtra("concertDuration", concertDuration);
         intent.putExtra("concertDate", concertDate);
         intent.putExtra("concertTime", concertTime);
-        intent.putExtra("concertimageUri", concertImageUrl);
+        intent.putExtra("concertimageUrl", concertImageUrl);
         intent.putExtra("playlist", performanceList);
         startActivity(intent);
 

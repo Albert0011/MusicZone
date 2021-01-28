@@ -422,6 +422,7 @@ public class AddConcert extends Fragment {
 
     }
 
+
     private void saveConcertInformation() {
 
         // membuat intent untuk aktivitas selanjutnya
@@ -430,40 +431,7 @@ public class AddConcert extends Fragment {
         final String key = mDatabase.child("Concerts").push().getKey();
         DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);
 
-        if(resultUri != null){
-
-            intent.putExtra("concertName", concertName);
-            intent.putExtra("concertKey", key);
-            intent.putExtra("concertMainGenre", mainGenre);
-            intent.putExtra("concertDescription", concertDescription);
-            intent.putExtra("concertDuration", concertDurationStr);
-            intent.putExtra("concertDate", concertDate);
-            intent.putExtra("concertTime", concertTime);
-            intent.putExtra("concertimageUri", resultUri);
-
-
-            startActivity(intent);
-
-        } else {
-
-            Toast.makeText(getContext(), "Something has not been filled!", Toast.LENGTH_SHORT).show();
-
-        }
-
-    }
-
-
-    private void saveConcertInformation2() {
-
-        // membuat intent untuk aktivitas selanjutnya
-        final Intent intent = new Intent(getActivity().getApplicationContext(), AddPlaylist2.class);
-
-        final String key = mDatabase.child("Concerts").push().getKey();
-        DatabaseReference concertDatabase = mDatabase.child("Concerts").child(key);
-
         intent.putExtra("key", key);
-
-        final Map concertInfo = new HashMap();
 
         if(resultUri != null){
             Log.d("resultUri", "in");
@@ -496,10 +464,13 @@ public class AddConcert extends Fragment {
                              intent.putExtra("concertKey", key);
                              intent.putExtra("concertMainGenre", mainGenre);
                              intent.putExtra("concertDescription", concertDescription);
-                             intent.putExtra("concertDuration", concertDuration);
+                             intent.putExtra("concertDuration", concertDurationStr);
                              intent.putExtra("concertDate", concertDate);
                              intent.putExtra("concertTime", concertTime);
                              intent.putExtra("concertimageURL", downloadUrl.toString());
+
+                             startActivity(intent);
+
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -507,18 +478,12 @@ public class AddConcert extends Fragment {
                             Log.d("uploadFail",e.getMessage().toString());
                         }
                     });
-
                 }
             });
         } else {
-
             Log.d("resultUri", "out");
-
         }
-
-        startActivity(intent);
     }
-
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
